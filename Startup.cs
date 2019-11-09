@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using clubyApi.Models;
+using clubyApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,7 +13,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-
 namespace clubyApi
 {
     public class Startup
@@ -33,7 +33,9 @@ namespace clubyApi
 
             services.AddSingleton<IClubyDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<ClubyDatabaseSettings>>().Value);
+            services.AddSingleton<StudentsService>();
             services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,9 +45,9 @@ namespace clubyApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseMvc();
 
             app.UseHttpsRedirection();
-            app.UseMvc();
             app.UseRouting();
 
             app.UseAuthorization();
