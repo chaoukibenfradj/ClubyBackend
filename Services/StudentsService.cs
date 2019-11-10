@@ -2,6 +2,7 @@
 
 using clubyApi.Models;
 using MongoDB.Driver;
+using clubyApi.Utils;
 
 namespace clubyApi.Services
 {
@@ -15,6 +16,8 @@ namespace clubyApi.Services
 
         }
         public Student Create(Student student){
+            var hashPassword=new HashPassword();
+            student.Password=hashPassword.HashedPass(student.Password);
             _students.InsertOne(student);
             return student;
         }
