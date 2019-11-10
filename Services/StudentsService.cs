@@ -40,10 +40,16 @@ namespace clubyApi.Services
                 }
                 else{
 
-                    result="wrong password"+password;
+                    result="wrong password";
                 }
             }
             return result;
+        } 
+
+        public Student GetProfile(string id){
+            Student student = _students.Find<Student>(student => student.Id == id).FirstOrDefault();
+            return student;
+
         }
 
 
