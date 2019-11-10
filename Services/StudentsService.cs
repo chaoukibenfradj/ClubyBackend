@@ -3,7 +3,7 @@
 using clubyApi.Models;
 using MongoDB.Driver;
 using clubyApi.Utils;
-
+using System;
 namespace clubyApi.Services
 {
     public class StudentsService
@@ -15,12 +15,38 @@ namespace clubyApi.Services
             _students = database.GetCollection<Student>(settings.StudentCollectionName); 
 
         }
-        public Student Create(Student student){
+        public string Create(Student student){
+            string result="email is already in use";
             var hashPassword=new HashPassword();
-            student.Password=hashPassword.HashedPass(student.Password);
-            _students.InsertOne(student);
-            return student;
+            long num = _students.Find<Student>(stud => stud.Email==student.Email).CountDocuments();
+            if(num==0){
+                result="account created with success";
+                student.Password=hashPassword.HashedPass(student.Password);
+                _students.InsertOne(student);
+            }
+            return result;
         }
+        public string Login(string email,string password){
+            string result=null;
+            
+            Student student = _students.Find<Student>(student => student.Email == email).FirstOrDefault();
+            if(student==null){
+              result="student does not exists";
+            }
+            else{
+                HashPassword hashPassword=new HashPassword();
+                if(student.Password == hashPassword.HashedPass(password)){
+                    result=student.Id;
+                }
+                else{
+
+                    result="wrong password"+password;
+                }
+            }
+            return result;
+        }
+
+
 
     }
 }

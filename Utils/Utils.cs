@@ -9,11 +9,8 @@ namespace clubyApi.Utils{
 
           } 
           public  string HashedPass(string password){
-            byte[] salt = new byte[128 / 8];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(salt);
-            }
+             byte[] salt = new byte[20];
+             
                 string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password: password,
                 salt: salt,

@@ -1,3 +1,4 @@
+using System;
 using clubyApi.Models;
 using clubyApi.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +14,17 @@ namespace clubyApi.Controllers
         public StudentsController(StudentsService service){
              _service=service;
         }
-        [HttpPost]
-        public ActionResult<Student> Create(Student student)
+        [HttpPost("register")]
+        public ActionResult<string> Create(Student student)
         {
-            _service.Create(student);
-            return student;
+            string result=_service.Create(student);
+            return result;
+        }
+         [HttpPost("login")]
+        public ActionResult<string> Login(Student student)
+        {
+            string result=_service.Login(student.Email,student.Password);
+            return result;
         }
       
     }
