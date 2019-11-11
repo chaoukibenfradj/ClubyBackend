@@ -19,8 +19,11 @@ namespace clubyApi.Models
         [BsonElement("Photo")]
         public string Photo{ get;set;}
         //[BsonRepresentation(BsonType.ObjectId)]
-        [BsonElement("School")]
-        public string School{ get ; set;}
+        [BsonElement("Institut")]
+        public string Institut{ get ; set;}
+        [BsonElement("Inscription")]
+        public string Inscription{ get ; set;}
+        
 
 
 
