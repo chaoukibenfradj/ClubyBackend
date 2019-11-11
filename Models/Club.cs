@@ -25,7 +25,7 @@ namespace clubyApi.Models
         [BsonElement("Domain")]
         public string Domain{ get ; set;}
          [BsonElement("CreationDate")]
-        public date CreationDate{ get ; set;}
+        public string CreationDate{ get ; set;}
         
 
 
