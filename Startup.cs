@@ -34,6 +34,7 @@ namespace clubyApi
             services.AddSingleton<IClubyDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<ClubyDatabaseSettings>>().Value);
             services.AddSingleton<StudentsService>();
+            services.AddSingleton<ClubService>();
             services.AddControllers();
 
         }
