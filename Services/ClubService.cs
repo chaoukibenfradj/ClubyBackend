@@ -2,8 +2,10 @@ using clubyApi.Models;
 using MongoDB.Driver;
 using clubyApi.Utils;
 using System;
+using System.Linq;
 namespace clubyApi.Services
-{
+{using System.Collections.Generic;
+
     public class ClubService
     {
         private readonly IMongoCollection<Club> _clubs;
@@ -13,6 +15,7 @@ namespace clubyApi.Services
             _clubs = database.GetCollection<Club>(settings.ClubCollectionName); 
 
         }
+
         public string Create(Club club){
             string result="email is already in use";
             var hashPassword=new HashPassword();
@@ -24,6 +27,7 @@ namespace clubyApi.Services
             }
             return result;
         }
+
         public string Login(string email,string password){
             string result=null;
             
@@ -43,12 +47,27 @@ namespace clubyApi.Services
             }
             return result;
         } 
-
-       
-
+    
+        public void remove (string id ){
+            if ( _clubs.Find<Club>(club => club.Id == id).FirstOrDefault()!=null)
+                _clubs.DeleteOne(club => club.Id == id);
         }
 
+         public List<Club> Get() =>
+            _clubs.Find(club => true).ToList();
+
+        public Club Get(string id) =>
+            _clubs.Find<Club>(club => club.Id == id).FirstOrDefault();
+
+        public void Update(string id, Club clubIn) =>
+            _clubs.ReplaceOne(club => club.Id == id, clubIn);    
+
+        
+       
+
+        
 
 
+    }
     
 }
