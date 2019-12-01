@@ -1,7 +1,7 @@
 using clubyApi.Models;
 using clubyApi.Services;
 using Microsoft.AspNetCore.Mvc;
-
+using MongoDB.Driver;
 
 namespace clubyApi.Controllers
 {
@@ -30,10 +30,14 @@ namespace clubyApi.Controllers
                 return Ok(response);
             }  
         }
-        [HttpGet("{id}")]
+        [HttpGet("profile/{id}")]
         public ActionResult<Student> FindStudentProfile(string id) 
         {
             return Ok(_service.FindStudentProfile(id));
+        }
+        [HttpPost]
+        public ActionResult<UpdateResult> CompleteStudentInscription(string id, string institute, string photo){
+            return Ok(_service.CompleteStudentInscription(id,institute,photo));
         }
 
        

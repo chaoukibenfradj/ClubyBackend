@@ -3,6 +3,7 @@
 using clubyApi.Models;
 
 using clubyApi.Repositories;
+using MongoDB.Driver;
 
 namespace clubyApi.Services
 {
@@ -18,6 +19,11 @@ namespace clubyApi.Services
         public Student AuthentificateStudent(string email, string password)
         {
             return _repo.AuthentificateStudent(email,password);
+        }
+
+        public UpdateResult CompleteStudentInscription(string id, string institute, string photo)
+        {
+            return _repo.CompleteStudentInscription(id,institute,photo);
         }
 
         public Inscription CreateStudent(Inscription student)

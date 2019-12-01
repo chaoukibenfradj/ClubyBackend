@@ -25,8 +25,12 @@ namespace clubyApi.Models
 
         public string Email{ get ; set;}
         public string Password{ get ; set;}
-
+        
+        [BsonElement("Institute")]
          public string Institute{ get ; set;}
+        
+        [BsonElement("Photo")]
+
         public string Photo{ get;set;}
       
 

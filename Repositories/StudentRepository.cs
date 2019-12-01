@@ -2,6 +2,8 @@ using clubyApi.Models;
 using MongoDB.Driver;
 using clubyApi.Utils;
 using System;
+using MongoDB.Bson;
+
 namespace clubyApi.Repositories
 {
     public class StudentRepository:IStudentRepository
@@ -41,12 +43,19 @@ namespace clubyApi.Repositories
             return result;
         }
         public  Student FindStudentProfile(string id){
-            Console.Write(id);
             return _students.Find<Student>(Student=> Student.Id==id).FirstOrDefault();
         }
         public Student FindStudentByEmail(string email) => _students.Find<Student>(stud => stud.Email == email).FirstOrDefault();
 
-        
+        public UpdateResult CompleteStudentInscription(string id,string institute, string photo)
+        {
+            var filter = Builders<Student>.Filter.Eq("id",id);
+            Console.Write(institute);
+
+            var update=Builders<Student>.Update.Set("Photo", photo).Set("Institute", institute);
+
+            return _students.UpdateOne(filter,update);
+        }
     }
 
     
