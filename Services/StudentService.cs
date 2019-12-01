@@ -25,6 +25,9 @@ namespace clubyApi.Services
            return _repo.CreateStudent(student);
     
         }
+        public  Student FindStudentProfile(string id){
+            return _repo.FindStudentProfile(id);
+        }
 
     }
 

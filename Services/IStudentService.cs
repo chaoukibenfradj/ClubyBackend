@@ -6,6 +6,7 @@ namespace clubyApi.Services
     {
         Student AuthentificateStudent(string email,string password);
         Inscription CreateStudent(Inscription student);
+        Student FindStudentProfile(string id);
 
     }
 }

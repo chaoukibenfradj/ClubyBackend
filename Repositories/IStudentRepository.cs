@@ -7,6 +7,7 @@ namespace clubyApi.Repositories
         Inscription CreateStudent(Inscription student);
         Student AuthentificateStudent(string email,string password);
         Student FindStudentByEmail(string email);
+        Student FindStudentProfile(string id);
 
 
     }

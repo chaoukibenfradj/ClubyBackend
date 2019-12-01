@@ -30,6 +30,11 @@ namespace clubyApi.Controllers
                 return Ok(response);
             }  
         }
+        [HttpGet("{id}")]
+        public ActionResult<Student> FindStudentProfile(string id) 
+        {
+            return Ok(_service.FindStudentProfile(id));
+        }
 
        
 
