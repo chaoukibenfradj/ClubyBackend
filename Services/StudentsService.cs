@@ -26,33 +26,24 @@ namespace clubyApi.Services
             }
             return result;
         }
-        public string Login(string email,string password){
-            string result=null;
+        public Student Login(string email,string password){
             
             Student student = _students.Find<Student>(student => student.Email == email).FirstOrDefault();
-            if(student==null){
-              result="student does not exists";
-            }
-            else{
+            if(student!=null){
+            
                 HashPassword hashPassword=new HashPassword();
-                if(student.Password == hashPassword.HashedPass(password)){
-                    result=student.Id;
+                if(student.Password != hashPassword.HashedPass(password)){
+                    student=null;
                 }
-                else{
-
-                    result="wrong password";
-                }
+                
             }
-            return result;
+            return student;
         } 
 
         public Student GetProfile(string id){
             Student student = _students.Find<Student>(student => student.Id == id).FirstOrDefault();
             return student;
-
         }
-
-
 
     }
 }

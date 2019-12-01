@@ -22,10 +22,15 @@ namespace clubyApi.Controllers
         }
         [HttpPost("login")]
         [Produces("application/json")]
-        public ActionResult<string> Login(Student student) 
+        public ActionResult<Student> Login(Student student) 
         {
-            string response=_service.Login(student.Email,student.Password);         
-            return Ok(new ObjectResult(response));
+            Student response=_service.Login(student.Email,student.Password);    
+            if(response==null){
+                return NotFound();
+            }   
+            else{
+                return Ok(new ObjectResult(response));
+            }  
         }
 
         [HttpGet("profile")]
