@@ -9,37 +9,29 @@ namespace clubyApi.Controllers
     [ApiController]
     public class StudentsController :ControllerBase
     {   
-        private readonly StudentsService _service;
-        public StudentsController(StudentsService service){
+        private readonly IStudentService _service;
+        public StudentsController(IStudentService service){
              _service=service;
         }
         [HttpPost("register")]
-        [Produces("application/json")]
-        public ActionResult<string> Create(Student student)
+        public ActionResult<string> CreateStudent(Student student)
         {
-            string response=_service.Create(student);
-            return Ok(new ObjectResult(response));
+            Student response=_service.CreateStudent(student);
+            return Ok(response);
         }
         [HttpPost("login")]
-        [Produces("application/json")]
-        public ActionResult<Student> Login(Student student) 
+        public ActionResult<Student> AuthentificateStudent(Student student) 
         {
-            Student response=_service.Login(student.Email,student.Password);    
+            Student response=_service.AuthentificateStudent(student.Email,student.Password);    
             if(response==null){
                 return NotFound();
             }   
             else{
-                return Ok(new ObjectResult(response));
+                return Ok(response);
             }  
         }
 
-        [HttpGet("profile")]
-        [Produces("application/json")]
-        public ActionResult<Student> GetProfile(string id)
-        {  id=Request.Headers["id"];
-        
-           return Ok(new ObjectResult( _service.GetProfile(id)));   
-        }
+       
 
       
     }
