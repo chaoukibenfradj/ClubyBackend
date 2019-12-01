@@ -20,7 +20,7 @@ namespace clubyApi.Controllers
             return Ok(response);
         }
         [HttpPost("login")]
-        public ActionResult<Student> AuthentificateStudent(Student student) 
+        public ActionResult<Student> AuthentificateStudent(Authentification student) 
         {
             Student response=_service.AuthentificateStudent(student.Email,student.Password);    
             if(response==null){
