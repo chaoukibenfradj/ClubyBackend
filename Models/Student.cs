@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -5,29 +6,28 @@ namespace clubyApi.Models
 {
     public class Student
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
-        [BsonElement("FirstName")]
+        public Student(string email, string password, string firstName, string lastName)
+        {
+            Email = email;
+            Password = password;
+            FirstName = firstName;
+            LastName = lastName;
+        }
+
         public string FirstName{ get;set;}
-        [BsonElement("LasttName")]
         public string LastName{ get;set;}
-        [BsonElement("Email")]
-        public string Email{ get ; set;}
-        [BsonElement("Password")]
-        public string Password{ get ; set;}
-        [BsonElement("Photo")]
-        public string Photo{ get;set;}
-        //[BsonRepresentation(BsonType.ObjectId)]
-        [BsonElement("Institut")]
-        public string Institut{ get ; set;}
-        [BsonElement("Inscription")]
-        public string Inscription{ get ; set;}
+        
         
 
+        public string Email{ get ; set;}
+        public string Password{ get ; set;}
 
+         public string Institute{ get ; set;}
+        public string Photo{ get;set;}
+      
 
-
+        public string Inscription{ get ; set;}
+       
 
     }
 }

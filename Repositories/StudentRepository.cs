@@ -8,7 +8,7 @@ namespace clubyApi.Repositories
         private readonly IMongoCollection<Student> _students;
         
         public StudentRepository(IClubyDatabaseSettings settings){
-             var client = new MongoClient(settings.ConnectionString);
+            var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
             _students = database.GetCollection<Student>(settings.StudentCollectionName); 
 
@@ -16,29 +16,34 @@ namespace clubyApi.Repositories
 
         public Student AuthentificateStudent(string email, string password)
         {
-            throw new System.NotImplementedException();
+            Student result=null;
+            Student student=FindStudentByEmail(email);
+            if(student!=null){
+                 HashPassword hashPassword=new HashPassword();
+                if(student.Password == hashPassword.HashedPass(password)){
+                    result=student;
+                }
+
+            }
+            return result;
         }
 
-        public Student CreateStudent(Student student)
+        public Inscription CreateStudent(Inscription student)
         {   
-            Student result=null;
+            Inscription result=null;
             if(FindStudentByEmail(student.Email)==null){
                 result=student;
                 var hashPassword=new HashPassword();
                 student.Password=hashPassword.HashedPass(student.Password);
-                _students.InsertOne(student);
+                _students.InsertOne(new Student(student.Email,student.Password,student.FirstName,student.LastName));
             }
             return result;
 
         }
         public Student FindStudentByEmail(string email) => _students.Find<Student>(stud => stud.Email == email).FirstOrDefault();
+
+        
     }
 
-    public interface IStudentRepository
-    {
-        Student CreateStudent(Student student);
-        Student AuthentificateStudent(string email,string password);
-        Student FindStudentByEmail(string email);
-
-    }
+    
 }

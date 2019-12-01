@@ -9,14 +9,14 @@ namespace clubyApi.Controllers
     [ApiController]
     public class StudentsController :ControllerBase
     {   
-        private readonly IStudentService _service;
+        private  readonly IStudentService _service;
         public StudentsController(IStudentService service){
              _service=service;
         }
         [HttpPost("register")]
-        public ActionResult<string> CreateStudent(Student student)
+        public ActionResult<Inscription> CreateStudent(Inscription student)
         {
-            Student response=_service.CreateStudent(student);
+            Inscription response=_service.CreateStudent(student);
             return Ok(response);
         }
         [HttpPost("login")]
