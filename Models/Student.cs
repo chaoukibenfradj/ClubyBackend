@@ -21,9 +21,12 @@ namespace clubyApi.Models
         public string FirstName{ get;set;}
         public string LastName{ get;set;}
         
-        
+        [BsonElement("Email")]
 
         public string Email{ get ; set;}
+        
+        [BsonElement("Password")]
+
         public string Password{ get ; set;}
         
         [BsonElement("Institute")]
@@ -33,8 +36,9 @@ namespace clubyApi.Models
 
         public string Photo{ get;set;}
       
+        [BsonElement("EventInscription")]
 
-        public string Inscription{ get ; set;}
+        public string EventInscription{ get ; set;}
         public string Token{ get ; set;}
 
     }
