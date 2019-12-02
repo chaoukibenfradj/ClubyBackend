@@ -35,7 +35,7 @@ namespace clubyApi.Models
       
 
         public string Inscription{ get ; set;}
-       
+        public string Token{ get ; set;}
 
     }
 }

@@ -1,10 +1,12 @@
 using clubyApi.Models;
 using clubyApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
 namespace clubyApi.Controllers
-{
+{   
+    [Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
     public class StudentsController :ControllerBase
@@ -13,22 +15,28 @@ namespace clubyApi.Controllers
         public StudentsController(IStudentService service){
              _service=service;
         }
+
+        
+        [AllowAnonymous]
+
         [HttpPost("register")]
-        public ActionResult<Inscription> CreateStudent(Inscription student)
+        public ActionResult<Inscription> CreateStudent([FromBody] Inscription student)
         {
             Inscription response=_service.CreateStudent(student);
             return Ok(response);
         }
-        [HttpPost("login")]
-        public ActionResult<Student> AuthentificateStudent(Authentification student) 
+
+        [AllowAnonymous]
+        [HttpPost("authentificate")]
+        public ActionResult<Student> AuthentificateStudent([FromBody] Authentification student) 
         {
             Student response=_service.AuthentificateStudent(student.Email,student.Password);    
             if(response==null){
-                return NotFound();
+                return  BadRequest(new {message=" wrong email or password "});
             }   
-            else{
-                return Ok(response);
-            }  
+            
+            return Ok(response);
+            
         }
         [HttpGet("profile/{id}")]
         public ActionResult<Student> FindStudentProfile(string id) 

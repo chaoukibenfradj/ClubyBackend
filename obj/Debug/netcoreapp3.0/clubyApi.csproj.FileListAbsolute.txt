@@ -46,3 +46,11 @@ C:/Users/marouani/Desktop/Cluby/ClubyBackend/obj/Debug/netcoreapp3.0/clubyApi.Ra
 C:/Users/marouani/Desktop/Cluby/ClubyBackend/obj/Debug/netcoreapp3.0/clubyApi.csproj.CopyComplete
 C:/Users/marouani/Desktop/Cluby/ClubyBackend/obj/Debug/netcoreapp3.0/clubyApi.dll
 C:/Users/marouani/Desktop/Cluby/ClubyBackend/obj/Debug/netcoreapp3.0/clubyApi.pdb
+/home/yosrafatnassi/Bureau/veille_techno/clubyApi/bin/Debug/netcoreapp3.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/yosrafatnassi/Bureau/veille_techno/clubyApi/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/yosrafatnassi/Bureau/veille_techno/clubyApi/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Logging.dll
+/home/yosrafatnassi/Bureau/veille_techno/clubyApi/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Protocols.dll
+/home/yosrafatnassi/Bureau/veille_techno/clubyApi/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/yosrafatnassi/Bureau/veille_techno/clubyApi/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Tokens.dll
+/home/yosrafatnassi/Bureau/veille_techno/clubyApi/bin/Debug/netcoreapp3.0/Newtonsoft.Json.dll
+/home/yosrafatnassi/Bureau/veille_techno/clubyApi/bin/Debug/netcoreapp3.0/System.IdentityModel.Tokens.Jwt.dll

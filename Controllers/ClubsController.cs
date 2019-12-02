@@ -6,9 +6,8 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace clubyApi.Controllers
-{
+{   
     [Route("api/v1/[controller]")]
     [ApiController]
     public class ClubsController :ControllerBase

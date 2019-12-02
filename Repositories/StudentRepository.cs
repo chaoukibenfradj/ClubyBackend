@@ -2,15 +2,22 @@ using clubyApi.Models;
 using MongoDB.Driver;
 using clubyApi.Utils;
 using System;
-using MongoDB.Bson;
+using clubyApi.Helper;
+using Microsoft.Extensions.Options;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 
 namespace clubyApi.Repositories
 {
     public class StudentRepository:IStudentRepository
     {
         private readonly IMongoCollection<Student> _students;
+        private readonly AppSettings _appsettings;
         
-        public StudentRepository(IClubyDatabaseSettings settings){
+        public StudentRepository(IOptions<AppSettings> appSettings, IClubyDatabaseSettings settings){
+            _appsettings=appSettings.Value;
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
             _students = database.GetCollection<Student>(settings.StudentCollectionName); 
@@ -24,6 +31,20 @@ namespace clubyApi.Repositories
             if(student!=null){
                  HashPassword hashPassword=new HashPassword();
                 if(student.Password == hashPassword.HashedPass(password)){
+                    
+                    var key = Encoding.ASCII.GetBytes(_appsettings.Secret);    
+                    var jwtToken = new SecurityTokenDescriptor {    
+                    Subject = new ClaimsIdentity(new Claim[] {    
+                        new Claim(ClaimTypes.Name, student.Id.ToString())    
+                    }),    
+                    Expires = DateTime.UtcNow.AddMinutes(30),    
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)    
+                            };    
+                    var tokenHandler = new JwtSecurityTokenHandler();    
+                    var token = tokenHandler.CreateToken(jwtToken);    
+                    student.Token = tokenHandler.WriteToken(token); 
+
+
                     result=student;
                 }
 
