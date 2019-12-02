@@ -75,19 +75,23 @@ namespace clubyApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseMvc();
 
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseAuthorization();
-            app.UseAuthentication();
+            
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+            app.UseCors(
+             x => x.AllowAnyHeader()
+            );
         }
     }
 }

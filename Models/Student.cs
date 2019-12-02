@@ -6,12 +6,12 @@ namespace clubyApi.Models
 {
     public class Student
     {
-        public Student(string email, string password, string firstName, string lastName)
+        public Student(Inscription inscription)
         {
-            Email = email;
-            Password = password;
-            FirstName = firstName;
-            LastName = lastName;
+            Email = inscription.Email;
+            Password = inscription.Password;
+            FirstName = inscription.FirstName;
+            LastName = inscription.LastName;
         }
         
         

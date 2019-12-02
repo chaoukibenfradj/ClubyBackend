@@ -59,7 +59,7 @@ namespace clubyApi.Repositories
                 result=student;
                 var hashPassword=new HashPassword();
                 student.Password=hashPassword.HashedPass(student.Password);
-                _students.InsertOne(new Student(student.Email,student.Password,student.FirstName,student.LastName));
+                _students.InsertOne(new Student(student));
             }
             return result;
         }
