@@ -7,14 +7,7 @@ namespace clubyApi.Models
 {
     public class Student
     {
-        public Student(Inscription inscription)
-        {
-            Email = inscription.Email;
-            Password = inscription.Password;
-            FirstName = inscription.FirstName;
-            LastName = inscription.LastName;
-        }
-        
+       
         
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -46,7 +39,6 @@ namespace clubyApi.Models
         [BsonElement("EventInscription")]
 
         public string EventInscription{ get ; set;}
-        public string Token{ get ; set;}
 
     }
 }

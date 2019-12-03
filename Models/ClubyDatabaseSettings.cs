@@ -2,7 +2,9 @@
 namespace clubyApi.Models
 {
     public class ClubyDatabaseSettings : IClubyDatabaseSettings
-    {
+    {   
+        public string UserCollectionName { get; set; }
+
         public string StudentCollectionName { get; set; }
         public string ClubCollectionName { get; set; }
         public string EventCollectionName { get; set; }
@@ -13,6 +15,8 @@ namespace clubyApi.Models
 
     public interface IClubyDatabaseSettings
     {
+        string UserCollectionName { get; set; }
+
         string StudentCollectionName { get; set; }
         string ClubCollectionName { get; set; }
         string EventCollectionName { get; set; }

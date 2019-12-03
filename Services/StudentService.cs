@@ -16,21 +16,14 @@ namespace clubyApi.Services
 
         }
 
-        public Student AuthentificateStudent(Authentification authentification)
-        {
-            return _repo.AuthentificateStudent(authentification);
-        }
+      
 
         public UpdateResult CompleteStudentInscription(string id, string institute, string photo)
         {
             return _repo.CompleteStudentInscription(id,institute,photo);
         }
 
-        public Inscription CreateStudent(Inscription student)
-        {
-           return _repo.CreateStudent(student);
-    
-        }
+       
         public  Student FindStudentProfile(string id){
             return _repo.FindStudentProfile(id);
         }
