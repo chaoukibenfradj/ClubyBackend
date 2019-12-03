@@ -6,8 +6,8 @@ namespace clubyApi.Services
 {
     public interface IEventService
     {
-        public EventModel CreateEvent(EventModel e);
-        List<Event>ShowAllEvents();
+        Event CreateEvent(Event e);
+       List<Event>ShowAllEvents();
        List<Event>FindEventByDate(DateTime date);
        List<Event>FindEventByDomain(string domain);
        List<Event>FindEventByClub(string club);

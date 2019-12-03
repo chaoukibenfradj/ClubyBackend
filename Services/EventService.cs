@@ -12,34 +12,35 @@ namespace clubyApi.Services
         public EventService(IEventRepository repo){
             _rep=repo;
         }
-        public EventModel CreateEvent(EventModel e)
+        public Event CreateEvent(Event e)
         {
             return _rep.CreateEvent(e);
         }
 
         public List<Event> FindEventByClub(string club)
         {
-            throw new NotImplementedException();
+           return _rep.FindEventByClub(club);
         }
 
         public List<Event> FindEventByDate(DateTime date)
         {
-            throw new NotImplementedException();
+            return _rep.FindEventByDate(date);
         }
 
         public List<Event> FindEventByDomain(string domain)
         {
-            throw new NotImplementedException();
+            return _rep.FindEventByDomain(domain);
         }
 
         public List<Event> FindEventByInstitute(string institute)
         {
-            throw new NotImplementedException();
+            return _rep.FindEventByInstitute(institute);
         }
 
-        public List<Event> ShowAllEvents()
+        
+        List<Event> IEventService.ShowAllEvents()
         {
-            throw new NotImplementedException();
+            return _rep.ShowAllEvents();
         }
     }
 }

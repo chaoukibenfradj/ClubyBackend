@@ -7,6 +7,7 @@ using MongoDB.Driver;
 namespace clubyApi.Controllers
 {   
     [Authorize]
+
     [Route("api/v1/[controller]")]
     [ApiController]
     public class StudentsController :ControllerBase

@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
@@ -10,14 +11,21 @@ namespace clubyApi.Models
           
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
+        [Required (ErrorMessage = "Event name is required")]
+
         public string Id {get;set;}
         [BsonElement("Name")]
 
         public string Name  {get;set;}
         
+        [Required (ErrorMessage = "Starting date is required")]
+
+        
         [BsonElement("BeginDate")]
 
         public DateTime BeginDate  {get;set;}
+        
+        [Required (ErrorMessage = "Finishing date is required")]
         
         [BsonElement("EndDate")]
 
@@ -28,10 +36,13 @@ namespace clubyApi.Models
         public float price  {get;set;}
 
         [BsonElement("Description")]
-
+        [Required (ErrorMessage = "Event description is required")]
+        [MaxLength(300) ]
         public string Description  {get;set;}
         
         [BsonElement("Location")]
+        [Required (ErrorMessage = "Event location is required")]
+
 
         public string Location {get;set;}
         
@@ -51,7 +62,7 @@ namespace clubyApi.Models
 
         public MongoDBRef Institute {get;set;}
 
-        public Event(EventModel e){
+        public Event(Event e){
 
             this.Name=e.Name;
             this.price=e.price;

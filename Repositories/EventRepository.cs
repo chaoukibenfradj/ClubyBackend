@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using clubyApi.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace clubyApi.Repositories
@@ -17,10 +18,10 @@ namespace clubyApi.Repositories
         }
 
         
-        public EventModel CreateEvent(EventModel e)
+        public Event CreateEvent(Event e)
         {
             List<Event> events=FindEventByDate(e.BeginDate);
-            EventModel result=null;
+            Event result=null;
             if(events.Count==0){
                 result=e;
                 _events.InsertOne(new Event(e));
@@ -32,27 +33,29 @@ namespace clubyApi.Repositories
 
         public List<Event> FindEventByClub(string club)
         {
-            throw new NotImplementedException();
+            return _events.Find<Event>(e => e.Club.Id.Equals(club)).ToList<Event>();
+
         }
 
         public List<Event> FindEventByDate(DateTime date)
         {
-            throw new NotImplementedException();
+            return _events.Find<Event>(e => e.BeginDate == date).ToList<Event>();
         }
 
         public List<Event> FindEventByDomain(string domain)
         {
-            throw new NotImplementedException();
+            return _events.Find<Event>(e => e.Domain.Id.Equals(domain)).ToList<Event>();
         }
 
         public List<Event> FindEventByInstitute(string institute)
         {
-            throw new NotImplementedException();
+            return _events.Find<Event>(e => e.Institute.Id.Equals(institute)).ToList<Event>();
         }
 
         public List<Event> ShowAllEvents()
         {
-            throw new System.NotImplementedException();
+            int limit=10;
+            return _events.Find<Event>(new FilterDefinitionBuilder<Event>().Empty).Limit(limit).ToList<Event>();
         }
     }
 }
