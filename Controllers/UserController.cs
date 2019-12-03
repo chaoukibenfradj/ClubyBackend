@@ -10,8 +10,10 @@ namespace clubyApi.Controllers
     public class UserController:ControllerBase
     {   
         private readonly IUserService _userservice;
-        public UserController(IUserService userService){
+        private readonly IStudentService _studentservice;
+        public UserController(IUserService userService , IStudentService studentService){
             _userservice=userService;
+            _studentservice=studentService;
         }
          
         [AllowAnonymous]
@@ -20,6 +22,10 @@ namespace clubyApi.Controllers
         public ActionResult<User> RegisterUser([FromBody] User user)
         {
             User response=_userservice.Register(user);
+           /* if(response.Role.Equals(Role.Student)){
+                _studentservice.CreateStudent(user);
+                
+            }*/
             return Ok(response);
         }
 

@@ -13,6 +13,7 @@ namespace clubyApi.Controllers
     public class ClubsController :ControllerBase
     {   
         private readonly ClubService _service;
+
         public ClubsController(ClubService service){
              _service=service;
         }
