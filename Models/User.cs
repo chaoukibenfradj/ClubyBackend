@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace clubyApi.Models
 {
-    public class Inscription
+    public class User
     {
         [Required (ErrorMessage = "Firstname is required")]
 
