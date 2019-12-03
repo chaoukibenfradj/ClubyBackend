@@ -30,7 +30,7 @@ namespace clubyApi.Controllers
         [HttpPost("authentificate")]
         public ActionResult<Student> AuthentificateStudent([FromBody] Authentification student) 
         {
-            Student response=_service.AuthentificateStudent(student.Email,student.Password);    
+            Student response=_service.AuthentificateStudent(student);    
             if(response==null){
                 return  BadRequest(new {message=" wrong email or password "});
             }   

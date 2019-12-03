@@ -5,7 +5,7 @@ using MongoDB.Driver;
 namespace clubyApi.Models
 {
     public class EventModel
-    {
+    { 
        
         [Required (ErrorMessage = "Event name is required")]
 
@@ -18,7 +18,7 @@ namespace clubyApi.Models
         [Required (ErrorMessage = "Finishing date is required")]
 
         public DateTime EndDate  {get;set;}
-        
+                
         public float price  {get;set;}
 
         [Required (ErrorMessage = "Event description is required")]
@@ -33,6 +33,13 @@ namespace clubyApi.Models
         [Required (ErrorMessage = "Event domain is required")]
 
         public MongoDBRef Domain {get;set;}
+        public MongoDBRef Institute { get; internal set; }
+        public MongoDBRef Club { get; internal set; }
+
+
+        public EventModel(){
+            this.price=0;
+        }
                 
     }
 }

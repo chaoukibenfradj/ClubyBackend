@@ -24,13 +24,13 @@ namespace clubyApi.Repositories
 
         }
 
-        public Student AuthentificateStudent(string email, string password)
+        public Student AuthentificateStudent(Authentification authentification)
         {
             Student result=null;
-            Student student=FindStudentByEmail(email);
+            Student student=FindStudentByEmail(authentification.Email);
             if(student!=null){
                  HashPassword hashPassword=new HashPassword();
-                if(student.Password == hashPassword.HashedPass(password)){
+                if(student.Password == hashPassword.HashedPass(authentification.Password)){
                     
                     var key = Encoding.ASCII.GetBytes(_appsettings.Secret);    
                     var jwtToken = new SecurityTokenDescriptor {    

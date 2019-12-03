@@ -17,9 +17,17 @@ namespace clubyApi.Repositories
         }
 
         
-        public Event CreateEvent(Event e)
+        public EventModel CreateEvent(EventModel e)
         {
-            throw new System.NotImplementedException();
+            List<Event> events=FindEventByDate(e.BeginDate);
+            EventModel result=null;
+            if(events.Count==0){
+                result=e;
+                _events.InsertOne(new Event(e));
+
+            }
+
+            return result;
         }
 
         public List<Event> FindEventByClub(string club)

@@ -51,6 +51,21 @@ namespace clubyApi.Models
 
         public MongoDBRef Institute {get;set;}
 
+        public Event(EventModel e){
+
+            this.Name=e.Name;
+            this.price=e.price;
+            this.Location=e.Location;
+            this.Domain=e.Domain;
+            this.Description=e.Description;
+            this.BeginDate=e.BeginDate;
+            this.EndDate=e.EndDate;
+            this.Institute=e.Institute;
+            this.Club=e.Club;
+
+
+        }
+
 
         
     }

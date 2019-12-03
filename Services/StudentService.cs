@@ -16,9 +16,9 @@ namespace clubyApi.Services
 
         }
 
-        public Student AuthentificateStudent(string email, string password)
+        public Student AuthentificateStudent(Authentification authentification)
         {
-            return _repo.AuthentificateStudent(email,password);
+            return _repo.AuthentificateStudent(authentification);
         }
 
         public UpdateResult CompleteStudentInscription(string id, string institute, string photo)

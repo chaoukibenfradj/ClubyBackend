@@ -6,7 +6,7 @@ namespace clubyApi.Repositories
 {
     public interface IEventRepository
     {
-       Event CreateEvent(Event e);
+       EventModel CreateEvent(EventModel e);
        List<Event>ShowAllEvents();
        List<Event>FindEventByDate(DateTime date);
        List<Event>FindEventByDomain(string domain);
