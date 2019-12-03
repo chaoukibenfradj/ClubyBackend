@@ -1,6 +1,6 @@
 namespace clubyApi.Controllers
 {
-    public class EventController
+    public class EventController 
     {
         
     }
