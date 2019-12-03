@@ -23,11 +23,7 @@ namespace clubyApi.Controllers
         {
             return Ok(_service.FindStudentProfile(id));
         }
-        [HttpPost]
-        public ActionResult<UpdateResult> CompleteStudentInscription(string id, string institute, string photo){
-            return Ok(_service.CompleteStudentInscription(id,institute,photo));
-        }
-
+       
        
 
       

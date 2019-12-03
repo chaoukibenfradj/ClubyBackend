@@ -24,21 +24,18 @@ namespace clubyApi.Repositories
 
         }
 
-       
+        public Student CreateStudent(User user)
+        {     Student resultat=new Student(user);
+             _students.InsertOne(resultat);
+             return resultat;
+            
+        }
+
         public  Student FindStudentProfile(string id){
             return _students.Find<Student>(Student=> Student.Id==id).FirstOrDefault();
         }
-        public Student FindStudentByEmail(string email) => _students.Find<Student>(stud => stud.Email == email).FirstOrDefault();
 
-        public UpdateResult CompleteStudentInscription(string id,string institute, string photo)
-        {
-            var filter = Builders<Student>.Filter.Eq("id",id);
-            Console.Write(institute);
-
-            var update=Builders<Student>.Update.Set("Photo", photo).Set("Institute", institute);
-
-            return _students.UpdateOne(filter,update);
-        }
+        
     }
 
     

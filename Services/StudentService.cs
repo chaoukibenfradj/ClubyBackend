@@ -18,9 +18,9 @@ namespace clubyApi.Services
 
       
 
-        public UpdateResult CompleteStudentInscription(string id, string institute, string photo)
+        public Student CreateStudent(User user)
         {
-            return _repo.CompleteStudentInscription(id,institute,photo);
+            return _repo.CreateStudent(user);
         }
 
        
