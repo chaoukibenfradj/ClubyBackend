@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 
 namespace clubyApi.Models
 {
@@ -36,7 +37,7 @@ namespace clubyApi.Models
         public string Password{ get ; set;}
         
         [BsonElement("Institute")]
-         public string Institute{ get ; set;}
+         public MongoDBRef Institute{ get ; set;}
         
         [BsonElement("Photo")]
 

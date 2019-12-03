@@ -1,11 +1,20 @@
 using System;
 using System.Collections.Generic;
 using clubyApi.Models;
+using MongoDB.Driver;
 
 namespace clubyApi.Repositories
 {
     public class EventRepository : IEventRepository
     {
+        private readonly IMongoCollection<Event> _events;
+        
+        public EventRepository( IClubyDatabaseSettings settings){
+            var client = new MongoClient(settings.ConnectionString);
+            var database = client.GetDatabase(settings.DatabaseName);
+            _events = database.GetCollection<Event>(settings.EventCollectionName); 
+
+        }
 
         
         public Event CreateEvent(Event e)
