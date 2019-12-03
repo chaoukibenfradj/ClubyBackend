@@ -43,6 +43,7 @@ namespace clubyApi.Repositories
                     var tokenHandler = new JwtSecurityTokenHandler();    
                     var token = tokenHandler.CreateToken(jwtToken);    
                     user.Token = tokenHandler.WriteToken(token); 
+                    user.Password=null;
 
 
                     result=user;

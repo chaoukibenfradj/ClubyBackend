@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace clubyApi.Controllers
-{
-    [Route("api/v1/[controller]")]
+{   [Authorize]
+    [Route("api/v1/users")]
     [ApiController]
     public class UserController:ControllerBase
     {   

@@ -16,28 +16,7 @@ namespace clubyApi.Controllers
              _service=service;
         }
 
-        
-        [AllowAnonymous]
-
-        [HttpPost("register")]
-        public ActionResult<Inscription> CreateStudent([FromBody] Inscription student)
-        {
-            Inscription response=_service.CreateStudent(student);
-            return Ok(response);
-        }
-
-        [AllowAnonymous]
-        [HttpPost("authentificate")]
-        public ActionResult<Student> AuthentificateStudent([FromBody] Authentification student) 
-        {
-            Student response=_service.AuthentificateStudent(student);    
-            if(response==null){
-                return  BadRequest(new {message=" wrong email or password "});
-            }   
-            
-            return Ok(response);
-            
-        }
+       
         [HttpGet("profile/{id}")]
         public ActionResult<Student> FindStudentProfile(string id) 
         {
