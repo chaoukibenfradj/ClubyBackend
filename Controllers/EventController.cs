@@ -18,6 +18,12 @@ namespace clubyApi.Controllers
             _service=service;
 
         }
+         [AllowAnonymous]
+        [HttpPost("CreateEvent")]
+        public ActionResult<Event> CreateEvent([FromBody]Event e) 
+        {
+            return Ok(_service.CreateEvent(e));
+        }
         [AllowAnonymous]
         [HttpGet("")]
         public ActionResult<List<Event>> ShowAllEvents() 
@@ -43,7 +49,7 @@ namespace clubyApi.Controllers
         [HttpGet("institutefilter/{institute}")]
         public ActionResult<List<Event>> ShowEventByInstitute(string institute) 
         {
-            return Ok(_service.FindEventByClub(institute));
+            return Ok(_service.FindEventByInstitute(institute));
         }
         [AllowAnonymous]
 

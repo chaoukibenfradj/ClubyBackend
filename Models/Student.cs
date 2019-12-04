@@ -7,27 +7,16 @@ namespace clubyApi.Models
 {
     public class Student
     {
-       
-        
+
+        public Student(User user)
+        {
+            this.User=new MongoDBRef("User",user.Id);
+        }
+
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id{get;set;}
         
-        [BsonElement("FirstName")]
-
-        public string FirstName{ get;set;}
-        
-        [BsonElement("LastName")]
-
-        public string LastName{ get;set;}
-        
-        [BsonElement("Email")]
-
-        public string Email{ get ; set;}
-        
-        [BsonElement("Password")]
-
-        public string Password{ get ; set;}
         
         [BsonElement("Institute")]
          public MongoDBRef Institute{ get ; set;}
@@ -39,6 +28,9 @@ namespace clubyApi.Models
         [BsonElement("EventInscription")]
 
         public string EventInscription{ get ; set;}
+
+        [BsonElement("User")]
+        public MongoDBRef User{get;set;}
 
     }
 }

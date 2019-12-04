@@ -8,7 +8,7 @@ namespace clubyApi.Services
     {
         Event CreateEvent(Event e);
        List<Event>ShowAllEvents();
-       List<Event>FindEventByDate(DateTime date);
+       List<Event>FindEventByDate(string date);
        List<Event>FindEventByDomain(string domain);
        List<Event>FindEventByClub(string club);
        List<Event>FindEventByInstitute(string institute);

@@ -33,23 +33,23 @@ namespace clubyApi.Repositories
 
         public List<Event> FindEventByClub(string club)
         {
-            return _events.Find<Event>(e => e.Club.Id.Equals(club)).ToList<Event>();
+            return _events.Find<Event>(e => e.Club.Equals(club)).ToList<Event>();
 
         }
 
-        public List<Event> FindEventByDate(DateTime date)
+        public List<Event> FindEventByDate(string date)
         {
             return _events.Find<Event>(e => e.BeginDate == date).ToList<Event>();
         }
 
         public List<Event> FindEventByDomain(string domain)
         {
-            return _events.Find<Event>(e => e.Domain.Id.Equals(domain)).ToList<Event>();
+            return _events.Find<Event>(e => e.Domain.Equals(domain)).ToList<Event>();
         }
 
         public List<Event> FindEventByInstitute(string institute)
         {
-            return _events.Find<Event>(e => e.Institute.Id.Equals(institute)).ToList<Event>();
+            return _events.Find<Event>(e => e.Institute.Equals(institute)).ToList<Event>();
         }
 
         public List<Event> ShowAllEvents()

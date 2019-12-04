@@ -6,15 +6,16 @@ namespace clubyApi.Models
 {
     public class User
     {
-
+        private User _user;
         public User(){}
         public User(User user)
         {
-            FirstName = user.FirstName;
+            /*FirstName = user.FirstName;
             LastName=user.LastName;
             Password=user.Password;
             Email=user.Email;
-            Role=user.Role;
+            Role=user.Role;*/
+            _user=user;
         }
 
         [BsonId]

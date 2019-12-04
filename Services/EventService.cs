@@ -22,7 +22,7 @@ namespace clubyApi.Services
            return _rep.FindEventByClub(club);
         }
 
-        public List<Event> FindEventByDate(DateTime date)
+        public List<Event> FindEventByDate(string date)
         {
             return _rep.FindEventByDate(date);
         }
