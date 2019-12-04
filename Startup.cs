@@ -16,7 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-
+using clubyApi.Services;
 namespace clubyApi
 {
     public class Startup
@@ -28,7 +28,8 @@ namespace clubyApi
         }
 
       
-        public IConfiguration Configuration { get; }
+        
+                public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -70,7 +71,7 @@ namespace clubyApi
             services.AddSingleton<IEventRepository,EventRepository>();
             services.AddSingleton<IUserService,UserService>();
             services.AddSingleton<IUserRepository,UserRepository>();
-           
+            services.AddSingleton<IInstitutRepository,InstitutRepository>();
 
             services.AddControllers();
                         services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest);
