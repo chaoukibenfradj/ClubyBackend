@@ -68,7 +68,7 @@ namespace clubyApi
             services.AddSingleton<IEventRepository,EventRepository>();
             services.AddSingleton<IUserService,UserService>();
             services.AddSingleton<IUserRepository,UserRepository>();
-           
+            services.AddSingleton<IInstitutRepository,InstitutRepository>();
 
             services.AddControllers();
                         services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest);
