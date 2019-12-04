@@ -61,12 +61,13 @@ namespace clubyApi
             
             services.AddSingleton<IStudentService,StudentService>();
             services.AddSingleton<IStudentRepository,StudentRepository>();
-             
+            services.AddSingleton<IClubService,ClubService>();
+            services.AddSingleton<IClubRepository,ClubRepository>(); 
             services.AddSingleton<IEventService,EventService>();
             services.AddSingleton<IEventRepository,EventRepository>();
             services.AddSingleton<IUserService,UserService>();
             services.AddSingleton<IUserRepository,UserRepository>();
-            services.AddSingleton<ClubService>();
+           
 
             services.AddControllers();
                         services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest);
