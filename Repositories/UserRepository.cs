@@ -35,7 +35,8 @@ namespace clubyApi.Repositories
                     var key = Encoding.ASCII.GetBytes(_appsettings.Secret);    
                     var jwtToken = new SecurityTokenDescriptor {    
                     Subject = new ClaimsIdentity(new Claim[] {    
-                        new Claim(ClaimTypes.Name, user.Id.ToString())    
+                        new Claim(ClaimTypes.Name, user.Id.ToString()),
+                        new Claim(ClaimTypes.Role,user.Role)
                     }),    
                     Expires = DateTime.UtcNow.AddMinutes(30),    
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)    
