@@ -10,11 +10,7 @@ namespace clubyApi.Models
         public User(){}
         public User(User user)
         {
-            /*FirstName = user.FirstName;
-            LastName=user.LastName;
-            Password=user.Password;
-            Email=user.Email;
-            Role=user.Role;*/
+          
             _user=user;
         }
 

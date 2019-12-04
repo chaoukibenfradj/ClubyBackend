@@ -14,10 +14,8 @@ namespace clubyApi.Repositories
     public class ClubRepository:IClubRepository
     {
         private readonly IMongoCollection<Club> _clubs;
-        private readonly AppSettings _appsettings;
         
-        public ClubRepository(IOptions<AppSettings> appSettings, IClubyDatabaseSettings settings){
-            _appsettings=appSettings.Value;
+        public ClubRepository( IClubyDatabaseSettings settings){
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
             _clubs = database.GetCollection<Club>(settings.ClubCollectionName); 
