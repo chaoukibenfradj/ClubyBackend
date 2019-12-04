@@ -8,10 +8,10 @@ namespace clubyApi.Services
 using clubyApi.Repositories;
 using MongoDB.Driver;
 
-    public class InstitutService :IInstitutService
+    public class InstituteService :IInstituteService
     {
-        private  readonly IInstitutRepository _repo;
-        public InstitutService(IInstitutRepository repo)
+        private  readonly IInstituteRepository _repo;
+        public InstituteService(IInstituteRepository repo)
         {
             _repo=repo ;
 
