@@ -11,8 +11,8 @@ namespace clubyApi.Controllers
     [ApiController]
     public class InstitutsController :ControllerBase
     {   
-        private  readonly IInstitutService _service;
-        public InstitutsController(IInstitutService service){
+        private  readonly IInstituteService _service;
+        public InstitutsController(IInstituteService service){
              _service=service;
         }
 
