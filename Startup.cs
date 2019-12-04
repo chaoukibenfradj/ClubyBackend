@@ -16,7 +16,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using clubyApi.Services;
 namespace clubyApi
 {
     public class Startup

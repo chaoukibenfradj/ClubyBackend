@@ -11,14 +11,14 @@ using System.Security.Claims;
 
 namespace clubyApi.Repositories
 {
-    public class InstitutRepository:IInstitutRepository
+    public class InstituteRepository:IInstituteRepository
     {
         private readonly IMongoCollection<Institut> _instituts;
         
-        public InstitutRepository( IClubyDatabaseSettings settings){
+        public InstituteRepository( IClubyDatabaseSettings settings){
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
-            _instituts = database.GetCollection<Institut>(settings.InstitutCollectionName); 
+            _instituts = database.GetCollection<Institut>(settings.InstituteCollectionName); 
 
         }
 

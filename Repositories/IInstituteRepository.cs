@@ -3,7 +3,7 @@ using MongoDB.Driver;
 
 namespace clubyApi.Repositories
 {
-    public interface IInstitutRepository
+    public interface IInstituteRepository
     {
        
         Institut FindInstitutProfile(string id);

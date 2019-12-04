@@ -7,11 +7,13 @@ namespace clubyApi.Models
 
         public string StudentCollectionName { get; set; }
         public string ClubCollectionName { get; set; }
-        public string InstitutCollectionName { get; set; }
+        public string InstituteCollectionName { get; set; }
         public string EventCollectionName { get; set; }
         public string DomainCollectionName { get; set; }
         public string SponsorCollectionName { get; set; }
         public string InterestCollectionName { get; set; }
+        public string AdministrationCollectionName { get; set; }
+
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
     }
@@ -26,7 +28,9 @@ namespace clubyApi.Models
         string DomainCollectionName { get; set; }
         string SponsorCollectionName { get; set; }
         string InterestCollectionName { get; set; }
-        string InstitutCollectionName { get; set; }
+        string InstituteCollectionName { get; set; }
+        string AdministrationCollectionName { get; set; }
+
         string ConnectionString { get; set; }
         string DatabaseName { get; set; }
     }
