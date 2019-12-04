@@ -12,14 +12,10 @@ namespace clubyApi.Controllers
     [ApiController]
     public class ClubsController :ControllerBase
     {   
-<<<<<<< HEAD
         private  readonly IClubService _service;
-        public ClubsController(IClubService service){
-=======
-        private readonly ClubService _service;
 
-        public ClubsController(ClubService service){
->>>>>>> ef87c74c77aeeb9280b9ff256469c37d252271ba
+
+        public ClubsController(IClubService service){
              _service=service;
         }
 
