@@ -22,10 +22,11 @@ namespace clubyApi.Controllers
         public ActionResult<User> RegisterUser([FromBody] User user)
         {
             User response=_userservice.Register(user);
-           /* if(response.Role.Equals(Role.Student)){
-                _studentservice.CreateStudent(user);
+           if(response.Role.Equals(Role.Student)){
+
+                _studentservice.CreateStudent(response);
                 
-            }*/
+            }
             return Ok(response);
         }
 

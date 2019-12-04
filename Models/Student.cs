@@ -10,7 +10,7 @@ namespace clubyApi.Models
 
         public Student(User user)
         {
-            this.User=new MongoDBRef("User",user.Id);
+            User=new MongoDBRef("User",user.Id);
         }
 
         [BsonId]
