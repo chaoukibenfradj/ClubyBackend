@@ -3,7 +3,7 @@ using clubyApi.Repositories;
 
 namespace clubyApi.Services
 {
-    public class AdministrationService : IAdministrationService
+    public class AdministrationService:IAdministrationService
     {  
         private readonly IAdministrationRepository _repo;
         public AdministrationService(IAdministrationRepository repo){

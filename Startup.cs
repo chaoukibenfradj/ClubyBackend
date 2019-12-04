@@ -64,15 +64,16 @@ namespace clubyApi
             services.AddSingleton<IClubService,ClubService>();
             services.AddSingleton<IClubRepository,ClubRepository>(); 
             services.AddSingleton<IEventService,EventService>();
-            services.AddSingleton<ISponsorService,SponsorService>();
-            services.AddSingleton<ISponsorRepository,SponsorRepository>();
-            services.AddSingleton<IAdministrationRepository,AdministrationRepository>(); 
-            services.AddSingleton<IAdministrationService,IAdministrationService>();
+            services.AddSingleton<IAdministrationService,AdministrationService>();
+            services.AddSingleton<IAdministrationRepository,AdministrationRepository>();
 
             services.AddSingleton<IEventRepository,EventRepository>();
             services.AddSingleton<IUserService,UserService>();
             services.AddSingleton<IUserRepository,UserRepository>();
             services.AddSingleton<IInstituteRepository,InstituteRepository>();
+           // services.AddSingleton<ISponsorService,SponsorService>();
+            //services.AddSingleton<ISponsorRepository,SponsorRepository>();
+           
 
             services.AddControllers();
                         services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest);
