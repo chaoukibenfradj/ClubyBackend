@@ -13,10 +13,8 @@ namespace clubyApi.Repositories
 {
     public class UserRepository : IUserRepository
     {   
-
         private readonly IMongoCollection<User> _users;
         private readonly AppSettings _appsettings;
-
         public UserRepository(IOptions<AppSettings> appSettings, IClubyDatabaseSettings settings){
             _appsettings=appSettings.Value;
             var client = new MongoClient(settings.ConnectionString);

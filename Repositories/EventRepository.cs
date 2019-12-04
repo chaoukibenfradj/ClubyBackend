@@ -18,17 +18,12 @@ namespace clubyApi.Repositories
         }
 
         
-        public Event CreateEvent(Event e)
+        public Tuple<Event,int> CreateEvent(Event e)
         {
             List<Event> events=FindEventByDate(e.BeginDate);
-            Event result=null;
-            if(events.Count==0){
-                result=e;
-                _events.InsertOne(new Event(e));
-
-            }
-
-            return result;
+            e.CreationDate=new DateTime().ToLocalTime().ToString();
+            _events.InsertOne(new Event(e));
+            return new Tuple<Event,int>(e,events.Count);
         }
 
         public List<Event> FindEventByClub(string club)

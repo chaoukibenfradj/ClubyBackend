@@ -4,15 +4,17 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace clubyApi.Controllers
-{   [Authorize]
+{   
+    
+    [Authorize]
     [Route("api/v1/users")]
     [ApiController]
     public class UserController:ControllerBase
     {   
         private readonly IUserService _userservice;
         private readonly IStudentService _studentservice;
-        private readonly IClubService _clubservice;
-        private readonly ISponsorService _sponsorservice;
+        //private readonly IClubService _clubservice;
+       // private readonly ISponsorService _sponsorservice;
         public UserController(IUserService userService , IStudentService studentService){
             _userservice=userService;
             _studentservice=studentService;
@@ -29,7 +31,7 @@ namespace clubyApi.Controllers
                 _studentservice.CreateStudent(response);
                 
             }
-            else 
+         /*   else 
             if(response.Role.Equals(Role.Club)){
 
             }
@@ -40,7 +42,7 @@ namespace clubyApi.Controllers
             else
             if(response.Role.Equals(Role.Admin)){
 
-            }
+            }*/
             return Ok(response);
         }
 

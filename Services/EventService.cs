@@ -12,7 +12,7 @@ namespace clubyApi.Services
         public EventService(IEventRepository repo){
             _rep=repo;
         }
-        public Event CreateEvent(Event e)
+        public Tuple<Event,int> CreateEvent(Event e)
         {
             return _rep.CreateEvent(e);
         }

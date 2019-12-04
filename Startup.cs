@@ -64,6 +64,9 @@ namespace clubyApi
             services.AddSingleton<IClubService,ClubService>();
             services.AddSingleton<IClubRepository,ClubRepository>(); 
             services.AddSingleton<IEventService,EventService>();
+          //  services.AddSingleton<ISponsorService,SponsorService>();
+           // services.AddSingleton<ISponsorRepository,SponsorRepository>();
+
             services.AddSingleton<IEventRepository,EventRepository>();
             services.AddSingleton<IUserService,UserService>();
             services.AddSingleton<IUserRepository,UserRepository>();

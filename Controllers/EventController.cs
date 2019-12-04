@@ -18,7 +18,7 @@ namespace clubyApi.Controllers
             _service=service;
 
         }
-         [AllowAnonymous]
+         [Authorize(Roles=Role.Club)]
         [HttpPost("CreateEvent")]
         public ActionResult<Event> CreateEvent([FromBody]Event e) 
         {
@@ -42,7 +42,7 @@ namespace clubyApi.Controllers
         [HttpGet("datefilter/{date}")]
         public ActionResult<List<Event>> ShowEventByDate(string date) 
         {
-            return Ok(_service.FindEventByClub(date));
+            return Ok(_service.FindEventByDomain(date));
         }
         [AllowAnonymous]
 
@@ -53,10 +53,10 @@ namespace clubyApi.Controllers
         }
         [AllowAnonymous]
 
-         [HttpGet("institutedomain/{domain}")]
+         [HttpGet("domainfilter/{domain}")]
         public ActionResult<List<Event>> ShowEventByDomain(string domain) 
         {
-            return Ok(_service.FindEventByClub(domain));
+            return Ok(_service.FindEventByDomain(domain));
         }
         
     }
