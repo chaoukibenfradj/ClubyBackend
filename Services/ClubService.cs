@@ -8,7 +8,7 @@ namespace clubyApi.Services
 using clubyApi.Repositories;
 using MongoDB.Driver;
 
-    public class ClubService
+    public class ClubService :IClubService
     {
         private  readonly IClubRepository _repo;
         public ClubService(IClubRepository repo)
