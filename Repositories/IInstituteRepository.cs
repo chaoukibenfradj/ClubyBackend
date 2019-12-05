@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using clubyApi.Models;
 using MongoDB.Driver;
 
@@ -6,8 +7,12 @@ namespace clubyApi.Repositories
     public interface IInstituteRepository
     {
        
-        Institut FindInstitutProfile(string id);
-        UpdateResult CompleteInstitutInscription(string id,string name,string region);
+       public Institute CreateInstitute(Institute institute);
+        public List<Institute> FindAllInstitutes();
+
+       public List<Institute> FindInstituteByDomain(string domain);
+       public Institute FindInstituteByName(string name);
+       public List<Institute> FindInstituteByRegion(string region);
 
 
     }

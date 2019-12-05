@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using clubyApi.Models;
 using clubyApi.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -7,28 +8,63 @@ using MongoDB.Driver;
 namespace clubyApi.Controllers
 {   
     [Authorize]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/institutes")]
     [ApiController]
-    public class InstitutsController :ControllerBase
+    public class InstituteController :ControllerBase
     {   
         private  readonly IInstituteService _service;
-        public InstitutsController(IInstituteService service){
+        public InstituteController(IInstituteService service){
              _service=service;
         }
+        //[Authorize(Roles=Role.Admin)]
+                [AllowAnonymous]
 
-       
-        [HttpGet("profile/{id}")]
-        public ActionResult<Institut> FindInstitutProfile(string id) 
-        {
-            return Ok(_service.FindInstitutProfile(id));
+        [HttpPost("createinstitute")]
+        public ActionResult<Institute> CreateInstitute([FromBody]Institute institute){
+            Institute res=_service.CreateInstitute(institute);
+            if(res==null){
+                return BadRequest(new {message=" institute with the same name already exists "});
+            }
+            return Ok(res);
         }
-        [HttpPost]
-        public ActionResult<UpdateResult> CompleteInstitutInscription(string id, string name, string region){
-            return Ok(_service.CompleteInstitutInscription(id,name,region));
+        [AllowAnonymous]
+        [HttpGet("")]
+
+         public ActionResult<List<Institute>> FindAllInstitutes(){
+             return Ok(_service.FindAllInstitutes());
+         }
+
+        [AllowAnonymous]
+        [HttpGet("namefilter/{name}")]
+
+         public ActionResult<Institute> FindInstituteByName(string name){
+            Institute res=_service.FindInstituteByName(name);
+            if(res==null){
+                return NotFound(new {message="there is no institute found"});
+            }
+            return Ok(res);
         }
+        [AllowAnonymous]
+        [HttpGet("domainfilter/{domain}")]
 
+         public ActionResult<List<Institute>> FindInstitutebyDomain(string domain){
+            List<Institute> res=_service.FindInstituteByDomain(domain);
+            if(res==null){
+                return NotFound(new {message="there is no institute found"});
+            }
+            return Ok(res);
+        }
+         [AllowAnonymous]
+        [HttpGet("regionfilter/{region}")]
+
+         public ActionResult<List<Institute>> FindInstitutebyRegion(string region){
+            List<Institute> res=_service.FindInstituteByRegion(region);
+            if(res==null){
+                return NotFound(new {message="there is no institute found"});
+            }
+            return Ok(res);
+        }
        
-
       
     }
 }

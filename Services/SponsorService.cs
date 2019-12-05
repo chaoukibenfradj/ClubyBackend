@@ -1,3 +1,4 @@
+using clubyApi.Models;
 using clubyApi.Repositories;
 
 namespace clubyApi.Services
@@ -8,6 +9,10 @@ namespace clubyApi.Services
         public SponsorService(ISponsorRepository repo){
             _repo=repo;
         }
-        
+
+        public Sponsor ChooseInterests(Interest interest)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

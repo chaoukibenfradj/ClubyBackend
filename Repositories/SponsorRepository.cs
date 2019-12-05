@@ -14,5 +14,10 @@ namespace clubyApi.Repositories
 
 
         }
+
+        public Sponsor ChooseInterests(Interest interest)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

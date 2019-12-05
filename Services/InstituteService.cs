@@ -17,26 +17,30 @@ using MongoDB.Driver;
 
         }
 
-       public UpdateResult CompleteInstitutInscription(string id, string institute, string photo)
+        public Institute CreateInstitute(Institute institute)
         {
-            return _repo.CompleteInstitutInscription(id,institute,photo);
+            return _repo.CreateInstitute(institute);
         }
 
-       public  Institut FindInstitutProfile(string id){
-            return _repo.FindInstitutProfile(id);
+        public List<Institute> FindAllInstitutes()
+        {
+           return _repo.FindAllInstitutes();
         }
-      
-    
 
+        public List<Institute> FindInstituteByDomain(string domain)
+        {
+            return _repo.FindInstituteByDomain(domain);
+        }
 
-   
+        public Institute FindInstituteByName(string name)
+        {
+            return _repo.FindInstituteByName(name);
+        }
 
-        
-       
-
-        
-
-
+        public List<Institute> FindInstituteByRegion(string region)
+        {
+            return _repo.FindInstituteByRegion(region);
+        }
     }
     
 }
