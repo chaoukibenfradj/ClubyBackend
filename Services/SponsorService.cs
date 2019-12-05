@@ -1,18 +1,6 @@
-using clubyApi.Models;
-using clubyApi.Repositories;
-
-namespace clubyApi.Services
+namespace clubyApi
 {
-    public class SponsorService:ISponsorService
+    internal class SponsorService :ISponsorService
     {
-        private readonly ISponsorRepository _repo;
-        public SponsorService(ISponsorRepository repo){
-            _repo=repo;
-        }
-
-        public Sponsor ChooseInterests(Interest interest)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

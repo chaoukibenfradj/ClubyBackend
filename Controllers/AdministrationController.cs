@@ -15,7 +15,7 @@ namespace clubyApi.Controllers
     {
         private readonly IAdministrationService _service;
         private readonly IUserService _userservice;
-        public AdministrationController(IAdministrationService service,IUserService userService){
+       /* public AdministrationController(IAdministrationService service,IUserService userService){
                _service=service;
                _userservice=userService;
         }
@@ -28,6 +28,6 @@ namespace clubyApi.Controllers
             
             return Ok( _service.createAdministration(administration));
         }
-        
+     */   
     }
 }

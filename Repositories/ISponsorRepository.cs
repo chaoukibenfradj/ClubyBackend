@@ -1,9 +1,6 @@
-using clubyApi.Models;
-
-namespace clubyApi.Repositories
+namespace clubyApi
 {
-    public interface ISponsorRepository
+    internal interface ISponsorRepository
     {
-        public Sponsor ChooseInterests(Interest interest);
     }
 }

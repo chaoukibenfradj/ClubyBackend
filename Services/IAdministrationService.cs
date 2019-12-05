@@ -1,10 +1,6 @@
-using clubyApi.Models;
-
-namespace clubyApi.Services
+namespace clubyApi
 {
-    public interface IAdministrationService
+    internal interface IAdministrationService
     {
-        Administration createAdministration(Administration user);
-
     }
 }
