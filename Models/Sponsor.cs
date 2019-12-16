@@ -6,7 +6,11 @@ using MongoDB.Driver;
 namespace clubyApi.Models
 {
     public class Sponsor
+
     {
+        public Sponsor(User user){
+            User=new MongoDBRef("User",user.Id);
+        }
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id{get;set;}

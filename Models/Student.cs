@@ -19,7 +19,8 @@ namespace clubyApi.Models
         
         
         [BsonElement("Institute")]
-         public MongoDBRef Institute{ get ; set;}
+         //public MongoDBRef Institute{ get ; set;}
+         public string Institute{ get ; set;}
         
         [BsonElement("Photo")]
 

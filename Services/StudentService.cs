@@ -28,6 +28,10 @@ namespace clubyApi.Services
             return _repo.FindStudentProfile(id);
         }
 
+        public Student UpdateStudentProfile(string id, string photo, string institute)
+        {
+            return _repo.UpdateStudentProfile(id,photo,institute);
+        }
     }
 
    

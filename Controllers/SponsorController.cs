@@ -11,8 +11,8 @@ namespace clubyApi.Controllers
     public class SponsorController:ControllerBase
     {
         private readonly ISponsorService _service;
-       /* public SponsorController(ISponsorService service){
+        public SponsorController(ISponsorService service){
             _service=service;
-        }*/
+        }
     }
 }

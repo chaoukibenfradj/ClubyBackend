@@ -19,7 +19,7 @@ namespace clubyApi.Controllers
 
         }
          [Authorize(Roles=Role.Club)]
-        [HttpPost("CreateEvent")]
+        [HttpPost("event")]
         public ActionResult<Event> CreateEvent([FromBody]Event e) 
         {
             return Ok(_service.CreateEvent(e));
@@ -32,28 +32,28 @@ namespace clubyApi.Controllers
         }
         [AllowAnonymous]
 
-        [HttpGet("clubfilter/{club}")]
+        [HttpGet("{club}")]
         public ActionResult<List<Event>> ShowEventByClub(string club) 
         {
             return Ok(_service.FindEventByClub(club));
         }
         [AllowAnonymous]
 
-        [HttpGet("datefilter/{date}")]
+        [HttpGet("{date}")]
         public ActionResult<List<Event>> ShowEventByDate(string date) 
         {
             return Ok(_service.FindEventByDomain(date));
         }
         [AllowAnonymous]
 
-        [HttpGet("institutefilter/{institute}")]
+        [HttpGet("{institute}")]
         public ActionResult<List<Event>> ShowEventByInstitute(string institute) 
         {
             return Ok(_service.FindEventByInstitute(institute));
         }
         [AllowAnonymous]
 
-         [HttpGet("domainfilter/{domain}")]
+         [HttpGet("{domain}")]
         public ActionResult<List<Event>> ShowEventByDomain(string domain) 
         {
             return Ok(_service.FindEventByDomain(domain));

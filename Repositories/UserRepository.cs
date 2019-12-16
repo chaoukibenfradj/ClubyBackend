@@ -36,7 +36,7 @@ namespace clubyApi.Repositories
                         new Claim(ClaimTypes.Name, user.Id.ToString()),
                         new Claim(ClaimTypes.Role,user.Role)
                     }),    
-                    Expires = DateTime.UtcNow.AddMinutes(30),    
+                    Expires = DateTime.UtcNow.AddDays(2),    
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)    
                             };    
                     var tokenHandler = new JwtSecurityTokenHandler();    

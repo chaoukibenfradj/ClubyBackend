@@ -74,8 +74,8 @@ namespace clubyApi
             services.AddSingleton<IInstituteService,InstituteService>();
             services.AddSingleton<IInstituteRepository,InstituteRepository>();
 
-            //services.AddSingleton<ISponsorService,SponsorService>();
-            //services.AddSingleton<ISponsorRepository,SponsorRepository>();
+            services.AddSingleton<ISponsorService,SponsorService>();
+            services.AddSingleton<ISponsorRepository,SponsorRepository>();
            
 
             services.AddControllers();

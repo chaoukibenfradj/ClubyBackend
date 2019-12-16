@@ -1,6 +1,10 @@
+using clubyApi.Models;
+
 namespace clubyApi
 {
-    internal interface ISponsorRepository
+    public interface ISponsorRepository
     {
+        Sponsor CreateSponsor(User user);
+
     }
 }

@@ -22,7 +22,12 @@ using MongoDB.Driver;
             return _repo.CompleteClubInscription(id,institute,photo);
         }
 
-       public  Club FindClubProfile(string id){
+        public Club CreateClub(User user)
+        {
+            return _repo.CreateClub(user);
+        }
+
+        public  Club FindClubProfile(string id){
             return _repo.FindClubProfile(id);
         }
       

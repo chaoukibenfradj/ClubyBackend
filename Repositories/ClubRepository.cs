@@ -26,7 +26,6 @@ namespace clubyApi.Repositories
         public  Club FindClubProfile(string id){
             return _clubs.Find<Club>(Club=> Club.Id==id).FirstOrDefault();
         }
-        public Club FindClubByEmail(string email) => _clubs.Find<Club>(stud => stud.Email == email).FirstOrDefault();
 
         public UpdateResult CompleteClubInscription(string id,string institute, string photo)
         {
@@ -36,6 +35,14 @@ namespace clubyApi.Repositories
             var update=Builders<Club>.Update.Set("Photo", photo).Set("Institute", institute);
 
             return _clubs.UpdateOne(filter,update);
+        }
+
+        public Club CreateClub(User user)
+        {
+            Club resultat=new Club(user);
+            Console.Write(resultat);
+             _clubs.InsertOne(resultat);
+             return resultat;
         }
     }
 

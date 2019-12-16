@@ -13,12 +13,14 @@ namespace clubyApi.Controllers
     {   
         private readonly IUserService _userservice;
         private readonly IStudentService _studentservice;
-        //private readonly IClubService _clubservice;
-       // private readonly ISponsorService _sponsorservice;
-        public UserController(IUserService userService , IStudentService studentService){
+        private readonly IClubService _clubservice;
+        private readonly ISponsorService _sponsorservice;
+        public UserController(IUserService userService , IStudentService studentService,IClubService clubservice,ISponsorService sponsorService){
             _userservice=userService;
             _studentservice=studentService;
-        }
+            _clubservice=clubservice;
+            _sponsorservice=sponsorService;
+        }  
          
         [AllowAnonymous]
 
@@ -31,18 +33,17 @@ namespace clubyApi.Controllers
                 _studentservice.CreateStudent(response);
                 
             }
-         /*   else 
+            else 
             if(response.Role.Equals(Role.Club)){
+                _clubservice.CreateClub(response);
 
             }
             else
             if(response.Role.Equals(Role.Sponsor)){
+                _sponsorservice.CreateSponsor(response);
 
             }
-            else
-            if(response.Role.Equals(Role.Admin)){
-
-            }*/
+            
             return Ok(response);
         }
 

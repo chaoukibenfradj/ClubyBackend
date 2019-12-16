@@ -19,7 +19,7 @@ namespace clubyApi.Controllers
         //[Authorize(Roles=Role.Admin)]
                 [AllowAnonymous]
 
-        [HttpPost("createinstitute")]
+        [HttpPost("institute")]
         public ActionResult<Institute> CreateInstitute([FromBody]Institute institute){
             Institute res=_service.CreateInstitute(institute);
             if(res==null){
@@ -35,7 +35,7 @@ namespace clubyApi.Controllers
          }
 
         [AllowAnonymous]
-        [HttpGet("namefilter/{name}")]
+        [HttpGet("{name}")]
 
          public ActionResult<Institute> FindInstituteByName(string name){
             Institute res=_service.FindInstituteByName(name);
@@ -45,7 +45,7 @@ namespace clubyApi.Controllers
             return Ok(res);
         }
         [AllowAnonymous]
-        [HttpGet("domainfilter/{domain}")]
+        [HttpGet("{domain}")]
 
          public ActionResult<List<Institute>> FindInstitutebyDomain(string domain){
             List<Institute> res=_service.FindInstituteByDomain(domain);
@@ -55,7 +55,7 @@ namespace clubyApi.Controllers
             return Ok(res);
         }
          [AllowAnonymous]
-        [HttpGet("regionfilter/{region}")]
+        [HttpGet("{region}")]
 
          public ActionResult<List<Institute>> FindInstitutebyRegion(string region){
             List<Institute> res=_service.FindInstituteByRegion(region);

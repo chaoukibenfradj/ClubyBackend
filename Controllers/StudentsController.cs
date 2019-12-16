@@ -3,7 +3,7 @@ using clubyApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-
+using System;
 namespace clubyApi.Controllers
 {   
     [Authorize]
@@ -18,10 +18,18 @@ namespace clubyApi.Controllers
         }
 
         [Authorize(Roles=Role.Student)]
-        [HttpGet("profile/{id}")]
+        [HttpGet("{id}")]
         public ActionResult<Student> FindStudentProfile(string id) 
         {
             return Ok(_service.FindStudentProfile(id));
+        }
+         [Authorize(Roles=Role.Student)]
+        [HttpPut("{id}")]
+
+        public ActionResult<Student> UpdateStudentProfile(string id,string photo,string institute) 
+        {
+            Console.Write(photo);
+            return Ok(_service.UpdateStudentProfile(id,photo,institute));
         }
        
        

@@ -7,6 +7,7 @@ namespace clubyApi.Repositories
     {
         Student FindStudentProfile(string id);
         Student CreateStudent(User user);
+        Student UpdateStudentProfile(string id,string photo,string institute);
 
 
     }
