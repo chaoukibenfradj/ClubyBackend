@@ -70,6 +70,10 @@ namespace clubyApi
             services.AddSingleton<IAdministrationRepository,AdministrationRepository>();
 
             services.AddSingleton<IUserService,UserService>();
+            
+            services.AddSingleton<IDomainRepository,DomainRepository>();
+            services.AddSingleton<IDomainService,DomainService>();
+
             services.AddSingleton<IUserRepository,UserRepository>();
             services.AddSingleton<IInstituteService,InstituteService>();
             services.AddSingleton<IInstituteRepository,InstituteRepository>();

@@ -9,8 +9,8 @@ namespace clubyApi.Models
         [BsonRepresentation(BsonType.ObjectId)] 
         public  string Id{ get;set;}
         
-        [BsonElement("DomainName")]
+        [BsonElement("Name")]
 
-        public string DomainName{ get;set;}
+        public string Name{ get;set;}
     }
 }
