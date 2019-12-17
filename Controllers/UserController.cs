@@ -59,13 +59,7 @@ namespace clubyApi.Controllers
             return Ok(response);
             
         }
-       /* [Authorize(Roles=Role.Admin)]
-        [HttpPost("")]
-        public ActionResult<User> CreateInstitute([FromBody] Institute institute) 
-        {
-            
-            
-        }*/
+      
         
     }
 }
