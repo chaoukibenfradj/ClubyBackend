@@ -41,6 +41,11 @@ using MongoDB.Driver;
         {
             return _repo.FindInstituteByRegion(region);
         }
+
+        public Institute ModifyInstitute(string id,Institute institute)
+        {
+            return _repo.ModifyInstitute(id,institute);
+        }
     }
     
 }

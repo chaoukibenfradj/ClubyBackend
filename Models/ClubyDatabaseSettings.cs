@@ -11,7 +11,6 @@ namespace clubyApi.Models
         public string EventCollectionName { get; set; }
         public string DomainCollectionName { get; set; }
         public string SponsorCollectionName { get; set; }
-        public string InterestCollectionName { get; set; }
         public string AdministrationCollectionName { get; set; }
 
         public string ConnectionString { get; set; }
@@ -27,7 +26,6 @@ namespace clubyApi.Models
         string EventCollectionName { get; set; }
         string DomainCollectionName { get; set; }
         string SponsorCollectionName { get; set; }
-        string InterestCollectionName { get; set; }
         string InstituteCollectionName { get; set; }
         string AdministrationCollectionName { get; set; }
 

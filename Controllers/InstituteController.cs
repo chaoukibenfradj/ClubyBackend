@@ -17,7 +17,7 @@ namespace clubyApi.Controllers
              _service=service;
         }
         //[Authorize(Roles=Role.Admin)]
-                [AllowAnonymous]
+        [AllowAnonymous]
 
         [HttpPost("institute")]
         public ActionResult<Institute> CreateInstitute([FromBody]Institute institute){
@@ -26,6 +26,15 @@ namespace clubyApi.Controllers
                 return BadRequest(new {message=" institute with the same name already exists "});
             }
             return Ok(res);
+        }
+        //[Authorize(Roles=Role.Admin)]
+        [AllowAnonymous]
+
+        [HttpPut("{id}")]
+        public ActionResult<Institute> ModifyInstitute(string id,[FromBody]Institute institute){
+            
+           
+            return Ok(_service.ModifyInstitute(id,institute));
         }
         [AllowAnonymous]
         [HttpGet("")]

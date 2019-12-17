@@ -8,6 +8,8 @@ namespace clubyApi.Repositories
     {
        
        public Institute CreateInstitute(Institute institute);
+        public Institute ModifyInstitute(string id,Institute institute);
+
         public List<Institute> FindAllInstitutes();
 
        public List<Institute> FindInstituteByDomain(string domain);

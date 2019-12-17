@@ -23,7 +23,7 @@ namespace clubyApi.Models
         public string Photo{ get;set;}
 
         [BsonElement("Interests")]
-        public List<MongoDBRef> Interests{ get;set;}
+        public List<string> Interests{ get;set;}
       
 
         [BsonElement("User")]

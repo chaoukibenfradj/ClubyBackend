@@ -9,6 +9,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Collections.Generic;
+using MongoDB.Bson;
 
 namespace clubyApi.Repositories
 {
@@ -57,6 +58,53 @@ namespace clubyApi.Repositories
         {
             return _instituts.Find<Institute>(i => i.Region == region).ToList<Institute>();
 
+        }
+
+        public Institute ModifyInstitute(string id,Institute institute)
+        {
+            var filter=Builders<Institute>.Filter.Eq(s=>s.Id,id);
+
+           if(institute.Domain!=null){
+                Console.WriteLine(id);
+                 var update=Builders<Institute>.Update.Set(s=>s.Domain,institute.Domain);
+                 return _instituts.FindOneAndUpdate(filter,update);
+
+
+            }
+            
+             if(institute.Photo!=null){
+                var update=Builders<Institute>.Update.Set("Photo",institute.Photo);
+                return _instituts.FindOneAndUpdate(filter,update);
+
+
+            }
+            
+             if(institute.Name!=null){
+                 Console.Write(institute.Name);
+                 Console.Write(id);
+                 var update=Builders<Institute>.Update.Set("Name",institute.Name);
+                return _instituts.FindOneAndUpdate(filter,update);
+
+
+            }
+            
+             if(institute.Region!=null){
+                var update=Builders<Institute>.Update.Set("Region",institute.Region);
+                return _instituts.FindOneAndUpdate(filter,update);
+
+
+            }
+            
+            if(institute.Name!=null && institute.Domain!=null && institute.Region!=null && institute.Photo!=null){
+                var update=Builders<Institute>.Update.Set("Name",institute.Name)
+                .Set("Domain",institute.Domain)
+                .Set("Region",institute.Region)
+                .Set("Photo",institute.Photo);
+                return _instituts.FindOneAndUpdate(filter,update);
+
+
+            }
+            return null;
         }
     }
 
