@@ -14,6 +14,8 @@ namespace clubyApi.Services
 
        public List<Institute> FindInstituteByRegion(string region);
        public List<Institute> FindAllInstitutes();
+        public Institute DeleteInstitute(string id);
+
        
 
     }

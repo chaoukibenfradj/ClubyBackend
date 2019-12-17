@@ -32,9 +32,23 @@ namespace clubyApi.Controllers
 
         [HttpPut("{id}")]
         public ActionResult<Institute> ModifyInstitute(string id,[FromBody]Institute institute){
-            
+             Institute res=_service.ModifyInstitute(id,institute);
+            if(res==null){
+                return BadRequest(new {message="Could not update institute"});
+            }
            
-            return Ok(_service.ModifyInstitute(id,institute));
+            return Ok(res);
+        }
+          //[Authorize(Roles=Role.Admin)]
+        [AllowAnonymous]
+
+        [HttpDelete("{id}")]
+        public ActionResult<Institute> DeleteInstitute(string id){
+            Institute res=_service.DeleteInstitute(id);
+            if(res==null){
+                return BadRequest(new {message="Could not delete institute"});
+            }
+            return Ok(res);
         }
         [AllowAnonymous]
         [HttpGet("")]

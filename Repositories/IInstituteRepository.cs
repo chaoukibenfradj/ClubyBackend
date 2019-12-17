@@ -9,6 +9,7 @@ namespace clubyApi.Repositories
        
        public Institute CreateInstitute(Institute institute);
         public Institute ModifyInstitute(string id,Institute institute);
+        public Institute DeleteInstitute(string id);
 
         public List<Institute> FindAllInstitutes();
 

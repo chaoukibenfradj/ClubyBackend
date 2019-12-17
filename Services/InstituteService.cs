@@ -22,6 +22,11 @@ using MongoDB.Driver;
             return _repo.CreateInstitute(institute);
         }
 
+        public Institute DeleteInstitute(string id)
+        {
+            return _repo.DeleteInstitute(id);
+        }
+
         public List<Institute> FindAllInstitutes()
         {
            return _repo.FindAllInstitutes();

@@ -36,6 +36,11 @@ namespace clubyApi.Repositories
             return res;
         }
 
+        public Institute DeleteInstitute(string id)
+        {
+            return _instituts.FindOneAndDelete(s=>s.Id==id);
+        }
+
         public List<Institute> FindAllInstitutes()
         {
             int limit=10;
