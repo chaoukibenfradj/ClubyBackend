@@ -13,6 +13,15 @@ namespace clubyApi.Models
             Institute=admin.Institute;
             User =new MongoDBRef("User",admin.Id);
         }
+         public Administration(string institute,string id )
+        {
+            Institute=institute;
+            User =new MongoDBRef("User",id);
+        }
+        public Administration(string institute )
+        {
+            Institute=institute;
+        }
 
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

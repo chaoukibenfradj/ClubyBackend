@@ -4,7 +4,8 @@ namespace clubyApi
 {
     public interface IAdministrationRepository
     {
-        Administration ModifyAdmin(string id,Administration administration);
+        Administration CreateAdmin(Administration administration);
+        Administration ModifyAdmin(string id,string administration);
         Administration DeleteAdmin(string id);
 
 

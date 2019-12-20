@@ -15,17 +15,24 @@ namespace clubyApi
         }
         public Administration CreateAdmin(Administration administration)
         {
-            throw new System.NotImplementedException();
+            _admins.InsertOne(administration);
+            return administration;
         }
 
         public Administration DeleteAdmin(string id)
         {
-            throw new System.NotImplementedException();
+            return _admins.FindOneAndDelete(Admini=>Admini.Id==id);
         }
 
-        public Administration ModifyAdmin(string id, Administration administration)
+        public Administration ModifyAdmin(string id, string institute)
         {
-            throw new System.NotImplementedException();
+              var filter=Builders<Administration>.Filter.Eq(s=>s.Id,id);
+
+            var update=Builders<Administration>.Update.Set(s=>s.Institute,institute);
+            return _admins.FindOneAndUpdate(filter,update);
+
+
+            
         }
     }
 }
