@@ -25,5 +25,14 @@ namespace clubyApi.Services
         {
            return _repo.ModifyDomain(id,domain);
         }
+
+        public List<Domain> FindDomains()
+        {
+           return _repo.FindDomains();
+        }
+
+        
+
+
     }
 }
