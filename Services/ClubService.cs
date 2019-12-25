@@ -31,7 +31,10 @@ using MongoDB.Driver;
             return _repo.FindClubProfile(id);
         }
       
-       
+        public List<Club> FindAllClubs()
+        {
+           return _repo.FindAllClubs();
+        }
     
 
 
