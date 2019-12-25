@@ -18,7 +18,7 @@ namespace clubyApi.Controllers
             _service=service;
 
         }
-         [Authorize(Roles=Role.Club)]
+        [Authorize(Roles=Role.Club)]
         [HttpPost("event")]
         public ActionResult<Event> CreateEvent([FromBody]Event e) 
         {
