@@ -1,6 +1,8 @@
+using clubyApi.Models;
 using clubyApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 
 namespace clubyApi.Controllers
 {
@@ -14,5 +16,11 @@ namespace clubyApi.Controllers
         public SponsorController(ISponsorService service){
             _service=service;
         }
+
+        [AllowAnonymous]
+        [HttpGet("")]
+         public ActionResult<List<Sponsors>> FindAllSponsors(){
+             return Ok(_service.FindAllSponsors());
+         }
     }
 }

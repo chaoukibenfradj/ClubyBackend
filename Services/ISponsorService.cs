@@ -6,5 +6,7 @@ namespace clubyApi
     {
       Sponsor CreateSponsor(User user);
 
+      public List<Sponsor> FindAllSponsors();
+
     }
 }

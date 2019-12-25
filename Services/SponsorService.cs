@@ -14,5 +14,10 @@ namespace clubyApi
         {
             return _repo.CreateSponsor(user);
         }
+
+        public List<Sponsor> FindAllSponsors()
+        {
+           return _repo.FindAllSponsors();
+        }
     }
 }
