@@ -8,13 +8,11 @@ namespace clubyApi.Services
     {
        public Institute CreateInstitute(Institute institute);
        public Institute ModifyInstitute(string id,Institute institute);
-       
        public List<Institute> FindInstituteByDomain(string domain);
        public Institute FindInstituteByName(string name);
-
        public List<Institute> FindInstituteByRegion(string region);
        public List<Institute> FindAllInstitutes();
-        public Institute DeleteInstitute(string id);
+       public Institute DeleteInstitute(string id);
 
        
 

@@ -5,7 +5,7 @@ namespace clubyApi.Services
 {
     public class DomainService : IDomainService
     {
-          private  readonly IDomainRepository _repo;
+        private  readonly IDomainRepository _repo;
         public DomainService(IDomainRepository repo)
         {
             _repo=repo ;

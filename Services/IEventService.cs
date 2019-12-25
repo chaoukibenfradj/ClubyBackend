@@ -6,7 +6,7 @@ namespace clubyApi.Services
 {
     public interface IEventService
     {
-        Tuple<Event,int> CreateEvent(Event e);
+       Tuple<Event,int> CreateEvent(Event e);
        List<Event>ShowAllEvents();
        List<Event>FindEventByDate(string date);
        List<Event>FindEventByDomain(string domain);
