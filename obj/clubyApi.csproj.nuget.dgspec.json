@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/yosrafatnassi/Bureau/veille_techno/clubyApi/clubyApi.csproj": {}
+    "C:\\Users\\marouani\\Desktop\\ClubyPro\\ClubyBackend\\clubyApi.csproj": {}
   },
   "projects": {
-    "/home/yosrafatnassi/Bureau/veille_techno/clubyApi/clubyApi.csproj": {
+    "C:\\Users\\marouani\\Desktop\\ClubyPro\\ClubyBackend\\clubyApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/yosrafatnassi/Bureau/veille_techno/clubyApi/clubyApi.csproj",
+        "projectUniqueName": "C:\\Users\\marouani\\Desktop\\ClubyPro\\ClubyBackend\\clubyApi.csproj",
         "projectName": "clubyApi",
-        "projectPath": "/home/yosrafatnassi/Bureau/veille_techno/clubyApi/clubyApi.csproj",
-        "packagesPath": "/home/yosrafatnassi/.nuget/packages/",
-        "outputPath": "/home/yosrafatnassi/Bureau/veille_techno/clubyApi/obj/",
+        "projectPath": "C:\\Users\\marouani\\Desktop\\ClubyPro\\ClubyBackend\\clubyApi.csproj",
+        "packagesPath": "C:\\Users\\marouani\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marouani\\Desktop\\ClubyPro\\ClubyBackend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/yosrafatnassi/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\marouani\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -59,12 +61,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[3.0.0, 3.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -73,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

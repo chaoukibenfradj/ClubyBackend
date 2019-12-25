@@ -18,16 +18,22 @@ namespace clubyApi.Controllers
         }
 
        
+        [Authorize(Roles=Role.Club)]
         [HttpGet("profile/{id}")]
         public ActionResult<Club> FindClubProfile(string id) 
         {
             return Ok(_service.FindClubProfile(id));
         }
-        [HttpPost]
+
+        [Authorize(Roles=Role.Club)]
+        [HttpPut("{id}")]
         public ActionResult<UpdateResult> CompleteClubInscription(string id, string institute, string photo){
             return Ok(_service.CompleteClubInscription(id,institute,photo));
         }
 
+        
+
+      
        
 
       

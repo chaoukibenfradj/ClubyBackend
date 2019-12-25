@@ -23,7 +23,7 @@ namespace clubyApi.Controllers
         {
             return Ok(_service.FindStudentProfile(id));
         }
-         [Authorize(Roles=Role.Student)]
+        [Authorize(Roles=Role.Student)]
         [HttpPut("{id}")]
 
         public ActionResult<Student> UpdateStudentProfile(string id,string photo,string institute) 
