@@ -30,12 +30,7 @@ using MongoDB.Driver;
         public  Club FindClubProfile(string id){
             return _repo.FindClubProfile(id);
         }
-      
-        public List<Club> FindAllClubs()
-        {
-           return _repo.FindAllClubs();
-        }
-    
+   
 
 
    

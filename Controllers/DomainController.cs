@@ -46,11 +46,7 @@ namespace clubyApi.Controllers
             return Ok(res);
         }
 
-        [AllowAnonymous]
-        [HttpGet("")]
-         public ActionResult<List<Domain>> FindAllDomains(){
-             return Ok(_service.FindAllDomains());
-         }
+       
 
 
     }

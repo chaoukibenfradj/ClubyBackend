@@ -31,11 +31,7 @@ namespace clubyApi.Controllers
             return Ok(_service.CompleteClubInscription(id,institute,photo));
         }
 
-        [AllowAnonymous]
-        [HttpGet("")]
-         public ActionResult<List<Club>> FindAllClubs(){
-             return Ok(_service.FindAllClubs());
-         }
+       
 
       
        

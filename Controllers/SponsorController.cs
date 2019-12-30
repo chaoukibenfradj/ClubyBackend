@@ -17,10 +17,6 @@ namespace clubyApi.Controllers
             _service=service;
         }
 
-        [AllowAnonymous]
-        [HttpGet("")]
-         public ActionResult<List<Sponsors>> FindAllSponsors(){
-             return Ok(_service.FindAllSponsors());
-         }
+       
     }
 }
