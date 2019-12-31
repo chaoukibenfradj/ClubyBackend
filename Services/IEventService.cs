@@ -12,5 +12,8 @@ namespace clubyApi.Services
        List<Event>FindEventByDomain(string domain);
        List<Event>FindEventByClub(string club);
        List<Event>FindEventByInstitute(string institute);
+       public Event DeleteEvent(string id);
+
+
     }
 }

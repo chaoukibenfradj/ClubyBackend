@@ -42,5 +42,12 @@ namespace clubyApi.Services
         {
             return _rep.ShowAllEvents();
         }
+
+        public Event DeleteEvent(string id)
+        {
+            return _rep.DeleteEvent(id);
+        }
+
+       
     }
 }

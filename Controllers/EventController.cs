@@ -58,6 +58,19 @@ namespace clubyApi.Controllers
         {
             return Ok(_service.FindEventByDomain(domain));
         }
+
+        [AllowAnonymous]
+
+        [HttpDelete("{id}")]
+        public ActionResult<Event> DeleteEvent(string id){
+            Event res=_service.DeleteEvent(id);
+            if(res==null){
+                return BadRequest(new {message="Could not delete Event"});
+            }
+            return Ok(res);
+        }
         
+
+    
     }
 }

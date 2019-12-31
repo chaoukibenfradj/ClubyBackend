@@ -3,10 +3,12 @@ using MongoDB.Driver;
 using clubyApi.Utils;
 using System;
 using System.Linq;
-namespace clubyApi.Services
-{using System.Collections.Generic;
+using System.Collections.Generic;
 using clubyApi.Repositories;
 using MongoDB.Driver;
+namespace clubyApi.Services
+{
+  
 
     public class ClubService :IClubService
     {
@@ -30,17 +32,4 @@ using MongoDB.Driver;
         public  Club FindClubProfile(string id){
             return _repo.FindClubProfile(id);
         }
-   
-
-
-   
-
-        
-       
-
-        
-
-
-    }
-    
-}
+    }}

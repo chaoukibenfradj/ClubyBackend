@@ -52,5 +52,12 @@ namespace clubyApi.Repositories
             int limit=10;
             return _events.Find<Event>(new FilterDefinitionBuilder<Event>().Empty).Limit(limit).ToList<Event>();
         }
+
+        public Event DeleteEvent(string id)
+        {
+            return _events.FindOneAndDelete(s=>s.Id==id);
+        }
+
+       
     }
 }

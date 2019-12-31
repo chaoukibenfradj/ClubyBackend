@@ -16,7 +16,8 @@ namespace clubyApi.Controllers
         public SponsorController(ISponsorService service){
             _service=service;
         }
-
        
     }
+
+   
 }
