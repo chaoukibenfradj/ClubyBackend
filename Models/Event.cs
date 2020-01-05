@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
+using System.Collections.Generic;  
 
 namespace clubyApi.Models
 {
@@ -46,6 +47,12 @@ namespace clubyApi.Models
         //public MongoDBRef Institute {get;set;}
         public string Institute {get;set;}
 
+        [BsonElement("ListParticipation")]
+        public List<Participate> ListParticipation { get; set; }
+
+        [BsonElement("Number")]
+        public int NumberParticipation { get; set; }
+
         public Event(Event e){
 
             this.Name=e.Name;
@@ -58,6 +65,8 @@ namespace clubyApi.Models
             this.EndDate=e.EndDate;
             this.Institute=e.Institute;
             this.Club=e.Club;
+            this.ListParticipation=e.ListParticipation;
+            this.NumberParticipation=e.NumberParticipation;
 
 
         }

@@ -58,6 +58,99 @@ namespace clubyApi.Repositories
             return _events.FindOneAndDelete(s=>s.Id==id);
         }
 
+        public Event FindEventById(string id){
+
+        return _events.Find(e =>  e.Id==id).FirstOrDefault();
+        }
        
+
+        public List<Participate> ListEventPart(string id){
+            Event e = FindEventById(id);
+            if (e == null)
+            {
+                return null;
+            }else{
+            
+                return e.ListParticipation;
+            }
+                  
+              
+        }
+
+        
+        public int DeleteUserParticipation(string Eventid,string uid)
+        {
+
+            Event e = FindEventById(Eventid);
+            if (e == null)
+            {
+                return 1;
+            }
+            else
+            {
+                
+                 Participate userp = e.ListParticipation.Find(x => x.UserId == uid);
+                if (userp != null){
+                    e.ListParticipation.Remove(userp);
+                    e.NumberParticipation+=1;
+                    ModifyEventNumberParticipat(e);
+                    return 0;
+                }else{
+                    return 2;
+                }
+            }
+
+        }
+
+        public int AddUserParticipation(string Eventid, string uid)
+        {
+
+            Event e = FindEventById(Eventid);
+            if (e == null)
+            {
+                return 1;
+            }
+            else
+            {
+                if(e.NumberParticipation==0){
+                return 2;
+
+                }else{
+                Participate userp = e.ListParticipation.Find(x => x.UserId == uid);
+                if (userp == null){
+                    string dateAdd=new DateTime().ToLocalTime().ToString();
+                    Participate p =new Participate(uid,dateAdd);
+                    e.ListParticipation.Add(new Participate (p));
+                    e.NumberParticipation=e.NumberParticipation-1;
+                     ModifyEventNumberParticipat(e);
+                    return 0;
+                }else{
+                    return 3;
+                }
+             }
+
+            }
+
+
+        }
+
+        public List<Event> FindEventByUserParticipation(string uid)
+        {
+
+            return _events.Find<Event>(e => 
+            e.ListParticipation.Exists(y=>y.UserId == uid)
+            
+            ).ToList<Event>();
+        }
+
+        public void ModifyEventNumberParticipat(Event e)
+        {
+            var filter=Builders<Event>.Filter.Eq(d=>d.Id,e.Id);
+
+            var update=Builders<Event>.Update.Set("Number",e.NumberParticipation).Set("ListParticipation",e.ListParticipation);
+             _events.FindOneAndUpdate(filter,update);
+        }
+
+   
     }
 }

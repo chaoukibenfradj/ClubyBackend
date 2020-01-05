@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marouani\\Desktop\\ClubyPro\\ClubyBackend\\clubyApi.csproj": {}
+    "C:\\Users\\yassine\\Desktop\\GEU\\cluby\\ClubyBackend\\clubyApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marouani\\Desktop\\ClubyPro\\ClubyBackend\\clubyApi.csproj": {
+    "C:\\Users\\yassine\\Desktop\\GEU\\cluby\\ClubyBackend\\clubyApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marouani\\Desktop\\ClubyPro\\ClubyBackend\\clubyApi.csproj",
+        "projectUniqueName": "C:\\Users\\yassine\\Desktop\\GEU\\cluby\\ClubyBackend\\clubyApi.csproj",
         "projectName": "clubyApi",
-        "projectPath": "C:\\Users\\marouani\\Desktop\\ClubyPro\\ClubyBackend\\clubyApi.csproj",
-        "packagesPath": "C:\\Users\\marouani\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marouani\\Desktop\\ClubyPro\\ClubyBackend\\obj\\",
+        "projectPath": "C:\\Users\\yassine\\Desktop\\GEU\\cluby\\ClubyBackend\\clubyApi.csproj",
+        "packagesPath": "C:\\Users\\yassine\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yassine\\Desktop\\GEU\\cluby\\ClubyBackend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marouani\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\yassine\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

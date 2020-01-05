@@ -13,9 +13,13 @@ namespace clubyApi.Repositories
        List<Event>FindEventByClub(string club);
        List<Event>FindEventByInstitute(string institute);
        public Event DeleteEvent(string id);
+       Event FindEventById(string id);
 
 
-
-
+       public int DeleteUserParticipation(string Eventid, string Userid);
+       int AddUserParticipation(string Eventid,string userId);
+       List<Event> FindEventByUserParticipation(string userId);
+       void ModifyEventNumberParticipat(Event e);
+       public List<Participate> ListEventPart(string id);
     }
 }
