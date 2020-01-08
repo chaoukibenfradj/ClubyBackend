@@ -16,6 +16,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+
 namespace clubyApi
 {
     public class Startup
@@ -51,6 +53,10 @@ namespace clubyApi
                         ValidateAudience = false  
                 };  
             });  
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });                
+            });
             services.Configure<ClubyDatabaseSettings>(
            Configuration.GetSection(nameof(ClubyDatabaseSettings)));
 
@@ -96,9 +102,15 @@ namespace clubyApi
             app.UseMvc();
 
             app.UseHttpsRedirection();
-            app.UseRouting();
+            app.UseRouting();    
+            app.UseSwagger();
 
-            
+
+
+             app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseEndpoints(endpoints =>
             {
