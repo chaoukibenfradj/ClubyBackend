@@ -16,6 +16,13 @@ namespace clubyApi.Controllers
         public SponsorController(ISponsorService service){
             _service=service;
         }
+
+        [AllowAnonymous]
+        [HttpGet("")]
+        public ActionResult<List<Sponsor>> ShowAllSponsors() 
+        {
+            return Ok(_service.ShowAllSponsors());
+        }
        
     }
 

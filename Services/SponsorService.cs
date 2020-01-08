@@ -1,5 +1,7 @@
+using System;
+using System.Collections.Generic;
 using clubyApi.Models;
-
+using clubyApi.Repositories;
 namespace clubyApi
 {
     public class SponsorService : ISponsorService
@@ -16,5 +18,9 @@ namespace clubyApi
         }
 
       
+        List<Sponsor> ISponsorService.ShowAllSponsors()
+        {
+            return _repo.ShowAllSponsors();
+        }
     }
 }

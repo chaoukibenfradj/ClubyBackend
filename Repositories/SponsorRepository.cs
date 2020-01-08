@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using clubyApi.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace clubyApi
@@ -18,6 +21,12 @@ namespace clubyApi
              Sponsor resultat=new Sponsor(user);
              _sponsors.InsertOne(resultat);
              return resultat;
+        }
+
+          public List<Sponsor> ShowAllSponsors()
+        {
+            int limit=10;
+            return _sponsors.Find<Sponsor>(new FilterDefinitionBuilder<Sponsor>().Empty).Limit(limit).ToList<Sponsor>();
         }
     }
 }
