@@ -7,21 +7,7 @@ namespace ClubyBackend.Models
 {
     public class Email
     {
-        public Email(){
-
-        }
-        
-        public Email(EmailDto email,User sender,User receiver){
-            Subject=email.Subject;
-            Content=email.Content;
-            SendDate=email.SendDate;
-          
-            Sender= new MongoDBRef("User",sender.Id);
-            Receiver= new MongoDBRef("User",receiver.Id);
-
-
-        }
-       
+      
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)] 
         public string Id {get;set;}
@@ -35,11 +21,25 @@ namespace ClubyBackend.Models
         public string SendDate  {get;set;}
 
         [BsonElement("Sender")]
-        public MongoDBRef Sender{get;set;}
+        public string Sender{get;set;}
 
         [BsonElement("Receiver")]
-        public MongoDBRef Receiver{get;set;}
+        public string Receiver{get;set;}
+          public Email(){
+
+        }
         
+        public Email(EmailDto email,User sender,User receiver){
+            Subject=email.Subject;
+            Content=email.Content;
+            SendDate=email.SendDate;
+          
+            Sender= sender.Id;
+            Receiver=receiver.Id;
+
+
+        }
+       
     }
 
 }

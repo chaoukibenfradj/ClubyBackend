@@ -11,6 +11,6 @@ namespace clubyApi.Services
         User FindUserByEmail(string email);
         List<Email> FindEmailBySenderId(string id);
         List<Email> FindEmailByReceiverId(string id);
-       EmailDto SendEmail(EmailDto email);
+       Email SendEmail(EmailDto email);
     }
 }

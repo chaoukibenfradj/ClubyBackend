@@ -88,12 +88,12 @@ namespace clubyApi.Controllers
         [AllowAnonymous]
       
         [HttpPost("mails")]
-        public ActionResult<EmailDto> sendEmail([FromBody]EmailDto email) 
+        public ActionResult<Email> sendEmail([FromBody]EmailDto email) 
         {
             
          
           
-            EmailDto response=_userservice.SendEmail(email);
+            Email response=_userservice.SendEmail(email);
 
             if(response==null){
                  return  BadRequest(new {message="something went wrong"});

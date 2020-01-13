@@ -33,7 +33,7 @@ namespace clubyApi.Services
         public List<Email> FindEmailByReceiverId(string id){
             return _repo.FindEmailByReceiverId(id);
         }
-       public EmailDto SendEmail(EmailDto email){
+       public Email SendEmail(EmailDto email){
            return _repo.SendEmail(email);
        }
     }

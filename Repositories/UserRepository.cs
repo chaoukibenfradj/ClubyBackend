@@ -71,19 +71,21 @@ namespace clubyApi.Repositories
         }
         public User FindUserByEmail(string email) => _users.Find<User>(user => user.Email == email).FirstOrDefault();
         public List<Email> FindEmailBySenderId(string id){
-           var filter = Builders<Email>.Filter.Eq(x => x.Subject, id);
+           var filter = Builders<Email>.Filter.Eq(x => x.Sender,id);
+
             return _emails.Find<Email>(filter).ToList<Email>();
 
          }
         public List<Email> FindEmailByReceiverId(string id){
-            return _emails.Find<Email>(email => 
-            email.Subject.Equals(id)
-            ).ToList<Email>();
+            var filter = Builders<Email>.Filter.Eq(x => x.Receiver,id);
+
+            return _emails.Find<Email>(filter).ToList<Email>();
+    
 
          }
          
-        public EmailDto SendEmail(EmailDto email){
-            EmailDto response=null;
+        public Email SendEmail(EmailDto email){
+            Email response=null;
             var apiKey = Environment.GetEnvironmentVariable("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");
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress(email.Sender, "sender");
@@ -101,7 +103,7 @@ namespace clubyApi.Repositories
             else{ 
                 Email mail=new Email(email,sen,rec);
                 _emails.InsertOne(mail);
-                response=email;
+                response=mail;
                
            }
             return response;
