@@ -7588,24 +7588,26 @@
     ]
   },
   "packageFolders": {
-    "/home/yosrafatnassi/.nuget/packages/": {}
+    "C:\\Users\\yassine\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/yosrafatnassi/Bureau/dotnet/ClubyBackend/clubyApi.csproj",
+      "projectUniqueName": "C:\\Users\\yassine\\Desktop\\GEU\\cluby\\ClubyBackend\\clubyApi.csproj",
       "projectName": "clubyApi",
-      "projectPath": "/home/yosrafatnassi/Bureau/dotnet/ClubyBackend/clubyApi.csproj",
-      "packagesPath": "/home/yosrafatnassi/.nuget/packages/",
-      "outputPath": "/home/yosrafatnassi/Bureau/dotnet/ClubyBackend/obj/",
+      "projectPath": "C:\\Users\\yassine\\Desktop\\GEU\\cluby\\ClubyBackend\\clubyApi.csproj",
+      "packagesPath": "C:\\Users\\yassine\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\yassine\\Desktop\\GEU\\cluby\\ClubyBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/yosrafatnassi/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\yassine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7653,12 +7655,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[3.0.0, 3.0.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -7667,7 +7663,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.0.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

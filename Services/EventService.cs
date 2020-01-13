@@ -53,22 +53,24 @@ namespace clubyApi.Services
             return _rep.FindEventById(id);
         }
        
-        public int DeleteUserParticipation(string Eventid,string Userid)
+
+        public int DeleteUserParticipation(string Eventid,User u)
         {
-            return _rep.DeleteUserParticipation(Eventid,Userid);
+            return _rep.DeleteUserParticipation(Eventid,u);
         }
 
-        public int AddUserParticipation(string Eventid, string Userid)
+        public int AddUserParticipation(string Eventid, User u)
         {
-             return _rep.AddUserParticipation(Eventid,Userid);
+             return _rep.AddUserParticipation(Eventid,u);
         }
 
-        public List<Event> FindEventByUserParticipation(string userid)
+        public List<Event> FindEventByUserParticipation(User u)
         {
-            return _rep.FindEventByUserParticipation(userid);
+            return _rep.FindEventByUserParticipation(u);
         }
         public List<Participate> ListEventPart(string id){
         return _rep.ListEventPart(id);
         }
+
     }
 }

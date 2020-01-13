@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace clubyApi.Services
 {
-    public interface IEventService
+     public interface IEventService
     {
        Tuple<Event,int> CreateEvent(Event e);
        List<Event>ShowAllEvents();
@@ -14,11 +14,13 @@ namespace clubyApi.Services
        List<Event>FindEventByClub(string club);
        List<Event>FindEventByInstitute(string institute);
        public Event DeleteEvent(string id);
+
        Event FindEventById(string id);
       
-       public int DeleteUserParticipation(string Eventid, string Userid);
-       int AddUserParticipation(string Eventid,string userId);
-       List<Event> FindEventByUserParticipation(string userId);
+       public int DeleteUserParticipation(string Eventid, User u);
+       int AddUserParticipation(string Eventid,User u);
+       List<Event> FindEventByUserParticipation(User u);
        public List<Participate> ListEventPart(string id);
+
     }
 }

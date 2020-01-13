@@ -36,5 +36,10 @@ namespace clubyApi.Services
        public Email SendEmail(Email email,string sender,string receiver){
            return _repo.SendEmail(email,sender,receiver);
        }
+
+        public User FindUserById(string id)
+        {
+            return _repo.FindUserById(id);
+        }
     }
 }
