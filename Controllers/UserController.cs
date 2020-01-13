@@ -63,13 +63,11 @@ namespace clubyApi.Controllers
         }
         [AllowAnonymous]
       
-        [HttpGet("Sendsemails")]
-        public ActionResult<List<Email>> getEmailsBySenderId([FromBody]string id) 
+        [HttpGet("mails/sender/{senderId}")]
+        public ActionResult<List<Email>> getEmailsBySenderId(string senderId) 
         {
-            List<Email> response=_userservice.FindEmailBySenderId(id);    
-             if(response==null){
-                return  BadRequest(new {message="no emails found"});
-            }   
+            List<Email> response=_userservice.FindEmailBySenderId(senderId);    
+             
             
             return Ok(response);
             
@@ -78,13 +76,11 @@ namespace clubyApi.Controllers
         
         [AllowAnonymous]
       
-        [HttpGet("Receivedemails")]
-        public ActionResult<List<Email>> getEmailsByReceiverId([FromBody]string id) 
+        [HttpGet("mails/receiver/{receiverId}")]
+        public ActionResult<List<Email>> getEmailsByReceiverId(string receiverId) 
         {
-            List<Email> response=_userservice.FindEmailByReceiverId(id);    
-             if(response==null){
-                return  BadRequest(new {message="no emails found"});
-            } 
+           Console.WriteLine(receiverId);
+            List<Email> response=_userservice.FindEmailByReceiverId(receiverId);    
             
             return Ok(response);
             
@@ -92,11 +88,12 @@ namespace clubyApi.Controllers
         [AllowAnonymous]
       
         [HttpPost("mails")]
-        public ActionResult<Email> sendEmail([FromBody] Email email,string sender,string receiver) 
+        public ActionResult<EmailDto> sendEmail([FromBody]EmailDto email) 
         {
+            
          
-           
-            Email response=_userservice.SendEmail(email,sender,receiver);
+          
+            EmailDto response=_userservice.SendEmail(email);
 
             if(response==null){
                  return  BadRequest(new {message="something went wrong"});

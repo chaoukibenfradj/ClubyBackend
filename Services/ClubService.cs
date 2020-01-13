@@ -5,7 +5,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using clubyApi.Repositories;
-using MongoDB.Driver;
 namespace clubyApi.Services
 {
   

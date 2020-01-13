@@ -1,4 +1,3 @@
-using System;
 using clubyApi.Models;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -11,7 +10,8 @@ namespace ClubyBackend.Models
         public Email(){
 
         }
-        public Email(Email email,User sender,User receiver){
+        
+        public Email(EmailDto email,User sender,User receiver){
             Subject=email.Subject;
             Content=email.Content;
             SendDate=email.SendDate;
@@ -21,8 +21,9 @@ namespace ClubyBackend.Models
 
 
         }
+       
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
+        [BsonRepresentation(BsonType.ObjectId)] 
         public string Id {get;set;}
      
         [BsonElement("Subject")]

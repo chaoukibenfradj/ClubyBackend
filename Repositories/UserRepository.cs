@@ -9,6 +9,7 @@ using clubyApi.Utils;
 using ClubyBackend.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using SendGrid;
 using SendGrid.Helpers.Mail;
@@ -70,35 +71,40 @@ namespace clubyApi.Repositories
         }
         public User FindUserByEmail(string email) => _users.Find<User>(user => user.Email == email).FirstOrDefault();
         public List<Email> FindEmailBySenderId(string id){
-            return _emails.Find<Email>(e => e.Sender.Id == id).ToList<Email>();
+           var filter = Builders<Email>.Filter.Eq(x => x.Subject, id);
+            return _emails.Find<Email>(filter).ToList<Email>();
 
          }
         public List<Email> FindEmailByReceiverId(string id){
-            return _emails.Find<Email>(e => e.Receiver.Id == id).ToList<Email>();
-
+            return _emails.Find<Email>(email => 
+            email.Subject.Equals(id)
+            ).ToList<Email>();
 
          }
-        public Email SendEmail(Email email,string sender,string receiver){
-             var apiKey = Environment.GetEnvironmentVariable("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");
-
+         
+        public EmailDto SendEmail(EmailDto email){
+            EmailDto response=null;
+            var apiKey = Environment.GetEnvironmentVariable("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");
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress(
-              sender, "sender");
+            var from = new EmailAddress(email.Sender, "sender");
             var subject = email.Subject;
-            var to = new EmailAddress(receiver, "receiver");
+            var to = new EmailAddress(email.Receiver, "receiver");
             var plainTextContent = email.Content;
             var htmlContent = "";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent,htmlContent);
-            var response =  client.SendEmailAsync(msg);
-               User sen=FindUserByEmail(sender);
-               User rec=FindUserByEmail( receiver);
-               if(sen==null || rec==null){
-                   return null;
-               }
-              else{ Email mail=new Email(email,sen,rec);
-                _emails.InsertOne(mail);
-                return mail;
-           }
+            var resp =  client.SendEmailAsync(msg);
+            User sen=FindUserByEmail(email.Sender);
+            User rec=FindUserByEmail( email.Receiver);
+            if(sen==null || rec==null){
+                   return response;
             }
+            else{ 
+                Email mail=new Email(email,sen,rec);
+                _emails.InsertOne(mail);
+                response=email;
+               
+           }
+            return response;
+    }
     }
 }
