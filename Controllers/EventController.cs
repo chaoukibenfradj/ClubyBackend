@@ -14,8 +14,11 @@ namespace clubyApi.Controllers
     public class EventController :ControllerBase
     {
         private readonly IEventService _service;
-        public EventController(IEventService service){
+        private readonly IUserService _serviceUser;
+        public EventController(IEventService service, IUserService serviceUser){
             _service=service;
+            _serviceUser=serviceUser;
+
 
         }
 
@@ -98,8 +101,10 @@ namespace clubyApi.Controllers
         [HttpPost("participate")]
         public ActionResult<Event> AddUserParticipation([FromBody]PartModel p) 
         {
-            int x =_service.AddUserParticipation(p.eventId,p.userId);
-            switch (x) { 
+            User u = _serviceUser.FindUserById(p.userId);
+            if(u!=null){
+                int x =_service.AddUserParticipation(p.eventId,u);
+                switch (x) { 
               
                 case 1: 
                             return BadRequest(new {message="Could not find this Event ID"});
@@ -116,7 +121,11 @@ namespace clubyApi.Controllers
                 default: 
                             return BadRequest(new {message="Something went wrong"});
                             break; 
-            } 
+             } 
+            }
+            else{
+                return BadRequest(new {message="User undefined"});
+            }
         } 
 
         [Authorize(Roles=Role.Student)]
@@ -125,8 +134,9 @@ namespace clubyApi.Controllers
         public ActionResult<Event> DeleteUserParticipation([FromBody] PartModel p) 
         {
 
-
-            int x =_service.DeleteUserParticipation(p.eventId,p.userId);
+            User u = _serviceUser.FindUserById(p.userId);
+            if(u!=null){
+            int x =_service.DeleteUserParticipation(p.eventId,u);
             switch (x) { 
               
                 case 1: 
@@ -141,7 +151,12 @@ namespace clubyApi.Controllers
                 default: 
                             return BadRequest(new {message="Something went wrong"});
                             break; 
-            } 
+                } 
+            }
+            else{
+                return BadRequest(new {message="User undefined"});
+            }
+
         } 
 
 
@@ -152,7 +167,14 @@ namespace clubyApi.Controllers
         // [HttpGet("ByDomain/{domain}")]
         public ActionResult<List<Event>> FindEventByUserParticipation(string id) 
         {
-            return Ok(_service.FindEventByUserParticipation(id));
+            
+            User u = _serviceUser.FindUserById(id);
+            if(u!=null){
+                 return Ok(_service.FindEventByUserParticipation(u));
+            }
+            else{
+                 return BadRequest(new {message="User undefined"});
+            }
         }
         [AllowAnonymous]
         //[Authorize(Roles=Role.Club)]

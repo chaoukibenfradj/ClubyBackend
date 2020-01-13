@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace clubyApi.Models
 {
-    public class Event
+   public class Event
     {
           
         [BsonId]

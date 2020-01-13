@@ -6,19 +6,20 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 namespace clubyApi.Models
 {
-    public class Participate
+
+  public class Participate
     {
 
-        public string UserId { get; set; }
+        public User user { get; set; }
 
         public string DateParticipate { get; set; }
 
 
 
-        public Participate(string pUserId,string pDateParticipate)
+        public Participate(User pUserId,string pDateParticipate)
         {
 
-            this.UserId = pUserId;
+            this.user = pUserId;
             this.DateParticipate = pDateParticipate;
 
 
@@ -26,7 +27,7 @@ namespace clubyApi.Models
         public Participate(Participate p)
         {
 
-            this.UserId = p.UserId;
+            this.user = p.user;
             this.DateParticipate = p.DateParticipate;
 
 

@@ -76,6 +76,9 @@ namespace clubyApi.Repositories
             return _emails.Find<Email>(filter).ToList<Email>();
 
          }
+
+        public User FindUserById(string id) => _users.Find<User>(user => user.Id == id).FirstOrDefault();
+
         public List<Email> FindEmailByReceiverId(string id){
             var filter = Builders<Email>.Filter.Eq(x => x.Receiver,id);
 
@@ -108,5 +111,7 @@ namespace clubyApi.Repositories
            }
             return response;
     }
+
     }
+    
 }

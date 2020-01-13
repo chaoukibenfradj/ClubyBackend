@@ -6,7 +6,7 @@ using MongoDB.Driver;
 
 namespace clubyApi.Repositories
 {
-    public class EventRepository : IEventRepository
+ public class EventRepository : IEventRepository
     {
         private readonly IMongoCollection<Event> _events;
         
@@ -21,7 +21,7 @@ namespace clubyApi.Repositories
         public Tuple<Event,int> CreateEvent(Event e)
         {
             List<Event> events=FindEventByDate(e.BeginDate);
-            e.CreationDate=new DateTime().ToLocalTime().ToString();
+            e.CreationDate=DateTime.Today.ToString("dd-MM-yyyy hh:mm:ss");
             _events.InsertOne(new Event(e));
             return new Tuple<Event,int>(e,events.Count);
         }
@@ -78,7 +78,7 @@ namespace clubyApi.Repositories
         }
 
         
-        public int DeleteUserParticipation(string Eventid,string uid)
+        public int DeleteUserParticipation(string Eventid,User u)
         {
 
             Event e = FindEventById(Eventid);
@@ -89,7 +89,7 @@ namespace clubyApi.Repositories
             else
             {
                 
-                 Participate userp = e.ListParticipation.Find(x => x.UserId == uid);
+                 Participate userp = e.ListParticipation.Find(x => x.user.Id == u.Id);
                 if (userp != null){
                     e.ListParticipation.Remove(userp);
                     e.NumberParticipation+=1;
@@ -102,7 +102,7 @@ namespace clubyApi.Repositories
 
         }
 
-        public int AddUserParticipation(string Eventid, string uid)
+        public int AddUserParticipation(string Eventid, User u)
         {
 
             Event e = FindEventById(Eventid);
@@ -116,10 +116,10 @@ namespace clubyApi.Repositories
                 return 2;
 
                 }else{
-                Participate userp = e.ListParticipation.Find(x => x.UserId == uid);
+                Participate userp = e.ListParticipation.Find(x => x.user.Id == u.Id);
                 if (userp == null){
-                    string dateAdd=new DateTime().ToLocalTime().ToString();
-                    Participate p =new Participate(uid,dateAdd);
+                    string dateAdd=DateTime.Today.ToString("dd-MM-yyyy hh:mm:ss");
+                    Participate p =new Participate(u,dateAdd);
                     e.ListParticipation.Add(new Participate (p));
                     e.NumberParticipation=e.NumberParticipation-1;
                      ModifyEventNumberParticipat(e);
@@ -134,13 +134,16 @@ namespace clubyApi.Repositories
 
         }
 
-        public List<Event> FindEventByUserParticipation(string uid)
+        public List<Event> FindEventByUserParticipation(User u)
         {
-
+            
             return _events.Find<Event>(e => 
-            e.ListParticipation.Exists(y=>y.UserId == uid)
+            e.ListParticipation.Exists(y=>
+            y.user==u)
+            
             
             ).ToList<Event>();
+
         }
 
         public void ModifyEventNumberParticipat(Event e)
