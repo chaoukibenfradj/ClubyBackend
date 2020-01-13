@@ -33,7 +33,7 @@ namespace clubyApi.Models
         [DataType(DataType.EmailAddress)]
         public string Email{ get;set;}
         [Required (ErrorMessage = "Password is required")]
-        
+        [BsonIgnore]
         [BsonElement("Password")]
         public string Password{ get ; set;}
         [Required (ErrorMessage = "Role is required")]

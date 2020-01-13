@@ -875,6 +875,18 @@
           }
         }
       },
+      "Sendgrid/9.12.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/SendGrid.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SendGrid.dll": {}
+        }
+      },
       "SharpCompress/0.23.0": {
         "type": "package",
         "dependencies": {
@@ -3437,6 +3449,26 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "Sendgrid/9.12.0": {
+      "sha512": "HrH336vKylh6Yy4bqKFNPf0Rk1C7CDd4WX7D2f7D/g0Dy584Wx2Qh7vdM+NgAkHTWQ7bKwl7K9DZ9BiFKbimdA==",
+      "type": "package",
+      "path": "sendgrid/9.12.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/SendGrid.dll",
+        "lib/net452/SendGrid.pdb",
+        "lib/net452/SendGrid.xml",
+        "lib/netstandard1.3/SendGrid.dll",
+        "lib/netstandard1.3/SendGrid.pdb",
+        "lib/netstandard1.3/SendGrid.xml",
+        "lib/netstandard2.0/SendGrid.dll",
+        "lib/netstandard2.0/SendGrid.pdb",
+        "lib/netstandard2.0/SendGrid.xml",
+        "sendgrid.9.12.0.nupkg.sha512",
+        "sendgrid.nuspec"
       ]
     },
     "SharpCompress/0.23.0": {
@@ -7550,31 +7582,30 @@
     ".NETCoreApp,Version=v3.0": [
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.0.0",
       "MongoDB.Driver >= 2.9.3",
+      "Sendgrid >= 9.12.0",
       "Swashbuckle.AspNetCore >= 5.0.0-rc4",
       "System.IdentityModel.Tokens.Jwt >= 5.5.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\marouani\\.nuget\\packages\\": {}
+    "/home/yosrafatnassi/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marouani\\Desktop\\ClybyPro\\ClubyBackend\\clubyApi.csproj",
+      "projectUniqueName": "/home/yosrafatnassi/Bureau/dotnet/ClubyBackend/clubyApi.csproj",
       "projectName": "clubyApi",
-      "projectPath": "C:\\Users\\marouani\\Desktop\\ClybyPro\\ClubyBackend\\clubyApi.csproj",
-      "packagesPath": "C:\\Users\\marouani\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marouani\\Desktop\\ClybyPro\\ClubyBackend\\obj\\",
+      "projectPath": "/home/yosrafatnassi/Bureau/dotnet/ClubyBackend/clubyApi.csproj",
+      "packagesPath": "/home/yosrafatnassi/.nuget/packages/",
+      "outputPath": "/home/yosrafatnassi/Bureau/dotnet/ClubyBackend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\marouani\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/yosrafatnassi/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7599,6 +7630,10 @@
             "target": "Package",
             "version": "[2.9.3, )"
           },
+          "Sendgrid": {
+            "target": "Package",
+            "version": "[9.12.0, )"
+          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[5.0.0-rc4, )"
@@ -7618,6 +7653,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[3.0.0, 3.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -7626,7 +7667,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.0.101/RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -20,7 +20,7 @@ namespace clubyApi.Controllers
         }
 
         [AllowAnonymous]
-       // [Authorize(Roles=Role.Club)]
+        [Authorize(Roles=Role.Club)]
         [HttpPost("event")]
         public ActionResult<Event> CreateEvent([FromBody]Event e) 
         {
@@ -119,7 +119,7 @@ namespace clubyApi.Controllers
             } 
         } 
 
-       // [Authorize(Roles=Role.Student)]
+        [Authorize(Roles=Role.Student)]
         [AllowAnonymous]
         [HttpDelete("participate")]
         public ActionResult<Event> DeleteUserParticipation([FromBody] PartModel p) 

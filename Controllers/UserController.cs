@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using clubyApi.Models;
 using clubyApi.Services;
+using ClubyBackend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using System;
 namespace clubyApi.Controllers
 {   
     
@@ -59,7 +61,48 @@ namespace clubyApi.Controllers
             return Ok(response);
             
         }
+        [AllowAnonymous]
       
+        [HttpGet("Sendsemails")]
+        public ActionResult<List<Email>> getEmailsBySenderId([FromBody]string id) 
+        {
+            List<Email> response=_userservice.FindEmailBySenderId(id);    
+             if(response==null){
+                return  BadRequest(new {message="no emails found"});
+            }   
+            
+            return Ok(response);
+            
+        }
         
+        
+        [AllowAnonymous]
+      
+        [HttpGet("Receivedemails")]
+        public ActionResult<List<Email>> getEmailsByReceiverId([FromBody]string id) 
+        {
+            List<Email> response=_userservice.FindEmailByReceiverId(id);    
+             if(response==null){
+                return  BadRequest(new {message="no emails found"});
+            } 
+            
+            return Ok(response);
+            
+        }
+        [AllowAnonymous]
+      
+        [HttpPost("mails")]
+        public ActionResult<Email> sendEmail([FromBody] Email email,string sender,string receiver) 
+        {
+         
+           
+            Email response=_userservice.SendEmail(email,sender,receiver);
+
+            if(response==null){
+                 return  BadRequest(new {message="something went wrong"});
+            }
+            return Ok(response);
+            
+        }
     }
 }

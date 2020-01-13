@@ -26,6 +26,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.0.0",
           "MongoDB.Driver": "2.9.3",
+          "Sendgrid": "9.12.0",
           "Swashbuckle.AspNetCore": "5.0.0-rc4",
           "System.IdentityModel.Tokens.Jwt": "5.5.0",
           "Microsoft.AspNetCore.Antiforgery": "3.0.0.0",
@@ -860,6 +861,20 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
+      "Sendgrid/9.12.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/SendGrid.dll": {
+            "assemblyVersion": "9.12.0.0",
+            "fileVersion": "9.12.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/SendGrid.dll": {}
+        }
+      },
       "SharpCompress/0.23.0": {
         "dependencies": {
           "System.Text.Encoding.CodePages": "4.5.1"
@@ -3896,6 +3911,13 @@
       "sha512": "sha512-leXiwfiIkW7Gmn7cgnNcdtNAU70SjmKW3jxGj1iKHOvdn0zRWsgv/l2OJUO5zdGdiv2VRFnAsxxhDgMzofPdWg==",
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.2",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512"
+    },
+    "Sendgrid/9.12.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HrH336vKylh6Yy4bqKFNPf0Rk1C7CDd4WX7D2f7D/g0Dy584Wx2Qh7vdM+NgAkHTWQ7bKwl7K9DZ9BiFKbimdA==",
+      "path": "sendgrid/9.12.0",
+      "hashPath": "sendgrid.9.12.0.nupkg.sha512"
     },
     "SharpCompress/0.23.0": {
       "type": "package",

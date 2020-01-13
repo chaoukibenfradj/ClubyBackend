@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using clubyApi.Models;
 using clubyApi.Repositories;
+using ClubyBackend.Models;
 
 namespace clubyApi.Services
 {
@@ -25,5 +27,14 @@ namespace clubyApi.Services
         {
             return _repo.Register(user);
         }
+         public List<Email> FindEmailBySenderId(string id){
+             return _repo.FindEmailBySenderId(id);
+         }
+        public List<Email> FindEmailByReceiverId(string id){
+            return _repo.FindEmailByReceiverId(id);
+        }
+       public Email SendEmail(Email email,string sender,string receiver){
+           return _repo.SendEmail(email,sender,receiver);
+       }
     }
 }
