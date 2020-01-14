@@ -28,7 +28,6 @@ namespace clubyApi.Controllers
 
         public ActionResult<Student> UpdateStudentProfile(string id,string photo,string institute) 
         {
-            Console.WriteLine(institute.Length);
 
             Student res=_service.UpdateStudentProfile(id,photo,institute);
             if(res==null){
