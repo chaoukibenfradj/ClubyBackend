@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using clubyApi.Helper;
@@ -71,18 +72,45 @@ namespace clubyApi.Repositories
         }
         public User FindUserByEmail(string email) => _users.Find<User>(user => user.Email == email).FirstOrDefault();
         public List<Email> FindEmailBySenderId(string id){
-           var filter = Builders<Email>.Filter.Eq(x => x.Sender,id);
+           
+                 var query=from email in _emails.AsQueryable().Where(Email=>Email.Sender.Id==id) 
+                    join u in _users.AsQueryable() on email.Sender.Id equals u.Id                
+                    select 
+                    new Email(){
+                        Id=email.Id,
+                        Subject=email.Subject,
+                        Content=email.Content,
+                        Sender=u,
+                        Receiver=email.Receiver
+                    };
+                   
+           
+            
+           
 
-            return _emails.Find<Email>(filter).ToList<Email>();
+            return query.ToList();
 
          }
 
         public User FindUserById(string id) => _users.Find<User>(user => user.Id == id).FirstOrDefault();
 
         public List<Email> FindEmailByReceiverId(string id){
-            var filter = Builders<Email>.Filter.Eq(x => x.Receiver,id);
+             var query=from email in _emails.AsQueryable().Where(Email=>Email.Receiver.Id==id) 
+                    join u in _users.AsQueryable() on email.Sender.Id equals u.Id                
+                    select 
+                    new Email(){
+                        Id=email.Id,
+                        Subject=email.Subject,
+                        Content=email.Content,
+                        Sender=email.Sender,
+                        Receiver=u
+                    };
+                   
+           
+            
+           
 
-            return _emails.Find<Email>(filter).ToList<Email>();
+            return query.ToList();
     
 
          }
