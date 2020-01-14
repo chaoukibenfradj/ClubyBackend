@@ -37,7 +37,7 @@ namespace clubyApi.Controllers
             }
             else 
             if(response.Role.Equals(Role.Club)){
-                _clubservice.CreateClub(response);
+                _clubservice.CreateClub(response,new Institute(),new Domain());
 
             }
             else

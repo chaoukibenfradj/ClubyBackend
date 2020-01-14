@@ -42,7 +42,7 @@ namespace clubyApi.Repositories
 
         public  Student FindStudentProfile(string id){
             Student resultat=null;
-                    if(_students.AsQueryable().Where(Student=> Student.Id==id).FirstOrDefault().Institute!=null){
+                    if(_students.AsQueryable().Where(Student=> Student.Id==id).FirstOrDefault().Institute.Id==null){
                     var query=from s in _students.AsQueryable().Where(Student=> Student.Id==id) 
                     join u in _users.AsQueryable() on s.user.Id equals u.Id                
                     select 
