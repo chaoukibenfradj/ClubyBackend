@@ -19,6 +19,15 @@ namespace clubyApi.Models
            Password=user.Password;
            Role=user.Role;
         }
+         public User(string firstname,string lastname,string email,string role,string password)
+        {
+          
+           FirstName=firstname;
+           LastName=lastname;
+           Email=email;
+           Password=password;
+           Role=role;
+        }
 
 
         [BsonId]

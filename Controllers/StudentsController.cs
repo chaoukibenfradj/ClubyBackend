@@ -17,15 +17,13 @@ namespace clubyApi.Controllers
              _service=service;
         }
 
-        //[Authorize(Roles=Role.Student)]
-        [AllowAnonymous]
+        [Authorize(Roles=Role.Student)]
         [HttpGet("{id}")]
         public ActionResult<Student> FindStudentProfile(string id) 
         {
             return Ok(_service.FindStudentProfile(id));
         }
-        //[Authorize(Roles=Role.Student)]
-         [AllowAnonymous]
+        [Authorize(Roles=Role.Student)]
         [HttpPut("{id}")]
 
         public ActionResult<Student> UpdateStudentProfile(string id,string photo,string institute) 
