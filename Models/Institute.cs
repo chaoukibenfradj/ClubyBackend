@@ -6,6 +6,13 @@ namespace clubyApi.Models
 {
     public class Institute
     {
+        public Institute(){
+
+        }
+        public Institute(string Id){
+            this.Id=Id;
+            
+        }
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }

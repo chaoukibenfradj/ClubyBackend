@@ -32,7 +32,7 @@ namespace clubyApi.Controllers
             User response=_userservice.Register(user);
            if(response.Role.Equals(Role.Student)){
 
-                _studentservice.CreateStudent(response);
+                _studentservice.CreateStudent(response,new Institute());
                 
             }
             else 

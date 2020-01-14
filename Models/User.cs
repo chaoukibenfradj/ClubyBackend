@@ -1,12 +1,15 @@
 using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-
+using MongoDB.Entities.Core;
 namespace clubyApi.Models
 {
-    public class User
+    public class User 
     {
          public User(){}
+         public User(string id){
+             Id=id;
+         }
         public User(User user)
         {
           

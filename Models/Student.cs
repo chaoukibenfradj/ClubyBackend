@@ -1,16 +1,20 @@
-using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
-
+using MongoDB.Entities;
+using MongoDB.Entities.Core;
 namespace clubyApi.Models
 {
-    public class Student
+    public class Student 
     {
+       
+        public Student(){
 
-        public Student(User user)
+        }
+        public Student(User user,Institute institute)
         {
-            User=new MongoDBRef("User",user.Id);
+            this.user=new User(user.Id);
+            this.Institute=new Institute(institute.Id);
         }
 
         [BsonId]
@@ -19,8 +23,7 @@ namespace clubyApi.Models
         
         
         [BsonElement("Institute")]
-         //public MongoDBRef Institute{ get ; set;}
-         public string Institute{ get ; set;}
+        public Institute Institute{ get ; set;}
         
         [BsonElement("Photo")]
 
@@ -31,7 +34,7 @@ namespace clubyApi.Models
         public string EventInscription{ get ; set;}
 
         [BsonElement("User")]
-        public MongoDBRef User{get;set;}
+        public User user{get;set;}
 
     }
 }

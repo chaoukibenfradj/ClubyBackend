@@ -116,6 +116,7 @@ namespace clubyApi.Repositories
                 return 2;
 
                 }else{
+
                 Participate userp = e.ListParticipation.Find(x => x.user.Id == u.Id);
                 if (userp == null){
                     string dateAdd=DateTime.Today.ToString("dd-MM-yyyy hh:mm:ss");
