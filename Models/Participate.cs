@@ -58,13 +58,15 @@ namespace clubyApi.Models
 
 
         }
-           public Participate(Student student,User user)
+           public Participate(Student student,User user,string date,Boolean Accepted,Event e)
         {
 
           
             this.user = new Student(student,user);
-           
-
+            this.Event=e;
+            this.Accepted=Accepted;
+            this.DateParticipate=date;
+     
 
         }
 

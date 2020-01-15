@@ -216,23 +216,60 @@ namespace clubyApi.Repositories
 
         public List<Participate> ListEventPart(string id){
            
+                  List<Participate>list=new List<Participate>();
                   var query=from e in _participation.AsQueryable().Where(Participate=> Participate.Event.Id==id)
-                    join d in _events.AsQueryable() on e.Event.Id equals d.Id   
                     join s in _students.AsQueryable() on e.user.Id equals s.Id  
-                    join u in _users.AsQueryable() on e.user.Id equals u.Id  
                     select 
-                    new Participate( s, u){
+                    new Participate( ){
                       
-                       Event=d,
+                       user=s,
+                       Event=e.Event,
                        DateParticipate=e.DateParticipate,
                        Accepted=e.Accepted
                        
                     };
+                    query.ToList().ForEach(Participate=>{
+                        Student student=findInfo(Participate.user.Id);
+                        list.Add(new Participate(student,student.user,Participate.DateParticipate, Participate.Accepted,Participate.Event));
+
+                    });
                    
+            
+            return list;
+              
+        }
+         public  Student findInfo(string id){
+            Student resultat=null;
+                    if(_students.AsQueryable().Where(Student=> Student.Id==id).FirstOrDefault().Institute.Id==null){
+                    var query=from s in _students.AsQueryable().Where(Student=> Student.Id==id) 
+                    join u in _users.AsQueryable() on s.user.Id equals u.Id                
+                    select 
+                    new Student(){
+                        Id=s.Id,
+                        Institute=s.Institute,
+                        Photo=s.Photo,
+                        user=u
+                    };
+                    resultat=query.FirstOrDefault();
+           
+            }
+            else{
+                 var query=from s in _students.AsQueryable().Where(Student=> Student.Id==id) 
+                    join u in _users.AsQueryable() on s.user.Id equals u.Id
+                    join inst in _institutes.AsQueryable() on s.Institute.Id equals inst.Id 
+                    select 
+                    new Student(){
+                        Id=s.Id,
+                        Institute=inst,
+                        Photo=s.Photo,
+                        user=u
+                    };
+                    resultat=query.FirstOrDefault();
+            }
+           
            
             
-            return query.ToList();
-              
+            return resultat;
         }
 
         
