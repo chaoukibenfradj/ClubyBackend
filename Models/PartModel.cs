@@ -19,7 +19,7 @@ namespace clubyApi.Models
         {
 
             this.eventId = eId;
-            this.userId = uId;
+            this.userId =uId;
 
 
         }

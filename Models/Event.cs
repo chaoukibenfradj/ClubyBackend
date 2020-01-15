@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
-using System.Collections.Generic;  
+using System.Collections.Generic;
+using ClubyBackend.Models;
 
 namespace clubyApi.Models
 {
@@ -38,17 +39,15 @@ namespace clubyApi.Models
         [BsonElement("CreationDate")]
         public string CreationDate {get;set;}
         [BsonElement("Domain")]
-        //public MongoDBRef Domain {get;set;}
-        public string Domain {get;set;}
-        [BsonElement("Club")]
-        //public MongoDBRef Club {get;set;}
-        public string Club {get;set;}
-        [BsonElement("Institute")]
-        //public MongoDBRef Institute {get;set;}
-        public string Institute {get;set;}
+        public Domain Domain {get;set;}
 
-        [BsonElement("ListParticipation")]
-        public List<Participate> ListParticipation { get; set; }
+        [BsonElement("Club")]
+        public Club Club {get;set;}
+
+        [BsonElement("Institute")]
+        public Institute Institute {get;set;}
+
+        
 
         [BsonElement("Number")]
         public int NumberParticipation { get; set; }
@@ -65,13 +64,31 @@ namespace clubyApi.Models
             this.EndDate=e.EndDate;
             this.Institute=e.Institute;
             this.Club=e.Club;
-            this.ListParticipation=e.ListParticipation;
             this.NumberParticipation=e.NumberParticipation;
 
 
         }
-        public Event(){}
+         public Event(EventDto e){
 
+            this.Name=e.Name;
+            this.price=e.price;
+            this.Location=e.Location;
+            this.Photo=e.Photo;
+            this.Domain=new Domain(e.Domain);
+            this.Description=e.Description;
+            this.BeginDate=e.BeginDate;
+            this.EndDate=e.EndDate;
+            this.Institute=new Institute(e.Institute);
+            this.Club=new Club(e.Club);
+            this.NumberParticipation=e.NumberParticipation;
+
+          
+
+        }
+        public Event(){}
+        public Event(string id){
+            Id=id;
+        }
 
         
     }

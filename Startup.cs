@@ -17,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MongoDB.Entities;
 
 namespace clubyApi
 {
@@ -37,8 +38,16 @@ namespace clubyApi
         {
 
             var appSettingsSection = Configuration.GetSection("AppSettings");  
+            
+           // var clubyDatabaseSettings = Configuration.GetSection("ClubyDatabaseSettings");  
+
             services.Configure < AppSettings > (appSettingsSection);  
+
             var appSettings = appSettingsSection.Get < AppSettings > ();  
+            // services.Configure < ClubyDatabaseSettings > (clubyDatabaseSettings);  
+             //var dbSettings=clubyDatabaseSettings.Get<ClubyDatabaseSettings>();
+              //services.AddMongoDBEntities("ClubyDatabase","localhost",27017);
+
             var key = Encoding.ASCII.GetBytes(appSettings.Secret); 
             services.AddAuthentication(x => {  
             x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;  
@@ -53,6 +62,7 @@ namespace clubyApi
                         ValidateAudience = false  
                 };  
             });  
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });                

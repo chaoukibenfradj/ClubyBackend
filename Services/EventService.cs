@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using clubyApi.Models;
 using clubyApi.Repositories;
+using ClubyBackend.Models;
 
 namespace clubyApi.Services
 {
@@ -12,7 +13,7 @@ namespace clubyApi.Services
         public EventService(IEventRepository repo){
             _rep=repo;
         }
-        public Tuple<Event,int> CreateEvent(Event e)
+        public Tuple<Event,int> CreateEvent(EventDto  e)
         {
             return _rep.CreateEvent(e);
         }
@@ -54,17 +55,17 @@ namespace clubyApi.Services
         }
        
 
-        public int DeleteUserParticipation(string Eventid,User u)
+        public int DeleteUserParticipation(PartModel partModel)
         {
-            return _rep.DeleteUserParticipation(Eventid,u);
+            return _rep.DeleteUserParticipation(partModel);
         }
 
-        public int AddUserParticipation(string Eventid, User u)
+        public int AddUserParticipation(string Eventid, string u)
         {
              return _rep.AddUserParticipation(Eventid,u);
         }
 
-        public List<Event> FindEventByUserParticipation(User u)
+        public List<Participate> FindEventByUserParticipation(string u)
         {
             return _rep.FindEventByUserParticipation(u);
         }
@@ -72,5 +73,6 @@ namespace clubyApi.Services
         return _rep.ListEventPart(id);
         }
 
+        
     }
 }

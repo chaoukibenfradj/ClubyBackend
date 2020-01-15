@@ -9,7 +9,10 @@ namespace clubyApi.Models
 
     {
         public Sponsor(User user){
-            User=new MongoDBRef("User",user.Id);
+            User=new User(user.Id);
+        }
+        public Sponsor(){
+            
         }
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -17,7 +20,7 @@ namespace clubyApi.Models
         
         
         [BsonElement("Entreprise")]
-         public MongoDBRef Entreprise{ get ; set;}
+         public string Entreprise{ get ; set;}
         
         [BsonElement("Photo")]
         public string Photo{ get;set;}
@@ -27,6 +30,6 @@ namespace clubyApi.Models
       
 
         [BsonElement("User")]
-        public MongoDBRef User{get;set;}
+        public User User{get;set;}
     }
 }

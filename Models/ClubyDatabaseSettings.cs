@@ -13,6 +13,8 @@ namespace clubyApi.Models
         public string SponsorCollectionName { get; set; }
         public string AdministrationCollectionName { get; set; }
          public string EmailCollectionName { get; set; }
+        public string ParticipationCollectionName { get; set; }
+
 
 
         public string ConnectionString { get; set; }
@@ -31,7 +33,7 @@ namespace clubyApi.Models
         string InstituteCollectionName { get; set; }
         string AdministrationCollectionName { get; set; }
          string EmailCollectionName { get; set; }
-
+          string ParticipationCollectionName { get; set; }
         string ConnectionString { get; set; }
         string DatabaseName { get; set; }
     }

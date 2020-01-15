@@ -17,7 +17,8 @@ namespace clubyApi.Controllers
              _service=service;
         }
 
-        [Authorize(Roles=Role.Student)]
+        //[Authorize(Roles=Role.Student)]
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public ActionResult<Student> FindStudentProfile(string id) 
         {
@@ -28,8 +29,12 @@ namespace clubyApi.Controllers
 
         public ActionResult<Student> UpdateStudentProfile(string id,string photo,string institute) 
         {
-            Console.Write(photo);
-            return Ok(_service.UpdateStudentProfile(id,photo,institute));
+
+            Student res=_service.UpdateStudentProfile(id,photo,institute);
+            if(res==null){
+               return  BadRequest(new {message=" unable to update"});
+            }
+            return Ok(res);
         }
        
        

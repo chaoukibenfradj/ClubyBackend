@@ -21,10 +21,10 @@ namespace ClubyBackend.Models
         public string SendDate  {get;set;}
 
         [BsonElement("Sender")]
-        public string Sender{get;set;}
+        public User Sender{get;set;}
 
         [BsonElement("Receiver")]
-        public string Receiver{get;set;}
+        public User Receiver{get;set;}
           public Email(){
 
         }
@@ -34,8 +34,8 @@ namespace ClubyBackend.Models
             Content=email.Content;
             SendDate=email.SendDate;
           
-            Sender= sender.Id;
-            Receiver=receiver.Id;
+            Sender= new User(sender.Id);
+            Receiver=new User(receiver.Id);
 
 
         }

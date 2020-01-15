@@ -18,9 +18,9 @@ namespace clubyApi.Services
 
       
 
-        public Student CreateStudent(User user)
+        public Student CreateStudent(User user,Institute institute)
         {
-            return _repo.CreateStudent(user);
+            return _repo.CreateStudent(user,institute);
         }
 
        

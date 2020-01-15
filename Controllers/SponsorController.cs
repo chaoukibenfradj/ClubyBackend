@@ -24,6 +24,12 @@ namespace clubyApi.Controllers
         {
             return Ok(_service.ShowAllSponsors());
         }
+         [AllowAnonymous]
+        [HttpGet("{id}")]
+        public ActionResult<Sponsor> FindSponsorProfile(string id) 
+        {
+            return Ok(_service.FindSponsorProfile(id));
+        }
        
     }
 

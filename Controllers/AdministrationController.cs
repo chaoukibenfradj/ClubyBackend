@@ -1,5 +1,6 @@
 using clubyApi.Models;
 using clubyApi.Services;
+using ClubyBackend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,19 +21,28 @@ namespace clubyApi.Controllers
         //[Authorize(Roles=Role.Admin)]
         [AllowAnonymous]
         [HttpPost("")]
-        public ActionResult<User> createAdministration(string institute,[FromBody] User user){
+        public ActionResult<User> createAdministration([FromBody] AdministrationDto admin){
 
-            User user1=_userservice.Register(user);
+            User user1=_userservice.Register(new User(admin.Firstname,admin.Lastname,admin.Email,Role.Administrator,admin.Password));
             if(user1==null){
                 return BadRequest(new {message="email is already in use"});
             }
             else{
-            Administration administration1=new Administration("isamm",user1.Id);  
+            Administration administration1=new Administration(admin.Institute,user1);  
             _service.CreateAdmin(administration1);          
             return Ok( user1);
 
             }
          
+        }
+         [AllowAnonymous]
+        [HttpGet("{id}")]
+        public ActionResult<Administration> FindAdministrator(string id){
+            Administration res= _service.FindAdminProfile(id);
+            if(res==null){
+                return BadRequest(new {message=" could not find admin"});
+            }
+            return Ok(res);
         }
         [AllowAnonymous]
         [HttpPut("{id}")]

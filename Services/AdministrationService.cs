@@ -20,6 +20,11 @@ namespace clubyApi
             return _repo.DeleteAdmin(id);
         }
 
+        public Administration FindAdminProfile(string id)
+        {
+            return _repo.FindAdminProfile(id);
+        }
+
         public Administration ModifyAdmin(string id, string administration)
         {
             return _repo.ModifyAdmin(id,administration);
