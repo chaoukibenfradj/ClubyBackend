@@ -38,36 +38,32 @@ namespace clubyApi.Controllers
         }
         [AllowAnonymous]
 
-        //[HttpGet("{club}")]
-        [Route("ByClub/{club}")]
-        [HttpGet]
+        [HttpGet("club/{club}")]
+        
         public ActionResult<List<Event>> ShowEventByClub(string club) 
         {
             return Ok(_service.FindEventByClub(club));
         }
         [AllowAnonymous]
 
-        //[HttpGet("{date}")]
-        [Route("ByDate/{date}")]
-        [HttpGet]
+        [HttpGet("date/{date}")]
+        
         public ActionResult<List<Event>> ShowEventByDate(string date) 
         {
             return Ok(_service.FindEventByDate(date));
         }
         [AllowAnonymous]
 
-        //[HttpGet("{institute}")]
-        [Route("ByInstitute/{institute}")]
-        [HttpGet]
+        [HttpGet("institute/{institute}")]
+       
         public ActionResult<List<Event>> ShowEventByInstitute(string institute) 
         {
             return Ok(_service.FindEventByInstitute(institute));
         }
         [AllowAnonymous]
 
-        [Route("ByDomain/{domain}")]
-        [HttpGet]
-        // [HttpGet("ByDomain/{domain}")]
+       
+        [HttpGet("domain/{domain}")]
         public ActionResult<List<Event>> ShowEventByDomain(string domain) 
         {
             return Ok(_service.FindEventByDomain(domain));

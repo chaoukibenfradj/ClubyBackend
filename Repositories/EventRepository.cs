@@ -1,21 +1,33 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using clubyApi.Models;
 using ClubyBackend.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace clubyApi.Repositories
 {
  public class EventRepository : IEventRepository
     {
         private readonly IMongoCollection<Event> _events;
-        
+         private readonly IMongoCollection<Student> _students;
+        private readonly IMongoCollection<Institute> _institutes;
+        private readonly IMongoCollection<Club> _clubs;
+        private readonly IMongoCollection<User> _users;
+
+        private readonly IMongoCollection<Domain> _domains;
+
         public EventRepository( IClubyDatabaseSettings settings){
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
-            _events = database.GetCollection<Event>(settings.EventCollectionName); 
-
+            _events = database.GetCollection<Event>(settings.EventCollectionName);
+             _students = database.GetCollection<Student>(settings.StudentCollectionName); 
+            _institutes = database.GetCollection<Institute>(settings.InstituteCollectionName); 
+            _domains=database.GetCollection<Domain>(settings.DomainCollectionName);
+            _clubs=database.GetCollection<Club>(settings.ClubCollectionName);
+            _users=database.GetCollection<User>(settings.UserCollectionName);
         }
 
         
@@ -30,29 +42,141 @@ namespace clubyApi.Repositories
 
         public List<Event> FindEventByClub(string club)
         {
-            return _events.Find<Event>(e => e.Club.Equals(club)).ToList<Event>();
+                    
+                    var query=from e in _events.AsQueryable().Where(Event => Event.Club.Id==club) 
+                    join u in _clubs.AsQueryable() on e.Club.Id equals u.Id
+                    join d in _domains.AsQueryable() on e.Domain.Id equals d.Id   
+                    join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id                
+                    select 
+                    new Event(){
+                        Name=e.Name,
+                        price=e.price,
+                        Location=e.Location,
+                        Photo=e.Photo,
+                        Domain=d,
+                        Description=e.Description,
+                        BeginDate=e.BeginDate,
+                        EndDate=e.EndDate,
+                        Institute=inst,
+                        Club=u,
+                        NumberParticipation=e.NumberParticipation
+                       
+                    };
+                   
+           
+            
+            return query.ToList();
 
         }
 
         public List<Event> FindEventByDate(string date)
         {
-            return _events.Find<Event>(e => e.BeginDate == date).ToList<Event>();
+              
+                    var query=from e in _events.AsQueryable().Where(Event => Event.BeginDate==date) 
+                    join u in _clubs.AsQueryable() on e.Club.Id equals u.Id       
+                    join d in _domains.AsQueryable() on e.Domain.Id equals d.Id   
+                    join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id                
+                    select 
+                    new Event(){
+                        Name=e.Name,
+                        price=e.price,
+                        Location=e.Location,
+                        Photo=e.Photo,
+                        Domain=d,
+                        Description=e.Description,
+                        BeginDate=e.BeginDate,
+                        EndDate=e.EndDate,
+                        Institute=inst,
+                        Club=u,
+                        NumberParticipation=e.NumberParticipation
+                       
+                    };
+                   
+           
+            
+            return query.ToList();
         }
 
         public List<Event> FindEventByDomain(string domain)
         {
-            return _events.Find<Event>(e => e.Domain.Equals(domain)).ToList<Event>();
+                var query=from e in _events.AsQueryable().Where(Event => Event.Domain.Id==domain) 
+                    join u in _clubs.AsQueryable() on e.Club.Id equals u.Id       
+                    join d in _domains.AsQueryable() on e.Domain.Id equals d.Id   
+                    join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id                
+                    select 
+                    new Event(){
+                        Name=e.Name,
+                        price=e.price,
+                        Location=e.Location,
+                        Photo=e.Photo,
+                        Domain=d,
+                        Description=e.Description,
+                        BeginDate=e.BeginDate,
+                        EndDate=e.EndDate,
+                        Institute=inst,
+                        Club=u,
+                        NumberParticipation=e.NumberParticipation
+                       
+                    };
+                   
+           
+            
+            return query.ToList();
         }
 
         public List<Event> FindEventByInstitute(string institute)
         {
-            return _events.Find<Event>(e => e.Institute.Equals(institute)).ToList<Event>();
+              var query=from e in _events.AsQueryable().Where(Event => Event.Institute.Id==institute) 
+                    join u in _clubs.AsQueryable() on e.Club.Id equals u.Id       
+                    join d in _domains.AsQueryable() on e.Domain.Id equals d.Id   
+                    join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id                
+                    select 
+                    new Event(){
+                        Name=e.Name,
+                        price=e.price,
+                        Location=e.Location,
+                        Photo=e.Photo,
+                        Domain=d,
+                        Description=e.Description,
+                        BeginDate=e.BeginDate,
+                        EndDate=e.EndDate,
+                        Institute=inst,
+                        Club=u,
+                        NumberParticipation=e.NumberParticipation
+                       
+                    };
+                   
+           
+            
+            return query.ToList();
         }
 
         public List<Event> ShowAllEvents()
         {
           
-            return _events.Find<Event>(new FilterDefinitionBuilder<Event>().Empty).ToList<Event>();
+              var query=from e in _events.AsQueryable()
+                    join u in _clubs.AsQueryable() on e.Club.Id equals u.Id       
+                    join d in _domains.AsQueryable() on e.Domain.Id equals d.Id   
+                    join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id                
+                    select 
+                    new Event(){
+                        Name=e.Name,
+                        price=e.price,
+                        Location=e.Location,
+                        Photo=e.Photo,
+                        Domain=d,
+                        Description=e.Description,
+                        BeginDate=e.BeginDate,
+                        EndDate=e.EndDate,
+                        Institute=inst,
+                        Club=u,
+                        NumberParticipation=e.NumberParticipation
+                       
+                    };
+                   
+           
+            
+            return query.ToList();
         }
 
         public Event DeleteEvent(string id)
