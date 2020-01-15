@@ -18,6 +18,7 @@ namespace clubyApi.Repositories
         private readonly IMongoCollection<User> _users;
 
         private readonly IMongoCollection<Domain> _domains;
+        private readonly IMongoCollection<Participate> _participation;
 
         public EventRepository( IClubyDatabaseSettings settings){
             var client = new MongoClient(settings.ConnectionString);
@@ -28,6 +29,7 @@ namespace clubyApi.Repositories
             _domains=database.GetCollection<Domain>(settings.DomainCollectionName);
             _clubs=database.GetCollection<Club>(settings.ClubCollectionName);
             _users=database.GetCollection<User>(settings.UserCollectionName);
+            _participation=database.GetCollection<Participate>(settings.ParticipationCollectionName);
         }
 
         
@@ -186,49 +188,74 @@ namespace clubyApi.Repositories
 
         public Event FindEventById(string id){
 
-        return _events.Find(e =>  e.Id==id).FirstOrDefault();
+         var query=from e in _events.AsQueryable().Where(Event=> Event.Id==id)
+                    join u in _clubs.AsQueryable() on e.Club.Id equals u.Id       
+                    join d in _domains.AsQueryable() on e.Domain.Id equals d.Id   
+                    join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id                
+                    select 
+                    new Event(){
+                        Name=e.Name,
+                        price=e.price,
+                        Location=e.Location,
+                        Photo=e.Photo,
+                        Domain=d,
+                        Description=e.Description,
+                        BeginDate=e.BeginDate,
+                        EndDate=e.EndDate,
+                        Institute=inst,
+                        Club=u,
+                        NumberParticipation=e.NumberParticipation
+                       
+                    };
+                   
+           
+            
+            return query.FirstOrDefault();
         }
        
 
         public List<Participate> ListEventPart(string id){
-            Event e = FindEventById(id);
-            if (e == null)
-            {
-                return null;
-            }else{
+           
+                  var query=from e in _participation.AsQueryable().Where(Participate=> Participate.Event.Id==id)
+                    join d in _events.AsQueryable() on e.Event.Id equals d.Id   
+                    join s in _students.AsQueryable() on e.user.Id equals s.Id  
+                    join u in _users.AsQueryable() on e.user.Id equals u.Id  
+                    select 
+                    new Participate( s, u){
+                      
+                       Event=d,
+                       DateParticipate=e.DateParticipate,
+                       Accepted=e.Accepted
+                       
+                    };
+                   
+           
             
-                return e.ListParticipation;
-            }
-                  
+            return query.ToList();
               
         }
 
         
-        public int DeleteUserParticipation(string Eventid,User u)
+        public int DeleteUserParticipation(string id)
         {
 
-            Event e = FindEventById(Eventid);
-            if (e == null)
-            {
-                return 1;
-            }
-            else
-            {
+           
+                Participate userp=_participation.Find<Participate>(Participate=>Participate.user.Id==id).FirstOrDefault();
+
                 
-                 Participate userp = e.ListParticipation.Find(x => x.user.Id == u.Id);
                 if (userp != null){
-                    e.ListParticipation.Remove(userp);
-                    e.NumberParticipation+=1;
-                    ModifyEventNumberParticipat(e);
+                   _participation.FindOneAndDelete(Participate => Participate.user.Id==id);
+                   
                     return 0;
-                }else{
-                    return 2;
                 }
-            }
+                else{
+                    return 1;
+                }
+            
 
         }
 
-        public int AddUserParticipation(string Eventid, User u)
+        public int AddUserParticipation(string Eventid, string u)
         {
 
             Event e = FindEventById(Eventid);
@@ -241,13 +268,18 @@ namespace clubyApi.Repositories
                 if(e.NumberParticipation==0){
                 return 2;
 
-                }else{
+                }
+                else
+                {
+                Participate userp=_participation.Find<Participate>(Participate=>Participate.user.Id==u).FirstOrDefault();
+                
 
-                Participate userp = e.ListParticipation.Find(x => x.user.Id == u.Id);
                 if (userp == null){
                     string dateAdd=DateTime.Today.ToString("dd-MM-yyyy hh:mm:ss");
-                    Participate p =new Participate(u,dateAdd);
-                    e.ListParticipation.Add(new Participate (p));
+                    Participate p =new Participate(Eventid,u,dateAdd);
+                    
+                    _participation.InsertOne(p);
+                   
                     e.NumberParticipation=e.NumberParticipation-1;
                      ModifyEventNumberParticipat(e);
                     return 0;
@@ -261,15 +293,23 @@ namespace clubyApi.Repositories
 
         }
 
-        public List<Event> FindEventByUserParticipation(User u)
+        public List<Participate> FindEventByUserParticipation(string u)
         {
             
-            return _events.Find<Event>(e => 
-            e.ListParticipation.Exists(y=>
-            y.user==u)
+             var query=from e in _participation.AsQueryable().Where(Participate=>Participate.user.Id==u)
+                    join ev in _events.AsQueryable() on e.Event.Id equals ev.Id                
+                    select 
+                    new Participate(){
+                       Event=ev,
+                       Accepted=e.Accepted,
+                       DateParticipate=e.DateParticipate
+
+                       
+                    };
+                   
+           
             
-            
-            ).ToList<Event>();
+            return query.ToList();
 
         }
 
@@ -277,7 +317,7 @@ namespace clubyApi.Repositories
         {
             var filter=Builders<Event>.Filter.Eq(d=>d.Id,e.Id);
 
-            var update=Builders<Event>.Update.Set("Number",e.NumberParticipation).Set("ListParticipation",e.ListParticipation);
+            var update=Builders<Event>.Update.Set("Number",e.NumberParticipation);
              _events.FindOneAndUpdate(filter,update);
         }
 

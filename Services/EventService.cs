@@ -55,17 +55,17 @@ namespace clubyApi.Services
         }
        
 
-        public int DeleteUserParticipation(string Eventid,User u)
+        public int DeleteUserParticipation(string id)
         {
-            return _rep.DeleteUserParticipation(Eventid,u);
+            return _rep.DeleteUserParticipation(id);
         }
 
-        public int AddUserParticipation(string Eventid, User u)
+        public int AddUserParticipation(string Eventid, string u)
         {
              return _rep.AddUserParticipation(Eventid,u);
         }
 
-        public List<Event> FindEventByUserParticipation(User u)
+        public List<Participate> FindEventByUserParticipation(string u)
         {
             return _rep.FindEventByUserParticipation(u);
         }

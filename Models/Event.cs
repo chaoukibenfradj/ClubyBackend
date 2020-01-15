@@ -47,8 +47,7 @@ namespace clubyApi.Models
         [BsonElement("Institute")]
         public Institute Institute {get;set;}
 
-        [BsonElement("ListParticipation")]
-        public List<Participate> ListParticipation { get; set; }
+        
 
         [BsonElement("Number")]
         public int NumberParticipation { get; set; }
@@ -65,7 +64,6 @@ namespace clubyApi.Models
             this.EndDate=e.EndDate;
             this.Institute=e.Institute;
             this.Club=e.Club;
-            this.ListParticipation=e.ListParticipation;
             this.NumberParticipation=e.NumberParticipation;
 
 
@@ -88,7 +86,9 @@ namespace clubyApi.Models
 
         }
         public Event(){}
-
+        public Event(string id){
+            Id=id;
+        }
 
         
     }

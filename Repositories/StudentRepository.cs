@@ -4,11 +4,7 @@ using clubyApi.Utils;
 using System;
 using clubyApi.Helper;
 using Microsoft.Extensions.Options;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using MongoDB.Bson;
+
 using System.Linq;
 
 namespace clubyApi.Repositories
@@ -50,7 +46,6 @@ namespace clubyApi.Repositories
                         Id=s.Id,
                         Institute=s.Institute,
                         Photo=s.Photo,
-                        EventInscription=s.EventInscription,
                         user=u
                     };
                     resultat=query.FirstOrDefault();
@@ -65,7 +60,6 @@ namespace clubyApi.Repositories
                         Id=s.Id,
                         Institute=inst,
                         Photo=s.Photo,
-                        EventInscription=s.EventInscription,
                         user=u
                     };
                     resultat=query.FirstOrDefault();
