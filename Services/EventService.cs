@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using clubyApi.Models;
 using clubyApi.Repositories;
+using ClubyBackend.Models;
 
 namespace clubyApi.Services
 {
@@ -12,7 +13,7 @@ namespace clubyApi.Services
         public EventService(IEventRepository repo){
             _rep=repo;
         }
-        public Tuple<Event,int> CreateEvent(Event e)
+        public Tuple<Event,int> CreateEvent(EventDto  e)
         {
             return _rep.CreateEvent(e);
         }

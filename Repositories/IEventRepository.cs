@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using clubyApi.Models;
+using ClubyBackend.Models;
 
 namespace clubyApi.Repositories
 {
     public interface IEventRepository
     {
-       Tuple<Event,int> CreateEvent(Event e);
+       Tuple<Event,int> CreateEvent(EventDto e);
        List<Event>ShowAllEvents();
        List<Event>FindEventByDate(string date);
        List<Event>FindEventByDomain(string domain);

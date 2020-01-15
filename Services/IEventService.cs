@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using clubyApi.Models;
+using ClubyBackend.Models;
 using MongoDB.Driver;
 
 namespace clubyApi.Services
 {
      public interface IEventService
     {
-       Tuple<Event,int> CreateEvent(Event e);
+       Tuple<Event,int> CreateEvent(EventDto  e);
        List<Event>ShowAllEvents();
        List<Event>FindEventByDate(string date);
        List<Event>FindEventByDomain(string domain);

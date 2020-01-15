@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using clubyApi.Models;
+using ClubyBackend.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -18,12 +19,13 @@ namespace clubyApi.Repositories
         }
 
         
-        public Tuple<Event,int> CreateEvent(Event e)
+        public Tuple<Event,int> CreateEvent(EventDto e)
         {
             List<Event> events=FindEventByDate(e.BeginDate);
             e.CreationDate=DateTime.Today.ToString("dd-MM-yyyy hh:mm:ss");
-            _events.InsertOne(new Event(e));
-            return new Tuple<Event,int>(e,events.Count);
+            Event added=new Event(e);
+            _events.InsertOne(added);
+            return new Tuple<Event,int>(added,events.Count);
         }
 
         public List<Event> FindEventByClub(string club)
@@ -49,8 +51,8 @@ namespace clubyApi.Repositories
 
         public List<Event> ShowAllEvents()
         {
-            int limit=10;
-            return _events.Find<Event>(new FilterDefinitionBuilder<Event>().Empty).Limit(limit).ToList<Event>();
+          
+            return _events.Find<Event>(new FilterDefinitionBuilder<Event>().Empty).ToList<Event>();
         }
 
         public Event DeleteEvent(string id)

@@ -9,6 +9,9 @@ namespace clubyApi.Models
     {
         
         public Club(){}
+        public Club(string id){
+            Id=id;
+        }
         public Club(User user,Institute institute,Domain domain)
         {
             User=new User(user.Id);

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using clubyApi.Models;
 using clubyApi.Services;
+using ClubyBackend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,9 +24,9 @@ namespace clubyApi.Controllers
         }
 
         [AllowAnonymous]
-        [Authorize(Roles=Role.Club)]
-        [HttpPost("event")]
-        public ActionResult<Event> CreateEvent([FromBody]Event e) 
+     //   [Authorize(Roles=Role.Club)]
+        [HttpPost("")]
+        public ActionResult<Event> CreateEvent([FromBody]EventDto e) 
         {
             return Ok(_service.CreateEvent(e));
         }
