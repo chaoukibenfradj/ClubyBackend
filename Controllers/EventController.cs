@@ -126,12 +126,12 @@ namespace clubyApi.Controllers
 
        // [Authorize(Roles=Role.Student)]
         [AllowAnonymous]
-        [HttpDelete("participate/{studentId}")]
-        public ActionResult<Event> DeleteUserParticipation(string studentId) 
+        [HttpDelete("participate")]
+        public ActionResult<Event> DeleteUserParticipation([FromBody] PartModel partModel) 
         {
 
            
-            int x =_service.DeleteUserParticipation(studentId);
+            int x =_service.DeleteUserParticipation(partModel);
             switch (x) { 
               
                 case 0: 

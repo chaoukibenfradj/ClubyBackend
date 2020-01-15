@@ -273,15 +273,20 @@ namespace clubyApi.Repositories
         }
 
         
-        public int DeleteUserParticipation(string id)
+        public int DeleteUserParticipation(PartModel partModel)
         {
 
            
-                Participate userp=_participation.Find<Participate>(Participate=>Participate.user.Id==id).FirstOrDefault();
+                Participate userp=_participation.Find<Participate>(Participate=>Participate.user.Id==partModel.userId 
+                && Participate.Event.Id==partModel.eventId).FirstOrDefault();
 
                 
                 if (userp != null){
-                   _participation.FindOneAndDelete(Participate => Participate.user.Id==id);
+                   _participation.FindOneAndDelete(Participate=>Participate.user.Id==partModel.userId 
+                    && Participate.Event.Id==partModel.eventId);
+                    Event e= _events.Find<Event>(Event=>Event.Id==partModel.eventId).FirstOrDefault();
+                    int number=e.NumberParticipation+1;
+                     ModifyEventNumberParticipat(userp.Event.Id,number);
                    
                     return 0;
                 }
@@ -308,7 +313,7 @@ namespace clubyApi.Repositories
                 }
                 else
                 {
-                Participate userp=_participation.Find<Participate>(Participate=>Participate.user.Id==u).FirstOrDefault();
+                Participate userp=_participation.Find<Participate>(Participate=>Participate.user.Id==u && Participate.Event.Id==Eventid).FirstOrDefault();
                 
 
                 if (userp == null){
@@ -317,8 +322,8 @@ namespace clubyApi.Repositories
                     
                     _participation.InsertOne(p);
                    
-                    e.NumberParticipation=e.NumberParticipation-1;
-                     ModifyEventNumberParticipat(e);
+                    int number=e.NumberParticipation-1;
+                     ModifyEventNumberParticipat(Eventid,number);
                     return 0;
                 }else{
                     return 3;
@@ -350,14 +355,14 @@ namespace clubyApi.Repositories
 
         }
 
-        public void ModifyEventNumberParticipat(Event e)
+        public void ModifyEventNumberParticipat(string id , int number)
         {
-            var filter=Builders<Event>.Filter.Eq(d=>d.Id,e.Id);
+            var filter=Builders<Event>.Filter.Eq(d=>d.Id,id);
 
-            var update=Builders<Event>.Update.Set("Number",e.NumberParticipation);
+            var update=Builders<Event>.Update.Set("Number",number);
              _events.FindOneAndUpdate(filter,update);
         }
 
-   
+        
     }
 }

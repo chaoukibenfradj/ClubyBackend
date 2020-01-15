@@ -18,7 +18,7 @@ namespace clubyApi.Services
 
        Event FindEventById(string id);
       
-       public int DeleteUserParticipation(string id);
+       public int DeleteUserParticipation(PartModel partModel);
        int AddUserParticipation(string Eventid,string u);
        List<Participate> FindEventByUserParticipation(string u);
        public List<Participate> ListEventPart(string id);

@@ -55,9 +55,9 @@ namespace clubyApi.Services
         }
        
 
-        public int DeleteUserParticipation(string id)
+        public int DeleteUserParticipation(PartModel partModel)
         {
-            return _rep.DeleteUserParticipation(id);
+            return _rep.DeleteUserParticipation(partModel);
         }
 
         public int AddUserParticipation(string Eventid, string u)
@@ -73,5 +73,6 @@ namespace clubyApi.Services
         return _rep.ListEventPart(id);
         }
 
+        
     }
 }

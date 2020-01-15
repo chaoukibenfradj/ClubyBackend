@@ -17,10 +17,10 @@ namespace clubyApi.Repositories
        Event FindEventById(string id);
 
 
-       public int DeleteUserParticipation(string id);
+       public int DeleteUserParticipation(PartModel partModel);
        int AddUserParticipation(string Eventid,string u);
        List<Participate> FindEventByUserParticipation(string u);
-       void ModifyEventNumberParticipat(Event e);
+       void ModifyEventNumberParticipat(string id , int number);
        public List<Participate> ListEventPart(string id);
     }
 }
