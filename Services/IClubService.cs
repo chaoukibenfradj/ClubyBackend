@@ -9,6 +9,8 @@ namespace clubyApi.Services
         Club FindClubProfile(string id);
         UpdateResult CompleteClubInscription(string id,string institute,string photo);
         
+        Club FindClub(string id);
+
 
 
     }

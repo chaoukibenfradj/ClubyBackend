@@ -18,11 +18,19 @@ namespace clubyApi.Controllers
         }
 
        
-        [Authorize(Roles=Role.Club)]
+       // [Authorize(Roles=Role.Club)]
+       [AllowAnonymous]
         [HttpGet("{id}")]
         public ActionResult<Club> FindClubProfile(string id) 
         {
             return Ok(_service.FindClubProfile(id));
+        }
+        // [Authorize(Roles=Role.Club)]
+       [AllowAnonymous]
+        [HttpGet("user/{id}")]
+        public ActionResult<Club> FindClub(string id) 
+        {
+            return Ok(_service.FindClub(id));
         }
 
         [Authorize(Roles=Role.Club)]

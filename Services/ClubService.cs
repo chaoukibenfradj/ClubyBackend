@@ -17,6 +17,10 @@ namespace clubyApi.Services
             _repo=repo ;
 
         }
+        public Club FindClub(string id){
+            return _repo.FindClub(id);
+        }
+
 
        public UpdateResult CompleteClubInscription(string id, string institute, string photo)
         {
