@@ -16,13 +16,15 @@ namespace clubyApi.Services
 
         }
 
-      
+       
 
         public Student CreateStudent(User user,Institute institute)
         {
             return _repo.CreateStudent(user,institute);
         }
-
+        public Student FindStudent(string id){
+            return _repo.FindStudent(id);
+        }
        
         public  Student FindStudentProfile(string id){
             return _repo.FindStudentProfile(id);

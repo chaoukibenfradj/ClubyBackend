@@ -24,6 +24,13 @@ namespace clubyApi.Controllers
         {
             return Ok(_service.FindStudentProfile(id));
         }
+         //[Authorize(Roles=Role.Student)]
+        [AllowAnonymous]
+        [HttpGet("user/{id}")]
+        public ActionResult<Student> FindStudent(string id) 
+        {
+            return Ok(_service.FindStudent(id));
+        }
         [Authorize(Roles=Role.Student)]
         [HttpPut("{id}")]
 

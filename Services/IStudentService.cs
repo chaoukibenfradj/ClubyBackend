@@ -8,6 +8,7 @@ namespace clubyApi.Services
         Student FindStudentProfile(string id);
         Student CreateStudent(User user,Institute institute);
         Student UpdateStudentProfile(string id, string photo, string institute);
+        Student FindStudent(string id);
 
 
 

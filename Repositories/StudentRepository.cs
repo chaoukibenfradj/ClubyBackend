@@ -35,7 +35,8 @@ namespace clubyApi.Repositories
              return resultat;
             
         }
-
+        
+        //find student by student id 
         public  Student FindStudentProfile(string id){
             Student resultat=null;
                     if(_students.AsQueryable().Where(Student=> Student.Id==id).FirstOrDefault().Institute.Id==null){
@@ -68,6 +69,41 @@ namespace clubyApi.Repositories
            
             
             return resultat;
+        }
+       // find student by user id
+        public Student FindStudent(string id){
+             Student resultat=null;
+                    if(_students.AsQueryable().Where(Student=> Student.user.Id==id).FirstOrDefault().Institute.Id==null){
+                    var query=from s in _students.AsQueryable().Where(Student=> Student.user.Id==id) 
+                    join u in _users.AsQueryable() on s.user.Id equals u.Id                
+                    select 
+                    new Student(){
+                        Id=s.Id,
+                        Institute=s.Institute,
+                        Photo=s.Photo,
+                        user=u
+                    };
+                    resultat=query.FirstOrDefault();
+           
+            }
+            else{
+                 var query=from s in _students.AsQueryable().Where(Student=> Student.user.Id==id) 
+                    join u in _users.AsQueryable() on s.user.Id equals u.Id
+                    join inst in _institutes.AsQueryable() on s.Institute.Id equals inst.Id 
+                    select 
+                    new Student(){
+                        Id=s.Id,
+                        Institute=inst,
+                        Photo=s.Photo,
+                        user=u
+                    };
+                    resultat=query.FirstOrDefault();
+            }
+           
+           
+            
+            return resultat;
+
         }
       
 
