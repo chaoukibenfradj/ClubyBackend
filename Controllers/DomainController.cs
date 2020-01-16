@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using clubyApi.Models;
 using clubyApi.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -44,6 +45,13 @@ namespace clubyApi.Controllers
                 return BadRequest(new {message=" cannot delete domain "});
             }
             return Ok(res);
+        }
+
+         [AllowAnonymous]
+        [HttpGet("")]
+         public ActionResult<List<Domain>> FindDomains(){
+           
+            return Ok(_service.getDomains());
         }
 
        

@@ -1,5 +1,6 @@
 
 
+using System.Collections.Generic;
 using clubyApi.Models;
 using MongoDB.Driver;
 
@@ -25,6 +26,9 @@ namespace clubyApi.Repositories
         public Domain DeleteDomain(string id)
         {
             return _domains.FindOneAndDelete(d=>d.Id==id);
+        }
+        public  List<Domain> getDomains(){
+            return _domains.Find(Builders<Domain>.Filter.Empty).ToList();
         }
 
         public Domain ModifyDomain(string id, Domain domain)

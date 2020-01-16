@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using clubyApi.Models;
 using clubyApi.Repositories;
 
@@ -20,6 +21,10 @@ namespace clubyApi.Services
         {
             return _repo.DeleteDomain(id);
         }
+        public   List<Domain> getDomains(){
+            return _repo.getDomains();
+        }
+
 
         public Domain ModifyDomain(string id, Domain domain)
         {
