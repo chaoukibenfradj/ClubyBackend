@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using clubyApi.Models;
 using clubyApi.Repositories;
 using ClubyBackend.Models;
+using MongoDB.Driver;
 
 namespace clubyApi.Services
 {
@@ -71,6 +72,9 @@ namespace clubyApi.Services
         }
         public List<Participate> ListEventPart(string id){
         return _rep.ListEventPart(id);
+        }
+        public UpdateResult updatEvent(EventDto eventDto){
+            return _rep.updatEvent(eventDto);
         }
 
         

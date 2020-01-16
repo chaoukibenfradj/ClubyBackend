@@ -2,6 +2,7 @@ namespace ClubyBackend.Models
 {
     public class EventDto
     {
+        public string Id  {get;set;}
         public string Name  {get;set;}
        
         public string BeginDate  {get;set;}

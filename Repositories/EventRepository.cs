@@ -368,7 +368,86 @@ namespace clubyApi.Repositories
             var update=Builders<Event>.Update.Set("Number",number);
              _events.FindOneAndUpdate(filter,update);
         }
+        public UpdateResult updatEvent(EventDto eventDto){
+             var filter=Builders<Event>.Filter.Eq(d=>d.Id,eventDto.Id);
+             UpdateResult result=null;
+            if(eventDto.Name!=null
+               && eventDto.Description!=null
+             && eventDto.Domain!=null
+              && eventDto.EndDate!=null 
+              && eventDto.BeginDate!=null
+              && eventDto.price!=null
+              && eventDto.NumberParticipation!=0)
+             
+            { 
+                var update=Builders<Event>.Update.Set("Description",eventDto.Description).
+                Set("Name",eventDto.Name)
+                .Set("EndDate",eventDto.EndDate)
+                .Set("BeginDate",eventDto.BeginDate)
+                .Set("EndDate",eventDto.EndDate)
+                .Set("price",eventDto.price)
+                .Set("Number",eventDto.NumberParticipation);
+               result=  _events.UpdateOne(filter,update);
+            }
+            else if(eventDto.Name!=null)
+             
+            { 
+                var update=Builders<Event>.Update.
+                Set("Name",eventDto.Name);
+              
+               result=  _events.UpdateOne(filter,update);
+            }
+              else if(eventDto.Description!=null)
+             
+            { 
+                var update=Builders<Event>.Update.
+                Set("Description",eventDto.Description);
+              
+               result=  _events.UpdateOne(filter,update);
+            }
+              else if(eventDto.BeginDate!=null)
+             
+            { 
+                var update=Builders<Event>.Update.
+                Set("BeginDate",eventDto.BeginDate);
+              
+               result=  _events.UpdateOne(filter,update);
+            }
+                else if(eventDto.EndDate!=null)
+             
+            { 
+                var update=Builders<Event>.Update.
+                Set("EndDate",eventDto.EndDate);
+              
+               result=  _events.UpdateOne(filter,update);
+            }
+                else if(eventDto.BeginDate!=null)
+             
+            { 
+                var update=Builders<Event>.Update.
+                Set("BeginDate",eventDto.BeginDate);
+              
+               result=  _events.UpdateOne(filter,update);
+            }
+                 else if(eventDto.price!=null)
+             
+            { 
+                var update=Builders<Event>.Update.
+                Set("price",eventDto.price);
+              
+               result=  _events.UpdateOne(filter,update);
+            }
+                 else if(eventDto.NumberParticipation!=0)
+             
+            { 
+                var update=Builders<Event>.Update.
+                Set("Number",eventDto.NumberParticipation);
+              
+               result=  _events.UpdateOne(filter,update);
+            }
+            return result;
 
+        }
         
     }
 }

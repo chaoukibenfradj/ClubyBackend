@@ -4,6 +4,7 @@ using clubyApi.Services;
 using ClubyBackend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 
 namespace clubyApi.Controllers
 {
@@ -168,5 +169,13 @@ namespace clubyApi.Controllers
         {
             return _service.ListEventPart(id);
         }
+          [AllowAnonymous]
+        //[Authorize(Roles=Role.Club)]
+        [HttpPut("")]
+        public ActionResult<UpdateResult> updateEvent([FromBody]EventDto eventDto) 
+        {
+            return _service.updatEvent(eventDto);
+        }
+    
     }
 }
