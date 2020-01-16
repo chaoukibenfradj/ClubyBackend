@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-
+using System;
 namespace clubyApi.Controllers
 {
     [Authorize]
@@ -29,6 +29,13 @@ namespace clubyApi.Controllers
         public ActionResult<Sponsor> FindSponsorProfile(string id) 
         {
             return Ok(_service.FindSponsorProfile(id));
+        }
+          [AllowAnonymous]
+         [HttpGet("user/{id}")]
+        public ActionResult<Sponsor> FindSponsor(string id) 
+        {
+            Console.Write(id);
+            return Ok(_service.FindSponsor(id));
         }
        
     }

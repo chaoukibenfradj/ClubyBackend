@@ -21,6 +21,9 @@ namespace clubyApi
         {
             return _repo.FindSponsorProfile(id);
         }
+        public  Sponsor FindSponsor(string id){
+            return _repo.FindSponsor(id);
+        }
 
         List<Sponsor> ISponsorService.ShowAllSponsors()
         {

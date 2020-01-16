@@ -28,7 +28,28 @@ namespace clubyApi
              return resultat;
         }
 
-          public List<Sponsor> ShowAllSponsors()
+        public Sponsor FindSponsor(string id)
+        {
+           Sponsor resultat=null;
+              
+                 var query=from s in _sponsors.AsQueryable().Where(Sponsor=> Sponsor.User.Id==id) 
+                    join u in _users.AsQueryable() on s.User.Id equals u.Id
+                    select 
+                    new Sponsor(){
+                        Id=s.Id,
+                        Entreprise=s.Entreprise,
+                        Interests=s.Interests,
+                        User=u
+                    };
+                    resultat=query.FirstOrDefault();
+            
+           
+           
+            
+            return resultat;
+        }
+
+        public List<Sponsor> ShowAllSponsors()
         {
            
             return _sponsors.Find<Sponsor>(new FilterDefinitionBuilder<Sponsor>().Empty).ToList<Sponsor>();
@@ -55,5 +76,6 @@ namespace clubyApi
             
             return resultat;
         }
+       
     }
 }

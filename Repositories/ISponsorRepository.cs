@@ -7,7 +7,8 @@ namespace clubyApi
     public interface ISponsorRepository
     {
         Sponsor CreateSponsor(User user);
-        List<Sponsor>ShowAllSponsors();
+         List<Sponsor>ShowAllSponsors();
          Sponsor FindSponsorProfile(string id);
+          Sponsor FindSponsor(string id);
     }
 }
