@@ -51,6 +51,7 @@ namespace clubyApi.Repositories
                     join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id                
                     select 
                     new Event(){
+                         Id=e.Id,
                         Name=e.Name,
                         price=e.price,
                         Location=e.Location,
@@ -80,6 +81,7 @@ namespace clubyApi.Repositories
                     join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id                
                     select 
                     new Event(){
+                         Id=e.Id,
                         Name=e.Name,
                         price=e.price,
                         Location=e.Location,
@@ -107,6 +109,7 @@ namespace clubyApi.Repositories
                     join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id                
                     select 
                     new Event(){
+                         Id=e.Id,
                         Name=e.Name,
                         price=e.price,
                         Location=e.Location,
@@ -134,6 +137,7 @@ namespace clubyApi.Repositories
                     join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id                
                     select 
                     new Event(){
+                         Id=e.Id,
                         Name=e.Name,
                         price=e.price,
                         Location=e.Location,
@@ -162,6 +166,7 @@ namespace clubyApi.Repositories
                     join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id                
                     select 
                     new Event(){
+                        Id=e.Id,
                         Name=e.Name,
                         price=e.price,
                         Location=e.Location,
@@ -194,6 +199,7 @@ namespace clubyApi.Repositories
                     join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id                
                     select 
                     new Event(){
+                         Id=e.Id,
                         Name=e.Name,
                         price=e.price,
                         Location=e.Location,
@@ -221,7 +227,7 @@ namespace clubyApi.Repositories
                     join s in _students.AsQueryable() on e.user.Id equals s.Id  
                     select 
                     new Participate( ){
-                      
+                       Id=e.Id,
                        user=s,
                        Event=e.Event,
                        DateParticipate=e.DateParticipate,
