@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using clubyApi.Models;
 using clubyApi.Repositories;
+using MongoDB.Driver;
 
 namespace clubyApi.Services
 {
@@ -25,15 +26,9 @@ namespace clubyApi.Services
             return _repo.getDomains();
         }
 
-
-        public Domain ModifyDomain(string id, Domain domain)
+        public UpdateResult ModifyDomain(Domain domain)
         {
-           return _repo.ModifyDomain(id,domain);
+            return _repo.ModifyDomain(domain);
         }
-
-       
-        
-
-
     }
 }

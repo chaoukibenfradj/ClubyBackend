@@ -3,6 +3,7 @@ using clubyApi.Models;
 using clubyApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 
 namespace clubyApi.Controllers
 {
@@ -28,9 +29,9 @@ namespace clubyApi.Controllers
         }
         //[Authorize(Roles=Role.Admin)]
         [AllowAnonymous]
-        [HttpPut("{id}")]
-         public ActionResult<Domain> UpdateDomain(string id,[FromBody]Domain domain){
-            Domain res=_service.ModifyDomain(id,domain);
+        [HttpPut("")]
+         public ActionResult<UpdateResult> UpdateDomain([FromBody]Domain domain){
+            UpdateResult res=_service.ModifyDomain(domain);
             if(res==null){
                 return BadRequest(new {message=" cannot update domain "});
             }

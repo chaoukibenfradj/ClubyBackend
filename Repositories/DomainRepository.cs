@@ -31,12 +31,12 @@ namespace clubyApi.Repositories
             return _domains.Find(Builders<Domain>.Filter.Empty).ToList();
         }
 
-        public Domain ModifyDomain(string id, Domain domain)
+        public UpdateResult ModifyDomain(Domain domain)
         {
-            var filter=Builders<Domain>.Filter.Eq(d=>d.Id,id);
+            var filter=Builders<Domain>.Filter.Eq(d=>d.Id,domain.Id);
 
             var update=Builders<Domain>.Update.Set("Name",domain.Name);
-            return _domains.FindOneAndUpdate(filter,update);
+            return _domains.UpdateOne(filter,update);
         }
     }
 }
