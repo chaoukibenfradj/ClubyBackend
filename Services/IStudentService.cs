@@ -1,4 +1,5 @@
 using clubyApi.Models;
+using ClubyBackend.Models;
 using MongoDB.Driver;
 
 namespace clubyApi.Services
@@ -7,7 +8,7 @@ namespace clubyApi.Services
     {
         Student FindStudentProfile(string id);
         Student CreateStudent(User user,Institute institute);
-        Student UpdateStudentProfile(string id, string photo, string institute);
+        UpdateResult UpdateStudentProfile(UpdateDto update);
         Student FindStudent(string id);
 
 

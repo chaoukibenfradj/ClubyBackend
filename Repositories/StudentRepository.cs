@@ -6,6 +6,7 @@ using clubyApi.Helper;
 using Microsoft.Extensions.Options;
 
 using System.Linq;
+using ClubyBackend.Models;
 
 namespace clubyApi.Repositories
 {
@@ -107,13 +108,36 @@ namespace clubyApi.Repositories
         }
       
 
-          public Student UpdateStudentProfile(string id, string photo, string institute)
+          public UpdateResult UpdateStudentProfile(UpdateDto student)
           {
-             
+             UpdateResult result=null;
           
-              var filter=Builders<Student>.Filter.Eq("Id",id);
-              var update=Builders<Student>.Update.Set("Photo",photo).Set("Institute",new Institute(institute));
-              return _students.FindOneAndUpdate(filter,update);
+              var filter=Builders<Student>.Filter.Eq("Id",student.Id);
+              if(student.Photo!=null && student.Institute!=null){
+                var update=Builders<Student>.Update.Set("Photo",student.Photo).Set("Institute",new Institute(student.Institute));
+                result=_students.UpdateOne(filter,update);
+              }
+               else if(student.Photo!=null 
+               && student.Institute!=null
+                && student.LastName!=null 
+                && student.FirstName!=null
+                ){
+                var update_1=Builders<Student>.Update.Set("Photo",student.Photo).Set("Institute",new Institute(student.Institute));
+                var update_2=Builders<User>.Update.Set("LastName",student.LastName).Set("FirstName",student.FirstName);
+                Student s=_students.Find(s=>s.Id==student.Id).FirstOrDefault();
+                _users.UpdateOne(Builders<User>.Filter.Eq("Id",s.user.Id),update_2);
+                result=_students.UpdateOne(filter,update_1);
+              }
+               else if(
+                student.LastName!=null 
+                && student.FirstName!=null){
+                var update_2=Builders<User>.Update.Set("LastName",student.LastName).Set("FirstName",student.FirstName);
+                Student s=_students.Find(s=>s.Id==student.Id).FirstOrDefault();
+               result= _users.UpdateOne(Builders<User>.Filter.Eq("Id",s.user.Id),update_2);
+               
+              }
+              
+               return result;
             
           }
     }

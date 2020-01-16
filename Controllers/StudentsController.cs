@@ -1,5 +1,6 @@
 using clubyApi.Models;
 using clubyApi.Services;
+using ClubyBackend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
@@ -31,13 +32,14 @@ namespace clubyApi.Controllers
         {
             return Ok(_service.FindStudent(id));
         }
-        [Authorize(Roles=Role.Student)]
-        [HttpPut("{id}")]
+        //[Authorize(Roles=Role.Student)]
+        [AllowAnonymous]
+        [HttpPut("")]
 
-        public ActionResult<Student> UpdateStudentProfile(string id,string photo,string institute) 
+        public ActionResult<UpdateResult> UpdateStudentProfile(UpdateDto student) 
         {
 
-            Student res=_service.UpdateStudentProfile(id,photo,institute);
+            UpdateResult res=_service.UpdateStudentProfile(student);
             if(res==null){
                return  BadRequest(new {message=" unable to update"});
             }

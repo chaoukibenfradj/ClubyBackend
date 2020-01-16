@@ -3,6 +3,7 @@
 using clubyApi.Models;
 
 using clubyApi.Repositories;
+using ClubyBackend.Models;
 using MongoDB.Driver;
 
 namespace clubyApi.Services
@@ -30,9 +31,9 @@ namespace clubyApi.Services
             return _repo.FindStudentProfile(id);
         }
 
-        public Student UpdateStudentProfile(string id, string photo, string institute)
+        public UpdateResult UpdateStudentProfile(UpdateDto update)
         {
-            return _repo.UpdateStudentProfile(id,photo,institute);
+            return _repo.UpdateStudentProfile(update);
         }
     }
 
