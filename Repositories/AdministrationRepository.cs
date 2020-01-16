@@ -72,5 +72,38 @@ namespace clubyApi
             
             return resultat;
         }
+        public    Administration FindAdmin(string id){
+              Administration resultat=null;
+                    if(_admins.AsQueryable().Where(admin=> admin.User.Id==id).FirstOrDefault().Institute.Id==null){
+                    var query=from admin in _admins.AsQueryable().Where(admin=> admin.User.Id==id) 
+                    join u in _users.AsQueryable() on admin.User.Id equals u.Id                
+                    select 
+                    new Administration(){
+                        Id=admin.Id,
+                        Institute=admin.Institute,
+                        User=u
+                    };
+                    resultat=query.FirstOrDefault();
+           
+            }
+            else{
+                    var query=from admin in _admins.AsQueryable().Where(admin=> admin.User.Id==id) 
+                    join u in _users.AsQueryable() on admin.User.Id equals u.Id                
+                    join inst in _institutes.AsQueryable() on admin.Institute.Id equals inst.Id 
+                    select 
+                    new Administration(){
+                        Id=admin.Id,
+                        Institute=inst,
+                        User=u
+                    };
+                    resultat=query.FirstOrDefault();
+            }
+           
+           
+            
+            return resultat;
+
+        }
+
     }
 }

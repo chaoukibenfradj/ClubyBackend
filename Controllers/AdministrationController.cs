@@ -44,6 +44,15 @@ namespace clubyApi.Controllers
             }
             return Ok(res);
         }
+          [AllowAnonymous]
+        [HttpGet("user/{id}")]
+        public ActionResult<Administration> FindAdmin(string id){
+            Administration res= _service.FindAdmin(id);
+            if(res==null){
+                return BadRequest(new {message=" could not find admin"});
+            }
+            return Ok(res);
+        }
         [AllowAnonymous]
         [HttpPut("{id}")]
         public ActionResult<Administration> ModifyAdmin([FromBody]string administration,string id){

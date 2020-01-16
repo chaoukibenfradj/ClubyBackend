@@ -9,6 +9,6 @@ namespace clubyApi
         Administration DeleteAdmin(string id);
         Administration FindAdminProfile(string id);
 
-      
+      Administration FindAdmin(string id);
     }
 }
