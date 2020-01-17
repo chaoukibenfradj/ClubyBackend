@@ -1,6 +1,8 @@
+using System;
+using System.Collections.Generic;
 using clubyApi.Models;
+using ClubyBackend.Models;
 using MongoDB.Driver;
-
 namespace clubyApi.Repositories
 {
     public interface IClubRepository
@@ -10,6 +12,7 @@ namespace clubyApi.Repositories
         UpdateResult CompleteClubInscription(string id,string institute,string photo);
         
         Club FindClub(string id);
+        List<Club>ShowAllClubs();
 
     }
 }

@@ -3,6 +3,7 @@ using clubyApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using System.Collections.Generic;
 
 namespace clubyApi.Controllers
 {   
@@ -40,8 +41,12 @@ namespace clubyApi.Controllers
         }
 
        
-
-      
+        [AllowAnonymous]
+        [HttpGet("")]
+        public ActionResult<List<Club>> ShowAllClubs() 
+        {
+            return Ok(_service.ShowAllClubs());
+        }      
        
 
       
