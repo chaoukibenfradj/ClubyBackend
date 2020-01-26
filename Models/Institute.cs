@@ -16,12 +16,14 @@ namespace clubyApi.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
+        [Required (ErrorMessage = "Institut name is required")]
         [BsonElement("Name")]
-
         public string Name{ get;set;}
-        [BsonElement("Region")]
 
+        [Required (ErrorMessage = "Institut Region is required")]
+        [BsonElement("Region")]
         public string Region{ get;set;}
+
         public string Photo{get;set;}
 
         [BsonElement("Domain")]

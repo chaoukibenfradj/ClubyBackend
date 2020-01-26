@@ -1,5 +1,6 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace clubyApi.Models
 {
@@ -15,6 +16,7 @@ namespace clubyApi.Models
         [BsonRepresentation(BsonType.ObjectId)] 
         public  string Id{ get;set;}
         
+        [Required (ErrorMessage = "Domain name is required")]
         [BsonElement("Name")]
 
         public string Name{ get;set;}
