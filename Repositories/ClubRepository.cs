@@ -150,7 +150,7 @@ namespace clubyApi.Repositories
           
               var query=from e in _clubs.AsQueryable()
                     join d in _domains.AsQueryable() on e.Domain.Id equals d.Id   
-                    join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id  
+                    join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id 
                     join u in _users.AsQueryable() on e.User.Id equals u.Id             
                     select 
                     new Club(){
