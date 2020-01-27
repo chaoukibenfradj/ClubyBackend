@@ -55,6 +55,18 @@ namespace clubyApi.Controllers
             return Ok(_service.getDomains());
         }
 
+        [AllowAnonymous]
+        [HttpGet("{id}")]
+        public ActionResult<Domain> FindDomain(string id) 
+        {   Domain e =_service.FindDomain(id);
+            if(e==null){
+                 
+                return BadRequest(new {message="Could not find this Domain ID"});
+
+            }
+            return Ok(e);
+        }
+
        
 
 

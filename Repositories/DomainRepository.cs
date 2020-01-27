@@ -3,6 +3,11 @@
 using System.Collections.Generic;
 using clubyApi.Models;
 using MongoDB.Driver;
+using System;
+using System.Linq;
+using ClubyBackend.Models;
+using MongoDB.Bson;
+using MongoDB.Driver.Linq;
 
 namespace clubyApi.Repositories
 {
@@ -38,5 +43,24 @@ namespace clubyApi.Repositories
             var update=Builders<Domain>.Update.Set("Name",domain.Name);
             return _domains.UpdateOne(filter,update);
         }
+
+          public Domain FindDomain(string id){
+
+          var query=from e in _domains.AsQueryable().Where(Domain=> Domain.Id==id)
+                               
+                    select 
+                    new Domain(){
+                        Id=e.Id,
+                        Name=e.Name,
+                                              
+                    };
+                   
+           
+            
+            return query.FirstOrDefault();
+        }
+
+
+       
     }
 }

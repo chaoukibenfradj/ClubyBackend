@@ -10,6 +10,7 @@ namespace clubyApi.Repositories
         UpdateResult ModifyDomain(Domain domain);
          Domain DeleteDomain(string id);
         List<Domain> getDomains();
+          Domain FindDomain(string id);
 
         
 
