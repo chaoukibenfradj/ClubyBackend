@@ -42,4 +42,10 @@ namespace clubyApi.Services
         {
             return _repo.ShowAllClubs();
         }
+
+        
+        public Club DeleteClub(string id)
+        {
+            return _repo.DeleteClub(id);
+        }
     }}

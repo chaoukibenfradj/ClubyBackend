@@ -13,6 +13,7 @@ namespace clubyApi.Services
         UpdateResult CompleteClubInscription(string id,string institute,string photo);
         Club FindClub(string id);
         List<Club>ShowAllClubs();
+        Club DeleteClub(string id);
 
 
 

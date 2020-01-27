@@ -27,7 +27,7 @@ namespace clubyApi.Controllers
             return Ok(_service.FindClubProfile(id));
         }
         // [Authorize(Roles=Role.Club)]
-       [AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet("user/{id}")]
         public ActionResult<Club> FindClub(string id) 
         {
@@ -46,7 +46,17 @@ namespace clubyApi.Controllers
         public ActionResult<List<Club>> ShowAllClubs() 
         {
             return Ok(_service.ShowAllClubs());
-        }      
+        }     
+
+        [AllowAnonymous]
+        [HttpDelete("{id}")]
+         public ActionResult<Club> DeleteClub(string id){
+            Club res=_service.DeleteClub(id);
+            if(res==null){
+                return BadRequest(new {message=" cannot delete club "});
+            }
+            return Ok(res);
+        } 
        
 
       

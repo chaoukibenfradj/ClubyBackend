@@ -167,6 +167,11 @@ namespace clubyApi.Repositories
                    
             return query.ToList();
         }
+
+         public Club DeleteClub(string id)
+        {
+            return _clubs.FindOneAndDelete(d=>d.Id==id);
+        }
     }
 
     
