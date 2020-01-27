@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using System.Collections.Generic;
+using ClubyBackend.Models;
+
 
 namespace clubyApi.Controllers
 {   
@@ -39,6 +41,8 @@ namespace clubyApi.Controllers
         public ActionResult<UpdateResult> CompleteClubInscription(string id, string institute, string photo){
             return Ok(_service.CompleteClubInscription(id,institute,photo));
         }
+
+        
 
        
         [AllowAnonymous]

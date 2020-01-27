@@ -7,9 +7,11 @@ namespace clubyApi.Repositories
 {
     public interface IClubRepository
     {   
+       
         Club CreateClub(User user,Institute institute,Domain domain);
         Club FindClubProfile(string id);
-        UpdateResult CompleteClubInscription(string id,string institute,string photo);
+       UpdateResult CompleteClubInscription(string id,string institute,string photo);
+        // UpdateResult updatClub(ClubDto clubDto);
         Club DeleteClub(string id);
         Club FindClub(string id);
         List<Club>ShowAllClubs();

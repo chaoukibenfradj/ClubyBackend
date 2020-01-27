@@ -24,15 +24,18 @@ namespace clubyApi.Services
         }
 
 
-       public UpdateResult CompleteClubInscription(string id, string institute, string photo)
-        {
-            return _repo.CompleteClubInscription(id,institute,photo);
-        }
+      public UpdateResult CompleteClubInscription(string id, string institute, string photo)
+     {
+         return _repo.CompleteClubInscription(id,institute,photo);
+     }
 
-        public Club CreateClub(User user,Institute institute,Domain domain)
-        {
-            return _repo.CreateClub(user, institute, domain);
-        }
+   
+     public Club CreateClub(User user,Institute institute,Domain domain)
+     {
+         return _repo.CreateClub(user, institute, domain);
+    }
+
+       
 
         public  Club FindClubProfile(string id){
             return _repo.FindClubProfile(id);
