@@ -61,11 +61,47 @@ namespace clubyApi.Repositories
                     resultat=query.FirstOrDefault();
            
             }
-            else{
+            else if(_clubs.AsQueryable().Where(club=> club.User.Id==id).FirstOrDefault().Institute.Id!=null &&
+                    _clubs.AsQueryable().Where(club=> club.User.Id==id).FirstOrDefault().Domain.Id==null){
+                   var query=from club in _clubs.AsQueryable().Where(club=> club.User.Id==id) 
+                    join u in _users.AsQueryable() on club.User.Id equals u.Id 
+                     join Institute in _institutes.AsQueryable() on club.Institute.Id equals Institute.Id              
+        
+                    select 
+                    new Club(){
+                        Id=club.Id,
+                        Name=club.Name,
+                        Institute=Institute,
+                        Description=club.Description,
+                        Photo=club.Photo,
+                        Domain=club.Domain,
+                        User=u
+                    };
+                    resultat=query.FirstOrDefault();
+            }
+             else if(_clubs.AsQueryable().Where(club=> club.User.Id==id).FirstOrDefault().Institute.Id==null &&
+                    _clubs.AsQueryable().Where(club=> club.User.Id==id).FirstOrDefault().Domain.Id!=null){
                    var query=from club in _clubs.AsQueryable().Where(club=> club.User.Id==id) 
                     join u in _users.AsQueryable() on club.User.Id equals u.Id 
                      join domain in _domains.AsQueryable() on club.Domain.Id equals domain.Id      
-                     join Institute in _institutes.AsQueryable() on club.Institute.Id equals Institute.Id              
+        
+                    select 
+                    new Club(){
+                        Id=club.Id,
+                        Name=club.Name,
+                        Institute=club.Institute,
+                        Description=club.Description,
+                        Photo=club.Photo,
+                        Domain=domain,
+                        User=u
+                    };
+                    resultat=query.FirstOrDefault();
+            }
+              else{
+                   var query=from club in _clubs.AsQueryable().Where(club=> club.User.Id==id) 
+                    join u in _users.AsQueryable() on club.User.Id equals u.Id 
+                     join domain in _domains.AsQueryable() on club.Domain.Id equals domain.Id   
+                      join Institute in _institutes.AsQueryable() on club.Institute.Id equals Institute.Id        
         
                     select 
                     new Club(){
@@ -88,8 +124,8 @@ namespace clubyApi.Repositories
         public  Club FindClubProfile(string id){
               Club resultat=null;
                     if(_clubs.AsQueryable().Where(club=> club.Id==id).FirstOrDefault().Institute.Id==null &&
-                    _clubs.AsQueryable().Where(club=> club.Id==id).FirstOrDefault().Domain.Id==null &&  
-                    _clubs.AsQueryable().Where(club=> club.Id==id).FirstOrDefault().Institute.Id==null){
+                    _clubs.AsQueryable().Where(club=> club.Id==id).FirstOrDefault().Domain.Id==null   
+                   ){
                     var query=from club in _clubs.AsQueryable().Where(club=> club.Id==id) 
                     join u in _users.AsQueryable() on club.User.Id equals u.Id                
                     select 
@@ -105,8 +141,8 @@ namespace clubyApi.Repositories
            
             }
              else if(_clubs.AsQueryable().Where(club=> club.Id==id).FirstOrDefault().Institute.Id==null &&
-                    _clubs.AsQueryable().Where(club=> club.Id==id).FirstOrDefault().Domain.Id!=null &&  
-                    _clubs.AsQueryable().Where(club=> club.Id==id).FirstOrDefault().Institute.Id==null){
+                    _clubs.AsQueryable().Where(club=> club.Id==id).FirstOrDefault().Domain.Id!=null   
+                   ){
                    var query=from club in _clubs.AsQueryable().Where(club=> club.Id==id) 
                     join u in _users.AsQueryable() on club.User.Id equals u.Id 
                      join domain in _domains.AsQueryable() on club.Domain.Id equals domain.Id      
@@ -122,9 +158,9 @@ namespace clubyApi.Repositories
                     };
                     resultat=query.FirstOrDefault();
             }
-             else if(_clubs.AsQueryable().Where(club=> club.Id==id).FirstOrDefault().Institute.Id==null &&
-                    _clubs.AsQueryable().Where(club=> club.Id==id).FirstOrDefault().Domain.Id==null &&  
-                    _clubs.AsQueryable().Where(club=> club.Id==id).FirstOrDefault().Institute.Id!=null){
+             else if(_clubs.AsQueryable().Where(club=> club.Id==id).FirstOrDefault().Institute.Id!=null &&
+                    _clubs.AsQueryable().Where(club=> club.Id==id).FirstOrDefault().Domain.Id==null 
+                    ){
                    var query=from club in _clubs.AsQueryable().Where(club=> club.Id==id) 
                     join u in _users.AsQueryable() on club.User.Id equals u.Id 
                      join Institute in _institutes.AsQueryable() on club.Institute.Id equals Institute.Id              
