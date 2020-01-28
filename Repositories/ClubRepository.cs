@@ -134,6 +134,8 @@ namespace clubyApi.Repositories
                         Name=club.Name,
                         Institute=club.Institute,
                         Photo=club.Photo,
+                        Description=club.Description,
+                        CreationDate=club.CreationDate,
                         Domain=club.Domain,
                         User=u
                     };
@@ -153,6 +155,8 @@ namespace clubyApi.Repositories
                         Name=club.Name,
                         Institute=club.Institute,
                         Photo=club.Photo,
+                          Description=club.Description,
+                        CreationDate=club.CreationDate,
                         Domain=domain,
                         User=u
                     };
@@ -172,6 +176,8 @@ namespace clubyApi.Repositories
                         Institute=club.Institute,
                         Photo=club.Photo,
                         Domain=club.Domain,
+                          Description=club.Description,
+                        CreationDate=club.CreationDate,
                         User=u
                     };
                     resultat=query.FirstOrDefault();
@@ -189,6 +195,8 @@ namespace clubyApi.Repositories
                         Institute=Institute,
                         Photo=club.Photo,
                         Domain=domain,
+                          Description=club.Description,
+                        CreationDate=club.CreationDate,
                         User=u
                     };
                     resultat=query.FirstOrDefault();
