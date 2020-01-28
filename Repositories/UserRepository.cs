@@ -71,7 +71,7 @@ namespace clubyApi.Repositories
             return result;
         }
         public User FindUserByEmail(string email) => _users.Find<User>(user => user.Email == email).FirstOrDefault();
-         public User FindUserByIf(string id) => _users.Find<User>(user => user.Id == id).FirstOrDefault();
+       //  public User FindUserByIf(string id) => _users.Find<User>(user => user.Id == id).FirstOrDefault();
         public List<Email> FindEmailBySenderId(string id){
                 List<Email> emails=new List<Email>();
                  var query=from email in _emails.AsQueryable().Where(Email=>Email.Sender.Id==id) 

@@ -52,7 +52,20 @@ namespace clubyApi
         public List<Sponsor> ShowAllSponsors()
         {
            
-            return _sponsors.Find<Sponsor>(new FilterDefinitionBuilder<Sponsor>().Empty).ToList<Sponsor>();
+             var query=from s in _sponsors.AsQueryable()
+                    join u in _users.AsQueryable() on s.User.Id equals u.Id
+                    select 
+                    new Sponsor(){
+                        Id=s.Id,
+                        Entreprise=s.Entreprise,
+                        Interests=s.Interests,
+                        User=u
+                    };
+            
+           
+           
+            
+            return query.ToList();
         }
        
 
