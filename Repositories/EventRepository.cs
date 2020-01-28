@@ -377,6 +377,7 @@ namespace clubyApi.Repositories
               && eventDto.EndDate!=null 
               && eventDto.BeginDate!=null
               && eventDto.price!=null
+              &&  eventDto.Location!=null
               && eventDto.NumberParticipation!=0)
              
             { 
@@ -386,6 +387,8 @@ namespace clubyApi.Repositories
                 .Set("BeginDate",eventDto.BeginDate)
                 .Set("EndDate",eventDto.EndDate)
                 .Set("price",eventDto.price)
+                .Set("Domain",eventDto.Domain)
+                 .Set("Location",eventDto.Location)
                 .Set("Number",eventDto.NumberParticipation);
                result=  _events.UpdateOne(filter,update);
             }
@@ -434,6 +437,14 @@ namespace clubyApi.Repositories
             { 
                 var update=Builders<Event>.Update.
                 Set("price",eventDto.price);
+              
+               result=  _events.UpdateOne(filter,update);
+            }
+                 else if(eventDto.Location!=null)
+             
+            { 
+                var update=Builders<Event>.Update.
+                Set("Location",eventDto.Location);
               
                result=  _events.UpdateOne(filter,update);
             }
