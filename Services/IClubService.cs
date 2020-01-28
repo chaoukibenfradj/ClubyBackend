@@ -11,8 +11,7 @@ namespace clubyApi.Services
         
        Club CreateClub(User user,Institute institute,Domain domain);
         Club FindClubProfile(string id);
-       UpdateResult CompleteClubInscription(string id,string institute,string photo);
-       // UpdateResult updatClub(ClubDto clubDto);
+       UpdateResult CompleteClubInscription(UpdateDto club);
         Club FindClub(string id);
         List<Club>ShowAllClubs();
         Club DeleteClub(string id);

@@ -36,10 +36,10 @@ namespace clubyApi.Controllers
             return Ok(_service.FindClub(id));
         }
 
-        [Authorize(Roles=Role.Club)]
-        [HttpPut("{id}")]
-        public ActionResult<UpdateResult> CompleteClubInscription(string id, string institute, string photo){
-            return Ok(_service.CompleteClubInscription(id,institute,photo));
+         [AllowAnonymous]
+        [HttpPut()]
+        public ActionResult<UpdateResult> CompleteClubInscription(UpdateDto club){
+            return Ok(_service.CompleteClubInscription(club));
         }
 
         

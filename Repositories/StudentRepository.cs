@@ -117,6 +117,11 @@ namespace clubyApi.Repositories
                 var update=Builders<Student>.Update.Set("Photo",student.Photo).Set("Institute",new Institute(student.Institute));
                 result=_students.UpdateOne(filter,update);
               }
+               else if(student.Photo!=null){
+                var update=Builders<Student>.Update.Set("Photo",student.Photo);
+                result=_students.UpdateOne(filter,update);
+
+              }
                else if(student.Photo!=null 
                && student.Institute!=null
                 && student.LastName!=null 

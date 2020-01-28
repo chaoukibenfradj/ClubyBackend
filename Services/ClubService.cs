@@ -24,9 +24,9 @@ namespace clubyApi.Services
         }
 
 
-      public UpdateResult CompleteClubInscription(string id, string institute, string photo)
+      public UpdateResult CompleteClubInscription(UpdateDto club)
      {
-         return _repo.CompleteClubInscription(id,institute,photo);
+         return _repo.CompleteClubInscription(club);
      }
 
    

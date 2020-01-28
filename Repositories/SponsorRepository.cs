@@ -57,6 +57,11 @@ namespace clubyApi
                 var update=Builders<Sponsor>.Update.Set("Photo",sponsor.Photo).Set("Entreprise",sponsor.Entreprise);
                 result=_sponsors.UpdateOne(filter,update);
               }
+              else if(sponsor.Photo!=null){
+                var update=Builders<Sponsor>.Update.Set("Photo",sponsor.Photo);
+                result=_sponsors.UpdateOne(filter,update);
+
+              }
                else if(sponsor.Photo!=null 
                && sponsor.Entreprise!=null
                 && sponsor.LastName!=null 

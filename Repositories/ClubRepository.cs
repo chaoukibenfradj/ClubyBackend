@@ -125,13 +125,41 @@ namespace clubyApi.Repositories
             return resultat;
         }
 
-       public UpdateResult CompleteClubInscription(string id,string institute, string photo)
+       public UpdateResult CompleteClubInscription(UpdateDto club)
        {
-           var filter = Builders<Club>.Filter.Eq("id",id);
-           Console.Write(institute);
+          UpdateResult result=null;
+          
+              var filter=Builders<Club>.Filter.Eq("Id",club.Id);
+              if(club.Photo!=null && club.Description!=null && club.Name!=null){
+                var update=Builders<Club>.Update.Set("Photo",club.Photo).Set("Description",club.Description).Set("Name",club.Name);
+                result=_clubs.UpdateOne(filter,update);
+              }
+               else if(club.Photo!=null && club.Description!=null && club.Name!=null
+                && club.LastName!=null 
+                && club.FirstName!=null
+                ){
+                var update_1=Builders<Club>.Update.Set("Photo",club.Photo).Set("Description",club.Description).Set("Name",club.Name);
 
-           var update=Builders<Club>.Update.Set("Photo", photo).Set("Institute", institute);
-           return _clubs.UpdateOne(filter,update);
+                var update_2=Builders<User>.Update.Set("LastName",club.LastName).Set("FirstName",club.FirstName);
+                Club s=_clubs.Find(s=>s.Id==club.Id).FirstOrDefault();
+                _users.UpdateOne(Builders<User>.Filter.Eq("Id",s.User.Id),update_2);
+                result=_clubs.UpdateOne(filter,update_1);
+              }
+               else if(club.Photo!=null){
+                var update=Builders<Club>.Update.Set("Photo",club.Photo);
+                result=_clubs.UpdateOne(filter,update);
+
+              }
+               else if(
+                club.LastName!=null 
+                && club.FirstName!=null){
+                var update_2=Builders<User>.Update.Set("LastName",club.LastName).Set("FirstName",club.FirstName);
+                Club s=_clubs.Find(s=>s.Id==club.Id).FirstOrDefault();
+               result= _users.UpdateOne(Builders<User>.Filter.Eq("Id",s.User.Id),update_2);
+               
+              }
+              
+               return result;
        }
 
         public Club CreateClub(User user,Institute institute,Domain domain)
