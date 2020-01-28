@@ -94,6 +94,7 @@ namespace clubyApi.Repositories
                     select 
                     new Club(){
                         Id=club.Id,
+                        Name=club.Name,
                         Institute=club.Institute,
                         Photo=club.Photo,
                         Domain=club.Domain,
