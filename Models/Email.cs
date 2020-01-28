@@ -1,3 +1,4 @@
+using System;
 using clubyApi.Models;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -32,7 +33,7 @@ namespace ClubyBackend.Models
         public Email(EmailDto email,User sender,User receiver){
             Subject=email.Subject;
             Content=email.Content;
-            SendDate=email.SendDate;
+            SendDate= DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")	;
           
             Sender= new User(sender.Id);
             Receiver=new User(receiver.Id);

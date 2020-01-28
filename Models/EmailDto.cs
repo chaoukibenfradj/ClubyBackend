@@ -8,7 +8,7 @@ namespace ClubyBackend.Models
         public string Content  {get;set;}
 
        
-        public string SendDate  {get;set;}
+       
 
     
         public string Sender{get;set;}

@@ -81,6 +81,7 @@ namespace clubyApi.Repositories
                         Subject=email.Subject,
                         Content=email.Content,
                         Sender=u,
+                        SendDate=email.SendDate,
                         Receiver=email.Receiver
                     };
                    
@@ -103,6 +104,7 @@ namespace clubyApi.Repositories
                         Subject=email.Subject,
                         Content=email.Content,
                         Sender=email.Sender,
+                        SendDate=email.SendDate,
                         Receiver=u
                     };
                    
