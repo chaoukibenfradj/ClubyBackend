@@ -17,6 +17,8 @@ namespace ClubyBackend.Models
         public string Photo{ get;set;}
          public string Description{ get;set;}
         public string Name{ get;set;}
+         public string Domain{ get;set;}
+
 
         public string Entreprise{ get ; set;}
         public  List<string> Interests {get;set;}

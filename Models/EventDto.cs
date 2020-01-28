@@ -16,7 +16,6 @@ namespace ClubyBackend.Models
         public string CreationDate {get;set;}
  
         public string Domain {get;set;}
-
        
         public string Club {get;set;}
 

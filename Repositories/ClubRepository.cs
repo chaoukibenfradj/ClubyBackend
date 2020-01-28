@@ -130,15 +130,32 @@ namespace clubyApi.Repositories
           UpdateResult result=null;
           
               var filter=Builders<Club>.Filter.Eq("Id",club.Id);
-              if(club.Photo!=null && club.Description!=null && club.Name!=null){
-                var update=Builders<Club>.Update.Set("Photo",club.Photo).Set("Description",club.Description).Set("Name",club.Name);
+              if(club.Photo!=null && club.Description!=null && club.Name!=null && club.Domain!=null && club.Institute!=null){
+                var update=Builders<Club>.Update.Set("Photo",club.Photo).Set("Description",club.Description)
+                .Set("Name",club.Name).Set("Institut",new Institute(club.Institute)).Set("Domain",new Domain(club.Domain));
                 result=_clubs.UpdateOne(filter,update);
               }
-               else if(club.Photo!=null && club.Description!=null && club.Name!=null
+              else if(club.Domain!=null && club.Institute!=null){
+                   var update=Builders<Club>.Update.Set("Institut",new Institute(club.Institute)).Set("Domain",new Domain(club.Domain));
+                result=_clubs.UpdateOne(filter,update);
+
+              }
+                else if(club.Domain!=null){
+                   var update=Builders<Club>.Update.Set("Domain",new Domain(club.Domain));
+                result=_clubs.UpdateOne(filter,update);
+
+              }
+                else if(club.Institute!=null){
+                   var update=Builders<Club>.Update.Set("Institut",new Institute(club.Institute));
+                result=_clubs.UpdateOne(filter,update);
+
+              }
+               else if(club.Photo!=null && club.Description!=null && club.Name!=null && club.Domain!=null && club.Institute!=null
                 && club.LastName!=null 
                 && club.FirstName!=null
                 ){
-                var update_1=Builders<Club>.Update.Set("Photo",club.Photo).Set("Description",club.Description).Set("Name",club.Name);
+                var update_1=Builders<Club>.Update.Set("Photo",club.Photo).Set("Description",club.Description).Set("Name",club.Name).Set("Institut",new Institute(club.Institute))
+                .Set("Domain",new Domain(club.Domain));
 
                 var update_2=Builders<User>.Update.Set("LastName",club.LastName).Set("FirstName",club.FirstName);
                 Club s=_clubs.Find(s=>s.Id==club.Id).FirstOrDefault();
@@ -165,7 +182,7 @@ namespace clubyApi.Repositories
         public Club CreateClub(User user,Institute institute,Domain domain)
         {
             Club resultat=new Club(user,institute,domain);
-            Console.Write(resultat);
+         
              _clubs.InsertOne(resultat);
              return resultat;
         }
@@ -175,10 +192,12 @@ namespace clubyApi.Repositories
 
          public List<Club> ShowAllClubs()
              {
+              
+              List<Club>clubs=new List<Club>();
           
-              var query=from e in _clubs.AsQueryable()
-                    join d in _domains.AsQueryable() on e.Domain.Id equals d.Id   
-                    join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id 
+             var query=from e in _clubs.AsQueryable()
+                   // join d in _domains.AsQueryable() on e.Domain.Id equals d.Id   
+                    //join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id 
                     join u in _users.AsQueryable() on e.User.Id equals u.Id             
                     select 
                     new Club(){
@@ -186,14 +205,81 @@ namespace clubyApi.Repositories
                         Name=e.Name,
                         Description=e.Description,
                         Photo=e.Photo,
-                        Domain=d,
+                        Domain=e.Domain,
                         CreationDate=e.CreationDate,
-                        Institute=inst,
+                        Institute=e.Institute,
                         User=u
                      
                     };
+                   query.ToList().ForEach(club =>{
+                       if(club.Domain.Id==null && club.Institute.Id==null){
+                           clubs.Add(club);
+                       }
+                       else
+                       if(club.Domain.Id!=null && club.Institute.Id!=null){
+                           var q=from e in _clubs.AsQueryable().Where(c=>c.Id==club.Id)
+                            join d in _domains.AsQueryable() on e.Domain.Id equals d.Id   
+                            join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id 
+                            join u in _users.AsQueryable() on e.User.Id equals u.Id             
+                            select 
+                            new Club(){
+                                Id=e.Id,
+                                Name=e.Name,
+                                Description=e.Description,
+                                Photo=e.Photo,
+                                Domain=d,
+                                CreationDate=e.CreationDate,
+                                Institute=inst,
+                                User=u
+                            
+                            };
+                            clubs.Add(q.FirstOrDefault());
+
+                       }
+                        else
+                       if(club.Domain.Id!=null && club.Institute.Id==null){
+                           var q=from e in _clubs.AsQueryable().Where(c=>c.Id==club.Id)
+                            join d in _domains.AsQueryable() on e.Domain.Id equals d.Id   
+                            join u in _users.AsQueryable() on e.User.Id equals u.Id             
+                            select 
+                            new Club(){
+                                Id=e.Id,
+                                Name=e.Name,
+                                Description=e.Description,
+                                Photo=e.Photo,
+                                Domain=d,
+                                CreationDate=e.CreationDate,
+                                Institute=e.Institute,
+                                User=u
+                            
+                            };
+                            clubs.Add(q.FirstOrDefault());
+
+                       }
+                        else
+                       if(club.Domain.Id==null && club.Institute.Id!=null){
+                           var q=from e in _clubs.AsQueryable().Where(c=>c.Id==club.Id)
+                            join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id 
+                            join u in _users.AsQueryable() on e.User.Id equals u.Id             
+                            select 
+                            new Club(){
+                                Id=e.Id,
+                                Name=e.Name,
+                                Description=e.Description,
+                                Photo=e.Photo,
+                                Domain=e.Domain,
+                                CreationDate=e.CreationDate,
+                                Institute=inst,
+                                User=u
+                            
+                            };
+                            clubs.Add(q.FirstOrDefault());
+
+                       }
+
+                   });
                    
-            return query.ToList();
+            return clubs;
         }
 
          public Club DeleteClub(string id)
