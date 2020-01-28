@@ -36,7 +36,6 @@ namespace clubyApi.Repositories
         public Tuple<Event,int> CreateEvent(EventDto e)
         {
             List<Event> events=FindEventByDate(e.BeginDate);
-            e.CreationDate=DateTime.Today.ToString("dd-MM-yyyy hh:mm:ss");
             Event added=new Event(e);
             _events.InsertOne(added);
             return new Tuple<Event,int>(added,events.Count);
