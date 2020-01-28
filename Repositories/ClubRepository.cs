@@ -1,14 +1,22 @@
-using clubyApi.Models;
-using MongoDB.Driver;
-using clubyApi.Utils;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using clubyApi.Utils;
+using clubyApi.Models;
+using ClubyBackend.Models;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using clubyApi.Helper;
 using Microsoft.Extensions.Options;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
-using System.Linq;
+
+
+
+
 
 namespace clubyApi.Repositories
 {
@@ -134,6 +142,30 @@ namespace clubyApi.Repositories
             Console.Write(resultat);
              _clubs.InsertOne(resultat);
              return resultat;
+        }
+
+
+         public List<Club> ShowAllClubs()
+             {
+          
+              var query=from e in _clubs.AsQueryable()
+                    join d in _domains.AsQueryable() on e.Domain.Id equals d.Id   
+                    join inst in _institutes.AsQueryable() on e.Institute.Id equals inst.Id 
+                    join u in _users.AsQueryable() on e.User.Id equals u.Id             
+                    select 
+                    new Club(){
+                        Id=e.Id,
+                        Name=e.Name,
+                        Description=e.Description,
+                        Photo=e.Photo,
+                        Domain=d,
+                        CreationDate=e.CreationDate,
+                        Institute=inst,
+                        User=u
+                     
+                    };
+                   
+            return query.ToList();
         }
     }
 

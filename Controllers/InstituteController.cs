@@ -78,7 +78,7 @@ namespace clubyApi.Controllers
             return Ok(res);
         }
          [AllowAnonymous]
-        [HttpGet("{region}")]
+        [HttpGet("region/{region}")]
 
          public ActionResult<List<Institute>> FindInstitutebyRegion(string region){
             List<Institute> res=_service.FindInstituteByRegion(region);

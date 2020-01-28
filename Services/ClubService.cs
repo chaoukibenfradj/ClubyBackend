@@ -1,10 +1,12 @@
-using clubyApi.Models;
-using MongoDB.Driver;
-using clubyApi.Utils;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using clubyApi.Models;
 using clubyApi.Repositories;
+using ClubyBackend.Models;
+using MongoDB.Driver;
+
+
+
 namespace clubyApi.Services
 {
   
@@ -34,5 +36,10 @@ namespace clubyApi.Services
 
         public  Club FindClubProfile(string id){
             return _repo.FindClubProfile(id);
+        }
+
+        List<Club> IClubService.ShowAllClubs()
+        {
+            return _repo.ShowAllClubs();
         }
     }}

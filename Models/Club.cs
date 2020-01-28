@@ -1,5 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System.ComponentModel.DataAnnotations;
+
 using MongoDB.Driver;
 
 namespace clubyApi.Models
@@ -23,8 +25,10 @@ namespace clubyApi.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-         [BsonElement("Name")]
+        [Required (ErrorMessage = "Club name is required")]
+        [BsonElement("Name")]
         public string Name{ get;set;}
+        [Required (ErrorMessage = "Club descrition is required")]
         [BsonElement("Description")]
         public string Description{ get;set;}
       
@@ -34,7 +38,8 @@ namespace clubyApi.Models
         public Institute Institute{ get ; set;}
         [BsonElement("Domain")]
         public Domain Domain{ get ; set;}
-         [BsonElement("CreationDate")]
+        [Required (ErrorMessage = "Club creation date is required")]
+        [BsonElement("CreationDate")]
         public string CreationDate{ get ; set;}
         [BsonElement("User")]
         public User User{get;set;}
