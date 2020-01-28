@@ -147,7 +147,7 @@ namespace clubyApi.Repositories
               }
                 else if(club.Institute!=null){
                    var update=Builders<Club>.Update.Set("Institut",new Institute(club.Institute));
-                result=_clubs.UpdateOne(filter,update);
+                   result=_clubs.UpdateOne(filter,update);
 
               }
                else if(club.Photo!=null && club.Description!=null && club.Name!=null && club.Domain!=null && club.Institute!=null
