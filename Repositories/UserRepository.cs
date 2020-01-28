@@ -119,7 +119,7 @@ namespace clubyApi.Repositories
          
         public Email SendEmail(EmailDto email){
             Email response=null;
-            var apiKey = Environment.GetEnvironmentVariable("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");
+           /* var apiKey = Environment.GetEnvironmentVariable("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");
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress(email.Sender, "sender");
             var subject = email.Subject;
@@ -127,7 +127,7 @@ namespace clubyApi.Repositories
             var plainTextContent = email.Content;
             var htmlContent = "";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent,htmlContent);
-            var resp =  client.SendEmailAsync(msg);
+            var resp =  client.SendEmailAsync(msg);*/
             User sen=FindUserByEmail(email.Sender);
             User rec=FindUserByEmail( email.Receiver);
             if(sen==null || rec==null){
