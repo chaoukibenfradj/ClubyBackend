@@ -81,6 +81,28 @@ namespace clubyApi
             
              
          }
+          public UpdateResult pickInterest (UpdateDto sponsor){
+             UpdateResult result=null;
+          
+              var filter=Builders<Sponsor>.Filter.Eq("Id",sponsor.Id);
+              Sponsor s=_sponsors.Find(s=>s.Id==sponsor.Id).FirstOrDefault();
+              if(s.Interests==null){
+                    var update=Builders<Sponsor>.Update.Set("Interests",sponsor.Interests);
+                    result=_sponsors.UpdateOne(filter,update);
+              }
+              else{
+                  List<string>list=s.Interests;
+                  sponsor.Interests.ForEach(interest=>list.Add(interest));
+                   var update=Builders<Sponsor>.Update.Set("Interests",list);
+                    result=_sponsors.UpdateOne(filter,update);
+              }
+             
+              
+              
+               return result;
+            
+             
+         }
         public List<Sponsor> ShowAllSponsors()
         {
            

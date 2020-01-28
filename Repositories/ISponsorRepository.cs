@@ -13,5 +13,6 @@ namespace clubyApi
          Sponsor FindSponsorProfile(string id);
           Sponsor FindSponsor(string id);
         UpdateResult updateSponsor(UpdateDto updateDto);
+         UpdateResult pickInterest(UpdateDto updateDto);
     }
 }

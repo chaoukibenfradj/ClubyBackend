@@ -45,6 +45,12 @@ namespace clubyApi.Controllers
         {
             return Ok(_service.updateSponsor(sponsor));
         }
+        [AllowAnonymous]
+        [HttpPatch("")]
+        public ActionResult<UpdateResult> PickInterest(UpdateDto sponsor) 
+        {
+            return Ok(_service.pickInterest(sponsor));
+        }
        
     }
 

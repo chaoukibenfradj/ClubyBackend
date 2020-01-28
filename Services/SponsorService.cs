@@ -36,5 +36,8 @@ namespace clubyApi
             return _repo.updateSponsor(updateDto);
             
         }
+        public UpdateResult pickInterest (UpdateDto sponsor){
+            return _repo.pickInterest(sponsor);
+        }
     }
 }

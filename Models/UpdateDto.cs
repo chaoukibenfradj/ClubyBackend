@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace ClubyBackend.Models
 {
     public class UpdateDto
@@ -15,5 +17,6 @@ namespace ClubyBackend.Models
         public string Photo{ get;set;}
 
         public string Entreprise{ get ; set;}
+        public  List<string> Interests {get;set;}
     }
 }
