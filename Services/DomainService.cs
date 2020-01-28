@@ -30,5 +30,9 @@ namespace clubyApi.Services
         {
             return _repo.ModifyDomain(domain);
         }
+
+        public Domain FindDomain(string id){
+            return _repo.FindDomain(id);
+        }
     }
 }

@@ -17,7 +17,6 @@ using System.Security.Claims;
 
 
 
-
 namespace clubyApi.Repositories
 {
     public class ClubRepository:IClubRepository
@@ -126,15 +125,14 @@ namespace clubyApi.Repositories
             return resultat;
         }
 
-        public UpdateResult CompleteClubInscription(string id,string institute, string photo)
-        {
-            var filter = Builders<Club>.Filter.Eq("id",id);
-            Console.Write(institute);
+       public UpdateResult CompleteClubInscription(string id,string institute, string photo)
+       {
+           var filter = Builders<Club>.Filter.Eq("id",id);
+           Console.Write(institute);
 
-            var update=Builders<Club>.Update.Set("Photo", photo).Set("Institute", institute);
-
-            return _clubs.UpdateOne(filter,update);
-        }
+           var update=Builders<Club>.Update.Set("Photo", photo).Set("Institute", institute);
+           return _clubs.UpdateOne(filter,update);
+       }
 
         public Club CreateClub(User user,Institute institute,Domain domain)
         {
@@ -143,6 +141,8 @@ namespace clubyApi.Repositories
              _clubs.InsertOne(resultat);
              return resultat;
         }
+
+      
 
 
          public List<Club> ShowAllClubs()
@@ -167,6 +167,42 @@ namespace clubyApi.Repositories
                    
             return query.ToList();
         }
+
+         public Club DeleteClub(string id)
+        {
+            return _clubs.FindOneAndDelete(d=>d.Id==id);
+        }
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     
