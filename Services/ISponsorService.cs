@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using clubyApi.Models;
+using ClubyBackend.Models;
 using MongoDB.Driver;
 
 namespace clubyApi
@@ -10,6 +11,7 @@ namespace clubyApi
       List<Sponsor>ShowAllSponsors();
       Sponsor FindSponsorProfile(string id);
       Sponsor FindSponsor(string id);
+       UpdateResult updateSponsor(UpdateDto updateDto);
 
     }
 }

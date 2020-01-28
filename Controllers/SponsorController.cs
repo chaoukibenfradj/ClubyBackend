@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using System;
+using ClubyBackend.Models;
+
 namespace clubyApi.Controllers
 {
     [Authorize]
@@ -36,6 +38,12 @@ namespace clubyApi.Controllers
         {
             Console.Write(id);
             return Ok(_service.FindSponsor(id));
+        }
+          [AllowAnonymous]
+        [HttpPut("")]
+        public ActionResult<UpdateResult> UpdateSponsor(UpdateDto sponsor) 
+        {
+            return Ok(_service.updateSponsor(sponsor));
         }
        
     }

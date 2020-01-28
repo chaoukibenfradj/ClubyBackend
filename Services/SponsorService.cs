@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using clubyApi.Models;
 using clubyApi.Repositories;
+using ClubyBackend.Models;
+using MongoDB.Driver;
+
 namespace clubyApi
 {
     public class SponsorService : ISponsorService
@@ -28,6 +31,10 @@ namespace clubyApi
         List<Sponsor> ISponsorService.ShowAllSponsors()
         {
             return _repo.ShowAllSponsors();
+        }
+        public  UpdateResult updateSponsor(UpdateDto updateDto){
+            return _repo.updateSponsor(updateDto);
+            
         }
     }
 }

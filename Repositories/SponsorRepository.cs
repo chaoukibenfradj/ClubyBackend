@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using clubyApi.Models;
+using ClubyBackend.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -48,7 +49,38 @@ namespace clubyApi
             
             return resultat;
         }
-
+        public UpdateResult updateSponsor(UpdateDto sponsor){
+             UpdateResult result=null;
+          
+              var filter=Builders<Sponsor>.Filter.Eq("Id",sponsor.Id);
+              if(sponsor.Photo!=null && sponsor.Entreprise!=null){
+                var update=Builders<Sponsor>.Update.Set("Photo",sponsor.Photo).Set("Entreprise",sponsor.Entreprise);
+                result=_sponsors.UpdateOne(filter,update);
+              }
+               else if(sponsor.Photo!=null 
+               && sponsor.Entreprise!=null
+                && sponsor.LastName!=null 
+                && sponsor.FirstName!=null
+                ){
+                var update_1=Builders<Sponsor>.Update.Set("Photo",sponsor.Photo).Set("Entreprise",sponsor.Entreprise);
+                var update_2=Builders<User>.Update.Set("LastName",sponsor.LastName).Set("FirstName",sponsor.FirstName);
+                Sponsor s=_sponsors.Find(s=>s.Id==sponsor.Id).FirstOrDefault();
+                _users.UpdateOne(Builders<User>.Filter.Eq("Id",s.User.Id),update_2);
+                result=_sponsors.UpdateOne(filter,update_1);
+              }
+               else if(
+                sponsor.LastName!=null 
+                && sponsor.FirstName!=null){
+                var update_2=Builders<User>.Update.Set("LastName",sponsor.LastName).Set("FirstName",sponsor.FirstName);
+                Sponsor s=_sponsors.Find(s=>s.Id==sponsor.Id).FirstOrDefault();
+               result= _users.UpdateOne(Builders<User>.Filter.Eq("Id",s.User.Id),update_2);
+               
+              }
+              
+               return result;
+            
+             
+         }
         public List<Sponsor> ShowAllSponsors()
         {
            
@@ -89,6 +121,9 @@ namespace clubyApi
             
             return resultat;
         }
+         
+       
        
     }
+     
 }
