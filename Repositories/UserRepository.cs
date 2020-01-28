@@ -71,8 +71,9 @@ namespace clubyApi.Repositories
             return result;
         }
         public User FindUserByEmail(string email) => _users.Find<User>(user => user.Email == email).FirstOrDefault();
+         public User FindUserByIf(string id) => _users.Find<User>(user => user.Id == id).FirstOrDefault();
         public List<Email> FindEmailBySenderId(string id){
-           
+                List<Email> emails=new List<Email>();
                  var query=from email in _emails.AsQueryable().Where(Email=>Email.Sender.Id==id) 
                     join u in _users.AsQueryable() on email.Sender.Id equals u.Id                
                     select 
@@ -84,20 +85,25 @@ namespace clubyApi.Repositories
                         SendDate=email.SendDate,
                         Receiver=email.Receiver
                     };
-                   
+                   query.ToList().ForEach(mail=>{
+                        User rec=FindUserById(mail.Receiver.Id);
+                        emails.Add(new Email(mail.Id,mail.Subject,mail.Content,mail.Sender,mail.SendDate,rec));
+
+                    });
            
             
            
 
-            return query.ToList();
+            return emails;
 
          }
 
         public User FindUserById(string id) => _users.Find<User>(user => user.Id == id).FirstOrDefault();
 
         public List<Email> FindEmailByReceiverId(string id){
+             List<Email> emails=new List<Email>();
              var query=from email in _emails.AsQueryable().Where(Email=>Email.Receiver.Id==id) 
-                    join u in _users.AsQueryable() on email.Sender.Id equals u.Id                
+                    join u in _users.AsQueryable() on email.Receiver.Id equals u.Id                
                     select 
                     new Email(){
                         Id=email.Id,
@@ -108,11 +114,15 @@ namespace clubyApi.Repositories
                         Receiver=u
                     };
                    
-           
+                    query.ToList().ForEach(mail=>{
+                        User send=FindUserById(mail.Sender.Id);
+                        emails.Add(new Email(mail.Id,mail.Subject,mail.Content,send,mail.SendDate,mail.Receiver));
+
+                    });
             
            
 
-            return query.ToList();
+            return emails;
     
 
          }

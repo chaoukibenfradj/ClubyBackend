@@ -96,7 +96,8 @@ namespace clubyApi.Controllers
             Email response=_userservice.SendEmail(email);
 
             if(response==null){
-                 return  BadRequest(new {message="something went wrong"});
+                     return NotFound(); 
+
             }
             return Ok(response);
             

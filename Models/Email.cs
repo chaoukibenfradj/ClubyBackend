@@ -8,7 +8,8 @@ namespace ClubyBackend.Models
 {
     public class Email
     {
-      
+        private User rec;
+
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)] 
         public string Id {get;set;}
@@ -40,7 +41,16 @@ namespace ClubyBackend.Models
 
 
         }
-       
+
+        public Email(string id, string subject, string content, User sender, string sendDate, User receiver)
+        {
+            Id = id;
+            Subject = subject;
+            Content = content;
+            Sender = sender;
+            SendDate = sendDate;
+            Receiver = receiver;
+        }
     }
 
 }
