@@ -388,11 +388,11 @@ namespace clubyApi.Repositories
                 .Set("BeginDate",eventDto.BeginDate)
                 .Set("EndDate",eventDto.EndDate)
                 .Set("price",eventDto.price)
-                .Set("Domain",eventDto.Domain)
+                .Set("Domain",new Domain(eventDto.Domain))
                  .Set("Location",eventDto.Location)
                    .Set("Photo",eventDto.Photo)
                 .Set("Number",eventDto.NumberParticipation)
-                 .Set("Institute",eventDto.Institute);
+                 .Set("Institute",new Institute(eventDto.Institute));
                result=  _events.UpdateOne(filter,update);
             }
             else if(eventDto.Name!=null)
@@ -400,6 +400,22 @@ namespace clubyApi.Repositories
             { 
                 var update=Builders<Event>.Update.
                 Set("Name",eventDto.Name);
+              
+               result=  _events.UpdateOne(filter,update);
+            }
+            else if(eventDto.Institute!=null)
+             
+            { 
+                var update=Builders<Event>.Update.
+                Set("Institute",new Institute(eventDto.Institute));
+              
+               result=  _events.UpdateOne(filter,update);
+            }
+              else if(eventDto.Domain!=null)
+             
+            { 
+                var update=Builders<Event>.Update.
+                Set("Domain",new Domain(eventDto.Domain));
               
                result=  _events.UpdateOne(filter,update);
             }
